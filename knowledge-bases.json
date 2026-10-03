@@ -16,5 +16,11 @@
     "path": "kb/horizon-ois-kb",
     "title": "Horizon Europe: Open Internet Stack",
     "description": "Horizon Europe Cluster 4 Open Internet Stack (NGI successor): every topic 2021–2027, funded projects and consortia, cascade calls for individuals and SMEs, application rules and policy context, as of October 2026."
+  },
+  {
+    "name": "db-ideas-kb",
+    "path": "kb/db-ideas-kb",
+    "title": "Database Ideas 2018–2026",
+    "description": "Database-systems ideas from 2018 to 2026, including streaming and messaging (Kafka and its successors): what won, what failed, and why, with the systems, events and papers behind each verdict."
   }
 ]

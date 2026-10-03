@@ -1,0 +1,19 @@
+# Verdict: won
+
+* [Automatic indexing and plan-regression correction in managed databases](automatic-indexing-and-plan-correction.md) - Let the database service create and drop indexes and pin the last good plan when a query regresses, with every action validated and automatically rolled back. A quiet success: Azure SQL has done it across millions of databases since about 2016, Oracle added automatic indexing in 19c, and SQL Server added feedback loops. It works because it relies on classical what-if tuning plus continuous validation rather than ML, and because the cloud vendor owns the control plane.
+
+# Verdict: mixed
+
+* [In-database machine learning (train and predict with SQL)](in-database-ml.md) - Train and serve ML models inside the database with SQL (MADlib, SQL Server ML Services, BigQuery ML, Redshift ML) so data never leaves. SQL-ML in cloud warehouses found a lasting niche for simple models and analysts. In-database training as a replacement for the Python ML stack failed: MADlib was terminated by Apache in September 2026, and by 2023–26 the 'ML in the database' energy moved to calling LLMs from SQL.
+* [Instance-optimized databases (SageDB and the learned-systems agenda)](instance-optimized-systems.md) - Specialize every component of a database (indexes, layouts, scheduling, scaling) to one customer's data and workload using learned models. The 'whole learned DBMS' (SageDB) was never built. Its practical descendant, ML for fleet-wide scheduling, runtime prediction and scaling inside cloud warehouses, shipped in Amazon Redshift and became the default in 2026.
+* [Self-driving / autonomous databases](self-driving-databases.md) - A DBMS that tunes, indexes, scales and repairs itself with no DBA. As a research system (CMU Peloton, then NoisePage) it was abandoned. As a product category, Oracle's 2017–18 'Autonomous Database' set the marketing term. In practice 'autonomous' turned out to mean a well-automated managed cloud service, which did win, mostly through rules, fleet telemetry and narrow ML rather than a self-driving brain.
+
+# Verdict: niche
+
+* [Learned index structures](learned-indexes.md) - Replace B-trees and hash tables with models that learn the key distribution (the CDF). A big research hit after 2018, with hundreds of follow-up papers, but almost no production adoption by 2026: the gains were mostly for read-only, in-memory, sorted data, and tuned classical structures closed most of the gap.
+* [Learned query optimizers and learned cardinality estimation](learned-query-optimizers.md) - Use deep learning or reinforcement learning to estimate cardinalities, cost plans or choose join orders. Replacing the optimizer outright failed. The surviving form is narrow: 'steering' a classical optimizer with hints learned from repeated workloads, plus execution feedback loops. Both run in production at Microsoft, Amazon and Meta.
+* [ML-based configuration (knob) tuning](ml-knob-tuning.md) - Use Bayesian optimization or reinforcement learning to set a DBMS's hundreds of configuration knobs. Strong papers (OtterTune, CDBTune, many follow-ups) and real gains on badly configured databases, but the leading startup, OtterTune, shut down in 2024. Customers preferred bigger instances, cloud defaults improved, and safe experimentation on production was too hard.
+
+# Verdict: too-early
+
+* [LLM-based database tuning, diagnosis and DBA agents](llm-database-tuning-and-diagnosis.md) - Use large language models, which have read the manuals and forums, to pick knobs, recommend indexes, rewrite queries and diagnose incidents, often as agents with tool access. Since 2023 it has produced fast-moving research and vendor copilots, but as of 2026 it is still advisory: results vary a lot from run to run, open-source agents have been archived, and Microsoft's own study finds LLM index advice less reliable than its classical tuner.
