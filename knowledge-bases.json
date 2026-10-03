@@ -4,5 +4,11 @@
     "path": "kb/oss-kb",
     "title": "Open Source Successes & Failures",
     "description": "435 OSS projects, 175 organizations and 247 events across 15 domains, Oct 2024 – Oct 2026: what worked and failed for projects and the businesses around them."
+  },
+  {
+    "name": "grants-kb",
+    "path": "kb/grants-kb",
+    "title": "Grants for Software",
+    "description": "247 programs, 156 funders and 121 calls that fund software (OSS, research, startups, public-interest, AI, web3, individuals), with status and deadlines as of October 2026."
   }
 ]

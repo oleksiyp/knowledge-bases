@@ -21,13 +21,16 @@ export function Timeline() {
   const [q, setQ] = useState("");
   const colorBy = params.get("color") ?? "auto";
   const hidden = new Set(params.getAll("hide"));
-  const order = params.get("order") ?? "desc";
+  const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
     document.title = `Timeline · ${manifest?.title ?? bundle}`;
   }, [bundle, manifest?.title]);
 
   const dated = useMemo(() => (manifest?.concepts ?? []).filter((c) => c.date), [manifest]);
+  // Bundles with future dates (deadlines, scheduled events) open on "Upcoming": soonest first.
+  const futureCount = useMemo(() => dated.filter((c) => c.date! >= today).length, [dated, today]);
+  const order = params.get("order") ?? (futureCount >= 5 ? "upcoming" : "desc");
 
   const colorKeys = useMemo(() => {
     if (!manifest) return [];
@@ -50,9 +53,10 @@ export function Timeline() {
     return dated
       .filter((c) => !(c.facets[ck] ?? ["(none)"]).every((v) => hidden.has(v)))
       .filter((c) => words.every((w) => `${c.title} ${c.description}`.toLowerCase().includes(w)))
-      .sort((a, b) => (order === "asc" ? a.date!.localeCompare(b.date!) : b.date!.localeCompare(a.date!)));
+      .filter((c) => order !== "upcoming" || c.date! >= today)
+      .sort((a, b) => (order === "desc" ? b.date!.localeCompare(a.date!) : a.date!.localeCompare(b.date!)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dated, ck, params, q, order]);
+  }, [dated, ck, params, q, order, today]);
 
   const months = useMemo(() => {
     const m = new Map<string, LightConcept[]>();
@@ -106,7 +110,7 @@ export function Timeline() {
     <div className="timeline-view">
       <header className="tl-head">
         <h1><CalendarRange size={20} /> Timeline</h1>
-        <span className="muted">{items.length} of {dated.length} dated concepts</span>
+        <span className="muted">{items.length} of {dated.length} dated concepts{order === "upcoming" ? " · from today" : ""}</span>
         <div className="tl-controls">
           <div className="search-inline small">
             <Search size={14} className="muted" />
@@ -120,7 +124,8 @@ export function Timeline() {
             </select>
           </label>
           <div className="seg">
-            <button className={order === "desc" ? "on" : ""} onClick={() => setParam((p) => p.delete("order"))}>Newest</button>
+            {futureCount > 0 && <button className={order === "upcoming" ? "on" : ""} onClick={() => setParam((p) => p.set("order", "upcoming"))} title={`${futureCount} dated on or after today`}>Upcoming</button>}
+            <button className={order === "desc" ? "on" : ""} onClick={() => setParam((p) => p.set("order", "desc"))}>Newest</button>
             <button className={order === "asc" ? "on" : ""} onClick={() => setParam((p) => p.set("order", "asc"))}>Oldest</button>
           </div>
         </div>

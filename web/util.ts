@@ -38,9 +38,9 @@ export function typeColor(type: string): string {
   return (fixed[type] = PALETTE[Math.abs(h) % PALETTE.length]);
 }
 
-const POS = new Set(["thriving", "growing", "positive", "up", "fresh", "stable", "human-reviewed", "machine-confirmed", "dominant", "strong", "yes", "true", "pass", "healthy", "success"]);
-const NEG = new Set(["dead", "crisis", "declining", "failed", "negative", "down", "stale", "deprecated", "struggling", "no", "false", "fail", "error", "critical"]);
-const MID = new Set(["contested", "mixed", "flat", "draft", "acquired", "emerging", "moderate", "unverified", "warning", "n/a"]);
+const POS = new Set(["thriving", "growing", "positive", "up", "fresh", "stable", "human-reviewed", "machine-confirmed", "dominant", "strong", "yes", "true", "pass", "healthy", "success", "open", "rolling", "active"]);
+const NEG = new Set(["dead", "crisis", "declining", "failed", "negative", "down", "stale", "deprecated", "struggling", "no", "false", "fail", "error", "critical", "closed", "paused", "discontinued", "winding-down"]);
+const MID = new Set(["contested", "mixed", "flat", "draft", "acquired", "emerging", "moderate", "unverified", "warning", "n/a", "upcoming", "closed-between-rounds", "reduced", "preferred"]);
 export type Sentiment = "pos" | "neg" | "mid" | "none";
 export function sentiment(value: string): Sentiment {
   const v = value.toLowerCase().split(/[\s(,;]/)[0];

@@ -13,6 +13,7 @@ concept, folder or filtered view can be shared.
 | Name | Title | Folder |
 |---|---|---|
 | `oss-kb` | Open Source Successes & Failures (Oct 2024 – Oct 2026) | [`kb/oss-kb`](kb/oss-kb) |
+| `grants-kb` | Grants for Software: programs, funders and deadlines (Oct 2026) | [`kb/grants-kb`](kb/grants-kb) |
 
 ### Adding a knowledge base
 
