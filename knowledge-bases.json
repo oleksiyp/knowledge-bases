@@ -22,5 +22,11 @@
     "path": "kb/db-ideas-kb",
     "title": "Database Ideas 2018–2026",
     "description": "Database-systems ideas from 2018 to 2026, including streaming and messaging (Kafka and its successors): what won, what failed, and why, with the systems, events and papers behind each verdict."
+  },
+  {
+    "name": "langs-kb",
+    "path": "kb/langs-kb",
+    "title": "Programming Languages & Runtimes",
+    "description": "Language and runtime ideas from Oct 2018 to Oct 2026 (memory safety, types, concurrency, JITs and AOT, WebAssembly, tooling, AI), with what succeeded, what failed and why. Work in progress."
   }
 ]

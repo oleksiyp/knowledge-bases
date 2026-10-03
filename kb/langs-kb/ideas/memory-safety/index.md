@@ -1,0 +1,22 @@
+# Outcome: succeeded
+
+* [Ownership and borrowing (static, GC-free memory safety)](ownership-and-borrowing.md) - Track a unique owner for every value and check temporary borrows at compile time, so memory safety needs neither GC nor runtime checks. 2018–2026 verdict: succeeded — Rust carried it into Linux, Android, Windows and Chromium with measured security wins, and Swift, Mojo, OCaml (OxCaml), Carbon and Hylo adopted variants; attempts to retrofit it onto C++ and D failed.
+* [Rust in OS kernels (Linux, Android, Windows)](rust-in-os-kernels.md) - Allow a second, memory-safe language inside production kernels, starting with drivers. 2018–2026 verdict: succeeded — Linux merged Rust in 6.1 (2022), declared the experiment over in December 2025, shipped Rust Binder in 6.18 and queued deletion of the C Binder for 7.4; Windows ships Rust kernel components. The cost was years of social conflict and high-profile resignations, and coverage is still a small share of kernel code.
+
+# Outcome: succeeding
+
+* [Bounds safety and hardened C/C++ (retrofit without rewriting)](bounds-safety-and-hardened-c.md) - Make existing C and C++ safer by recompiling rather than rewriting: bounds-annotated pointers (-fbounds-safety, __counted_by), hardened standard libraries, _FORTIFY_SOURCE=3, UAF-mitigating smart pointers (MiraclePtr), hardware memory tagging (MTE/EMTE) and fully safe C implementations (Fil-C). 2018–2026 verdict: succeeding — cheap spatial hardening became standard practice and entered C++26, and Apple shipped always-on tagging in iPhone 17; but these are mitigations, temporal safety remains partial, and fully-safe-C projects stayed niche.
+* [Government and industry push for memory-safe languages](memory-safety-policy-push.md) - Treat memory-unsafe languages as a measurable security liability and steer vendors (via guidance, procurement and liability) towards memory-safe languages and published roadmaps. 2018–2026 verdict: succeeding as agenda-setting — it moved budgets, standards debates and vendor roadmaps — but mixed as policy, since US guidance stayed voluntary, the 2026 roadmap deadline was non-binding, and the 2025 executive order removed technology-specific mandates.
+
+# Outcome: mixed
+
+* [Automated C (and C++) to Rust translation](c-to-rust-translation.md) - Migrate legacy C/C++ to memory-safe Rust by tools rather than hand rewrites — first by rule-based transpilers (c2rust), then by LLM-driven agents. 2018–2026 verdict: mixed, rising fast — mechanical transpilation produced unidiomatic unsafe Rust and saw little production use, but 2026 brought the first large AI-assisted ports (Ladybird LibJS, Bun's 535K-line Zig→Rust) while DARPA TRACTOR, Microsoft research and Canonical-funded work still chase safe, idiomatic output at scale.
+
+# Outcome: unproven
+
+* [CHERI capability hardware (memory safety in the ISA)](cheri-capability-hardware.md) - Replace raw pointers with hardware-checked capabilities (bounds + permissions + validity tag) so recompiled C/C++ becomes spatially memory-safe and finely compartmentalised. 2018–2026 verdict: unproven — strong research results and generous UK funding (Morello boards, DSbD), a CHERI Alliance (2024) and first CHERIoT microcontroller silicon (2026), but no mainstream application-class CPU has shipped CHERI, and Arm's Morello remained a prototype.
+* [C++ successor languages (Carbon, cppfront, Hylo, Circle, Jakt…)](cpp-successor-languages.md) - New languages designed to inherit C++ codebases through deep interop or source compatibility, the way TypeScript inherited JavaScript or Kotlin inherited Java. 2018–2026 verdict: unproven — none of the explicit successors reached a usable 1.0; Carbon's 0.1 slid to 'end of 2026 at the soonest', cppfront's last release was v0.8.1 (Jan 2025), Hylo remained research, Circle's safety work was abandoned with Safe C++. The de facto 'successor' for new safety-critical code was Rust via interop, not a C++-compatible language.
+
+# Outcome: stalled
+
+* [Safe C++ vs profiles (making C++ itself memory-safe)](safe-cpp-vs-profiles.md) - Two competing routes to memory safety inside ISO C++: a sound, borrow-checked safe subset (Safe C++, P3390) versus opt-in 'profiles' of restrictions and checks (Stroustrup/Sutter). 2018–2026 verdict: Safe C++ was abandoned in 2025; profiles won the vote but missed C++26 and were deferred to C++29. What actually shipped was hardening — a hardened standard library, erroneous behaviour for uninitialised reads, and contracts — effective but not memory safety.
