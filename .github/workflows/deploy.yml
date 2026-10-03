@@ -49,14 +49,13 @@ jobs:
           done
 
       - name: Deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # First run creates the Pages project; later runs just deploy.
-          command: |
-            pages project create ${{ env.PAGES_PROJECT }} --production-branch=main || true
-            pages deploy dist/web --project-name=${{ env.PAGES_PROJECT }} --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          # First run creates the Pages project; afterwards this is a no-op.
+          npx --yes wrangler@4 pages project create "$PAGES_PROJECT" --production-branch=main || true
+          npx --yes wrangler@4 pages deploy dist/web --project-name="$PAGES_PROJECT" --branch=main --commit-dirty=true
 
       - name: Attach custom domain (idempotent)
         if: env.CUSTOM_DOMAIN != ''
