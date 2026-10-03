@@ -28,5 +28,11 @@
     "path": "kb/langs-kb",
     "title": "Programming Languages & Runtimes",
     "description": "Language and runtime ideas from Oct 2018 to Oct 2026 (memory safety, types, concurrency, JITs and AOT, WebAssembly, tooling, AI), with what succeeded, what failed and why. Work in progress."
+  },
+  {
+    "name": "octopus-organization-kb",
+    "path": "kb/octopus-organization-kb",
+    "title": "Octopus Organization",
+    "description": "Two formulations of the octopus organizational model, with sourced principles, practical examples, a team pilot, and evidence limits."
   }
 ]
