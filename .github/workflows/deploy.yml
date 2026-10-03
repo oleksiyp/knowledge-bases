@@ -64,9 +64,11 @@ jobs:
           CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           api="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/$PAGES_PROJECT/domains"
-          if curl -fsS -H "Authorization: Bearer $CF_TOKEN" "$api" | grep -q "\"name\":\"$CUSTOM_DOMAIN\""; then
+          auth="Authorization: Bearer $CF_TOKEN"
+          if curl -sS -H "$auth" "$api" | jq -e --arg d "$CUSTOM_DOMAIN" '.result[]? | select(.name == $d)' >/dev/null; then
             echo "$CUSTOM_DOMAIN already attached"
           else
-            curl -fsS -X POST -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
-              --data "{\"name\":\"$CUSTOM_DOMAIN\"}" "$api" >/dev/null && echo "attached $CUSTOM_DOMAIN"
+            curl -sS -X POST -H "$auth" -H "Content-Type: application/json" \
+              --data "$(jq -n --arg d "$CUSTOM_DOMAIN" '{name: $d}')" "$api" \
+              | jq -e '.success' >/dev/null && echo "attached $CUSTOM_DOMAIN"
           fi
