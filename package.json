@@ -1,0 +1,45 @@
+{
+  "name": "okf-viewer",
+  "version": "0.1.0",
+  "description": "A fast, beautiful viewer for Open Knowledge Format (OKF) knowledge bundles",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "vite build",
+    "start": "node server/index.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "compression": "^1.8.2",
+    "express": "^5.2.1",
+    "jose": "^6.2.12",
+    "markdown-it": "^15.0.2",
+    "markdown-it-footnote": "^4.0.0",
+    "minisearch": "^7.2.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "force-graph": "^1.52.0",
+    "lucide-react": "^1.51.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oleksiyp/okf-viewer"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}
