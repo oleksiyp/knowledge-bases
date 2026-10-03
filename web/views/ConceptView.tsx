@@ -18,7 +18,7 @@ interface FnState {
 }
 
 export function ConceptView({ id }: { id: string }) {
-  const { bundle, version, byId, lastChange } = useBundle();
+  const { bundle, version, byId, lastChange, manifest } = useBundle();
   const ui = useUi();
   const loc = useLocation();
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export function ConceptView({ id }: { id: string }) {
   useEffect(() => {
     if (c?.id === id) {
       ui.pushRecent(id);
-      document.title = `${c.title} · ${bundle}`;
+      document.title = `${c.title} · ${manifest?.title ?? bundle}`;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [c, id]);

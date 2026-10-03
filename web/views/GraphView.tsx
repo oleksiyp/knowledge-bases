@@ -17,11 +17,11 @@ export function GraphView() {
   const [h, setH] = useState(() => Math.max(420, window.innerHeight - 120));
 
   useEffect(() => {
-    document.title = `Graph · ${bundle}`;
+    document.title = `Graph · ${manifest?.title ?? bundle}`;
     const onR = () => setH(Math.max(420, window.innerHeight - 120));
     window.addEventListener("resize", onR);
     return () => window.removeEventListener("resize", onR);
-  }, [bundle]);
+  }, [bundle, manifest?.title]);
 
   const { nodes, links, degree } = useMemo(() => {
     if (!g) return { nodes: [] as GNode[], links: [] as GLink[], degree: new Map<string, number>() };

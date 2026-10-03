@@ -24,8 +24,8 @@ export function Timeline() {
   const order = params.get("order") ?? "desc";
 
   useEffect(() => {
-    document.title = `Timeline · ${bundle}`;
-  }, [bundle]);
+    document.title = `Timeline · ${manifest?.title ?? bundle}`;
+  }, [bundle, manifest?.title]);
 
   const dated = useMemo(() => (manifest?.concepts ?? []).filter((c) => c.date), [manifest]);
 

@@ -23,9 +23,9 @@ export function Health() {
   const [kind, setKind] = useState<string | null>(null);
 
   useEffect(() => {
-    document.title = `Health · ${bundle}`;
+    document.title = `Health · ${manifest?.title ?? bundle}`;
     api.health(bundle, version).then(setH);
-  }, [bundle, version]);
+  }, [bundle, version, manifest?.title]);
 
   const list = useMemo(() => (h?.issues ?? []).filter((i) => !kind || i.kind === kind), [h, kind]);
   if (!h || !manifest) return <div className="doc skeleton"><div className="sk sk-title" /><div className="sk sk-block" /></div>;

@@ -43,7 +43,8 @@ function page(route: string, title: string, description: string) {
     `<meta name="twitter:card" content="summary" />`,
   ].filter(Boolean).join("\n    ");
   const html = shell.replace(/<title>[\s\S]*?<\/title>/, meta);
-  write(path.join(route.replace(/^\//, ""), "index.html"), html);
+  // "<route>.html" is served by Pages at the clean URL "<route>" (no trailing-slash redirect).
+  write(`${decodeURIComponent(route.replace(/^\//, ""))}.html`, html);
 }
 
 const kbs = readKbConfig(path.join(repoRoot, "knowledge-bases.json"));

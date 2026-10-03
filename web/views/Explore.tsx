@@ -32,8 +32,8 @@ export function Explore() {
   const [facetsOpenMobile, setFacetsOpenMobile] = useState(false);
 
   useEffect(() => {
-    document.title = `Explore · ${bundle}`;
-  }, [bundle]);
+    document.title = `Explore · ${manifest?.title ?? bundle}`;
+  }, [bundle, manifest?.title]);
 
   const filters = useMemo(() => {
     const f = new Map<string, Set<string>>();

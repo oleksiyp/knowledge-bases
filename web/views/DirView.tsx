@@ -61,8 +61,8 @@ export function DirView({ dir }: { dir: string }) {
   }, [bundle, version, dir]);
 
   useEffect(() => {
-    document.title = dir ? `${dir} · ${bundle}` : bundle;
-  }, [dir, bundle]);
+    document.title = dir ? `${dir} · ${manifest?.title ?? bundle}` : manifest?.title ?? bundle;
+  }, [dir, bundle, manifest?.title]);
 
   const inDir = useMemo(() => (manifest?.concepts ?? []).filter((c) => c.dir === dir || c.dir.startsWith(dir ? dir + "/" : "")), [manifest, dir]);
   const typeCounts = useMemo(() => {
