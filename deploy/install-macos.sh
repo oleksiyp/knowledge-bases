@@ -20,10 +20,14 @@ npm ci --silent
 npm run build --silent
 
 # --- tunnel ------------------------------------------------------------------
-if ! cloudflared tunnel info "$OKF_TUNNEL_NAME" >/dev/null 2>&1; then
+tunnel_id() {
+  cloudflared tunnel list --output json 2>/dev/null | "$NODE" -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const t=JSON.parse(s||"[]").find(x=>x.name===process.argv[1]);process.stdout.write(t?t.id:"")})' "$OKF_TUNNEL_NAME"
+}
+TUNNEL_ID="$(tunnel_id)"
+if [ -z "$TUNNEL_ID" ]; then
   cloudflared tunnel create "$OKF_TUNNEL_NAME"
+  TUNNEL_ID="$(tunnel_id)"
 fi
-TUNNEL_ID="$(cloudflared tunnel list --output json | "$NODE" -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const t=JSON.parse(s).find(x=>x.name===process.argv[1]);process.stdout.write(t?t.id:"")})' "$OKF_TUNNEL_NAME")"
 [ -n "$TUNNEL_ID" ] || { echo "tunnel $OKF_TUNNEL_NAME not found"; exit 1; }
 TUNNEL_CFG="$HOME/.cloudflared/$OKF_TUNNEL_NAME.yml"
 cat > "$TUNNEL_CFG" <<YML
@@ -34,7 +38,9 @@ ingress:
     service: http://$OKF_HOST:$OKF_PORT
   - service: http_status:404
 YML
-cloudflared tunnel route dns "$OKF_TUNNEL_NAME" "$OKF_HOSTNAME" || true
+# Pass this tunnel's config explicitly: otherwise cloudflared falls back to the `tunnel:` key in
+# ~/.cloudflared/config.yml and can route the hostname to an unrelated tunnel.
+cloudflared tunnel --config "$TUNNEL_CFG" route dns --overwrite-dns "$TUNNEL_ID" "$OKF_HOSTNAME"
 
 # --- launchd agents ------------------------------------------------------------
 write_agent() { # label, program args (as <string> lines), env block
@@ -54,6 +60,11 @@ write_agent() { # label, program args (as <string> lines), env block
 </dict></plist>
 PLIST
   launchctl bootout "gui/$(id -u)/$1" 2>/dev/null || true
+  # bootout is asynchronous; retry until launchd has released the old instance.
+  for _ in 1 2 3 4 5 6 7 8 9 10; do
+    launchctl bootstrap "gui/$(id -u)" "$AGENTS/$1.plist" 2>/dev/null && return 0
+    sleep 1
+  done
   launchctl bootstrap "gui/$(id -u)" "$AGENTS/$1.plist"
 }
 kv() { printf '<key>%s</key><string>%s</string>' "$1" "$2"; }
