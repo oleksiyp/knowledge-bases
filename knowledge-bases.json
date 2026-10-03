@@ -10,5 +10,11 @@
     "path": "kb/grants-kb",
     "title": "Grants for Software",
     "description": "247 programs, 156 funders and 121 calls that fund software (OSS, research, startups, public-interest, AI, web3, individuals), with status and deadlines as of October 2026."
+  },
+  {
+    "name": "horizon-ois-kb",
+    "path": "kb/horizon-ois-kb",
+    "title": "Horizon Europe: Open Internet Stack",
+    "description": "Horizon Europe Cluster 4 Open Internet Stack (NGI successor): every topic 2021–2027, funded projects and consortia, cascade calls for individuals and SMEs, application rules and policy context, as of October 2026."
   }
 ]

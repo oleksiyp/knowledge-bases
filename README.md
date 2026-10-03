@@ -14,6 +14,7 @@ concept, folder or filtered view can be shared.
 |---|---|---|
 | `oss-kb` | Open Source Successes & Failures (Oct 2024 – Oct 2026) | [`kb/oss-kb`](kb/oss-kb) |
 | `grants-kb` | Grants for Software: programs, funders and deadlines (Oct 2026) | [`kb/grants-kb`](kb/grants-kb) |
+| `horizon-ois-kb` | Horizon Europe: Open Internet Stack (Cluster 4) topics, projects, cascade funds, rules | [`kb/horizon-ois-kb`](kb/horizon-ois-kb) |
 
 ### Adding a knowledge base
 

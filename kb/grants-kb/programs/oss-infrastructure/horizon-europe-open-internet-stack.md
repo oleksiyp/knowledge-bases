@@ -18,7 +18,7 @@ amount_max_usd: 12000000
 amount_text: "€7M–€10.25M EU contribution per project (topic budget €20.5M), 100% funding rate (RIA)"
 application_model: annual
 program_status: closed-between-rounds
-deadline_note: "2026 RIA topic closed 2026-04-15; watch the Horizon Europe Cluster 4 2027 work programme"
+deadline_note: "All four OIS topics are closed (last deadline 2026-04-15) and no dedicated OIS topic is planned for 2027. The OIS-linked 3C pilot HORIZON-CL4-2027-04-DATA-08 closes 2027-03-18. Individuals and small teams can use NLnet Restack/CodeSupply cascade calls (3 Nov 2026)."
 effort_to_apply: high
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T00:00:00Z }
 stale_after: 2027-01-03T00:00:00Z
@@ -39,6 +39,9 @@ sources:
 ---
 
 # Summary
+
+For a full breakdown of topics, funded projects, cascade funds and rules, see the dedicated knowledge base [Horizon Europe Open Internet Stack](https://okf.zengarden.space/b/horizon-ois-kb).
+
 
 Under Horizon Europe Cluster 4 the European Commission funds the "Open Internet Stack" — the successor to Next Generation Internet (NGI). Most individual developers access this money indirectly via cascade funds such as [NLnet Restack](/programs/oss-infrastructure/nlnet-restack.md); the direct calls are large consortium grants.[^nlnet-3grants] The 2026 Research & Innovation Action "Open Internet Stack Sovereign Solutions" (HORIZON-CL4-2026-04-DATA-02) had a €20.5M budget, €7M–€10.25M per project at 100% funding, and closed 15 April 2026; a companion CSA "Support for Scale" was also published.[^euroaccess-ois][^euroaccess-ois-scale][^hadea-2026]
 
