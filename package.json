@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "vite build",
+    "build:static": "VITE_OKF_STATIC=1 vite build && node scripts/build-static.ts",
+    "preview:static": "node scripts/preview-static.mjs",
     "start": "node server/index.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },

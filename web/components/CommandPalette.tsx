@@ -79,7 +79,8 @@ export function CommandPalette() {
   useEffect(() => {
     inputRef.current?.focus();
     inputRef.current?.select();
-  }, []);
+    api.warmSearch(bundle);
+  }, [bundle]);
 
   const close = () => ui.setPaletteOpen(false);
   const open = (path: string, newTab: boolean) => {

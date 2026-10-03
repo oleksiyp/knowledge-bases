@@ -4,11 +4,11 @@ import { useBundle } from "../store";
 import { routes } from "../util";
 
 export function Breadcrumbs({ dir, tail }: { dir: string; tail?: string }) {
-  const { bundle } = useBundle();
+  const { bundle, manifest } = useBundle();
   const parts = dir ? dir.split("/") : [];
   return (
     <nav className="crumbs" aria-label="Breadcrumb">
-      <Link to={routes.home(bundle)}>{bundle}</Link>
+      <Link to={routes.home(bundle)} className="crumb-root">{manifest?.title ?? bundle}</Link>
       {parts.map((p, i) => (
         <span key={i} className="crumb">
           <ChevronRight size={13} />

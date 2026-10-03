@@ -13,5 +13,5 @@
     "esModuleInterop": true,
     "types": ["node"]
   },
-  "include": ["server", "web", "vite.config.ts"]
+  "include": ["server", "web", "shared", "scripts", "vite.config.ts"]
 }

@@ -5,6 +5,7 @@ import path from "node:path";
 import { parse as parseYaml } from "yaml";
 import MiniSearch from "minisearch";
 import { renderMarkdown, type RenderResult } from "./render.ts";
+import { SEARCH_OPTIONS } from "../shared/search.ts";
 
 export type TrustTier = "unverified" | "machine-confirmed" | "human-reviewed";
 
@@ -82,6 +83,7 @@ export interface Bundle {
   name: string;
   root: string;
   title: string;
+  description?: string;
   loadedAt: number;
   version: number;
   concepts: Map<string, Concept>;
@@ -168,7 +170,7 @@ function primaryDate(fm: Record<string, unknown>): string | undefined {
   return undefined;
 }
 
-export function loadBundle(name: string, root: string, version: number): Bundle {
+export function loadBundle(name: string, root: string, version: number, meta: { title?: string; description?: string } = {}): Bundle {
   const files = walk(root).sort();
   const issues: Issue[] = [];
   const raw: { rel: string; fm: Record<string, unknown> | null; body: string; mtime: number }[] = [];
@@ -321,26 +323,16 @@ export function loadBundle(name: string, root: string, version: number): Bundle 
     if (c.status === "deprecated") issues.push({ severity: "info", kind: "deprecated", message: "Deprecated concept", concept: c.id });
   }
 
-  const search = new MiniSearch({
-    fields: ["title", "description", "tags", "type", "text", "id"],
-    storeFields: ["id"],
-    searchOptions: {
-      boost: { title: 5, description: 2, tags: 2, id: 1.5 },
-      prefix: (term) => term.length >= 3,
-      fuzzy: (term) => (term.length >= 6 ? 0.2 : false),
-      combineWith: "AND",
-    },
-  });
+  const search = new MiniSearch(SEARCH_OPTIONS);
   search.addAll(
     [...concepts.values()].map((c) => ({ id: c.id, title: c.title, description: c.description, tags: c.tags.join(" "), type: c.type, text: c.text })),
   );
 
-  const rootDir = dirs.get("")!;
-  const titleFromIndex = rootDir.indexHtml ? undefined : undefined;
   return {
     name,
     root,
-    title: titleFromIndex ?? name,
+    title: meta.title ?? name,
+    description: meta.description,
     loadedAt: Date.now(),
     version,
     concepts,

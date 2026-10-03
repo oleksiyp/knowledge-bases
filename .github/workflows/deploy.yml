@@ -1,0 +1,73 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PAGES_PROJECT: ${{ vars.PAGES_PROJECT || 'okf-viewer' }}
+  CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN || 'okf.zengarden.space' }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build static site
+        run: npm run build:static
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://okf.zengarden.space' }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate knowledge bases (OKF v0.2)
+        run: |
+          pip install --quiet pyyaml
+          for kb in kb/*/; do
+            if [ -f "$kb/references/validate_okf.py" ]; then python3 "$kb/references/validate_okf.py" "$kb" | tail -3; fi
+          done
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # First run creates the Pages project; later runs just deploy.
+          command: |
+            pages project create ${{ env.PAGES_PROJECT }} --production-branch=main || true
+            pages deploy dist/web --project-name=${{ env.PAGES_PROJECT }} --branch=main --commit-dirty=true
+
+      - name: Attach custom domain (idempotent)
+        if: env.CUSTOM_DOMAIN != ''
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          api="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/$PAGES_PROJECT/domains"
+          if curl -fsS -H "Authorization: Bearer $CF_TOKEN" "$api" | grep -q "\"name\":\"$CUSTOM_DOMAIN\""; then
+            echo "$CUSTOM_DOMAIN already attached"
+          else
+            curl -fsS -X POST -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+              --data "{\"name\":\"$CUSTOM_DOMAIN\"}" "$api" >/dev/null && echo "attached $CUSTOM_DOMAIN"
+          fi

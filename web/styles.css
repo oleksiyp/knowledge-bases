@@ -696,3 +696,42 @@ th[data-sort="desc"]::after { content: " ▼"; font-size: 9px; color: var(--acce
   .stat-grid.home-stats { grid-template-columns: 1fr 2fr 2fr 1.2fr; }
   .stat-grid.home-stats .stat-card.wide { grid-column: auto; }
 }
+
+/* ===== Knowledge-base switcher ========================================== */
+.kb-switch { position: relative; min-width: 0; }
+.kb-trigger {
+  display: flex; align-items: center; gap: 9px; border: 1px solid transparent; background: none; border-radius: 9px;
+  padding: 4px 8px 4px 4px; max-width: 360px; min-width: 0; color: var(--text);
+}
+.kb-trigger:hover { background: var(--surface-2); border-color: var(--border); }
+.kb-title { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kb-chev { color: var(--muted); flex: none; transition: transform 0.15s; }
+.kb-chev.up { transform: rotate(180deg); }
+.kb-menu {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 70; width: min(420px, calc(100vw - 16px));
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow-lg);
+  padding: 6px; animation: pop 0.12s ease-out; max-height: 70vh; overflow-y: auto;
+}
+.kb-menu-head { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 8px 10px 6px; }
+.kb-item { display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left; border: none; background: none; padding: 10px; border-radius: 9px; }
+.kb-item.sel { background: var(--accent-soft); }
+.kb-item-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.kb-item-title { font-weight: 600; font-size: 14px; color: var(--text); }
+.kb-item-desc { font-size: 12.5px; color: var(--muted); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.kb-item-meta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.kb-item-meta code { font-size: 10.5px; }
+.kb-check { color: var(--accent-text); flex: none; margin-top: 2px; }
+.kb-card { display: flex; gap: 12px; padding: 14px 16px; align-items: flex-start; }
+.kb-card svg { color: var(--accent-text); flex: none; margin-top: 2px; }
+.share-btn { padding: 0 8px; }
+@media (max-width: 640px) {
+  .kb-title { max-width: 34vw; font-size: 14px; }
+  .kb-trigger { padding-right: 4px; gap: 6px; }
+}
+.kb-switch { flex: 0 1 auto; }
+.search-trigger { min-width: 0; }
+@media (max-width: 640px) {
+  .kb-title { display: none; }
+  .search-trigger { margin-left: 2px; }
+}
+.crumb-root { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

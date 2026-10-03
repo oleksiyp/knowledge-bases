@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { api, type LightConcept, type Manifest } from "./api";
+import { api, LIVE, type LightConcept, type Manifest } from "./api";
 import { rankTypeColors } from "./util";
 
 interface BundleCtx {
@@ -126,6 +126,7 @@ export function BundleProvider({ bundle, children }: { bundle: string; children:
   useEffect(() => {
     setManifest(null);
     load(false);
+    if (!LIVE) return;
     const es = new EventSource("/api/events");
     es.addEventListener("changed", (ev) => {
       const d = JSON.parse((ev as MessageEvent).data) as { bundle: string };

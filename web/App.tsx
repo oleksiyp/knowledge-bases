@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { Menu, Search, Sun, Moon, Monitor, PanelRight, Compass, CalendarRange, Share2, BookOpen, Radio, X } from "lucide-react";
-import { api } from "./api";
+import { api, LIVE, type BundleInfo } from "./api";
+import { KbSwitcher } from "./components/KbSwitcher";
 import { BundleProvider, UiProvider, useBundle, useUi } from "./store";
 import { modKey, routes } from "./util";
 import { Sidebar } from "./components/Sidebar";
@@ -29,7 +30,7 @@ export function App() {
 }
 
 function BundlePicker() {
-  const [bundles, setBundles] = useState<{ name: string; title: string; concepts: number }[] | null>(null);
+  const [bundles, setBundles] = useState<BundleInfo[] | null>(null);
   useEffect(() => {
     api.bundles().then(setBundles, () => setBundles([]));
   }, []);
@@ -38,11 +39,16 @@ function BundlePicker() {
   return (
     <div className="center-screen">
       <div className="picker">
-        <h1>OKF Viewer</h1>
-        <p className="muted">Choose a knowledge bundle</p>
+        <h1>Knowledge bases</h1>
+        <p className="muted">Choose a knowledge base to read</p>
         {bundles.map((b) => (
-          <Link key={b.name} to={routes.home(b.name)} className="card folder-card">
-            <BookOpen size={18} /> <span className="fc-name">{b.title}</span> <span className="fc-count">{b.concepts}</span>
+          <Link key={b.name} to={routes.home(b.name)} className="card kb-card">
+            <BookOpen size={20} />
+            <span className="kb-item-main">
+              <span className="kb-item-title">{b.title}</span>
+              {b.description && <span className="kb-item-desc">{b.description}</span>}
+              <span className="kb-item-meta">{b.concepts.toLocaleString()} concepts</span>
+            </span>
           </Link>
         ))}
         {bundles.length === 0 && <p>No bundles configured. Start the server with <code>--bundle name=/path</code>.</p>}
@@ -176,10 +182,6 @@ function Shell() {
 function TopBar({ isConcept }: { isConcept: boolean }) {
   const { bundle, manifest, lastChange } = useBundle();
   const ui = useUi();
-  const [bundles, setBundles] = useState<{ name: string }[]>([]);
-  useEffect(() => {
-    api.bundles().then(setBundles, () => {});
-  }, []);
   const ThemeIcon = ui.theme === "dark" ? Moon : ui.theme === "light" ? Sun : Monitor;
   const nextTheme = ui.theme === "system" ? "dark" : ui.theme === "dark" ? "light" : "system";
   const live = lastChange && Date.now() - lastChange < 60000;
@@ -188,15 +190,7 @@ function TopBar({ isConcept }: { isConcept: boolean }) {
       <button className="icon-btn" onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} aria-label="Toggle sidebar" title="Toggle sidebar (\)">
         <Menu size={18} />
       </button>
-      <Link to={routes.home(bundle)} className="brand">
-        <span className="logo">OKF</span>
-        <span className="brand-name">{manifest?.title ?? bundle}</span>
-      </Link>
-      {bundles.length > 1 && (
-        <select className="bundle-switch" value={bundle} onChange={(e) => (window.location.href = routes.home(e.target.value))} aria-label="Switch bundle">
-          {bundles.map((b) => <option key={b.name} value={b.name}>{b.name}</option>)}
-        </select>
-      )}
+      <KbSwitcher />
       <button className="search-trigger" onClick={() => ui.setPaletteOpen(true)}>
         <Search size={15} />
         <span className="st-text">Search {manifest ? `${manifest.concepts.length} concepts` : ""}…</span>
@@ -207,7 +201,7 @@ function TopBar({ isConcept }: { isConcept: boolean }) {
         <NavLink to={routes.timeline(bundle)} title="Timeline (g t)"><CalendarRange size={16} /><span>Timeline</span></NavLink>
         <NavLink to={routes.graph(bundle)} title="Graph (g g)"><Share2 size={16} /><span>Graph</span></NavLink>
       </nav>
-      <span className={`live-dot${live ? " on" : ""}`} title={live ? "Updated from disk moments ago" : "Watching for changes"} />
+      {LIVE && <span className={`live-dot${live ? " on" : ""}`} title={live ? "Updated from disk moments ago" : "Watching for changes"} />}
       <button className="icon-btn" onClick={() => ui.setTheme(nextTheme)} title={`Theme: ${ui.theme}`} aria-label="Toggle theme">
         <ThemeIcon size={17} />
       </button>

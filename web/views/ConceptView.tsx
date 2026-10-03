@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Link2, FileCode2, Share2, ExternalLink, Quote, CornerUpLeft, AlertCircle, ChevronDown } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Link2, FileCode2, Share2, ExternalLink, Quote, CornerUpLeft, AlertCircle, ChevronDown } from "lucide-react";
 import { api, type FullConcept, type Source } from "../api";
 import { useBundle, useUi } from "../store";
 import { domainOf, fmtDate, relTime, routes, typeColor } from "../util";
@@ -206,11 +206,20 @@ export function ConceptView({ id }: { id: string }) {
   const reading = Math.max(1, Math.round(c.words / 230));
   const changedRecently = lastChange && c.generatedAt && Date.now() - lastChange < 15000;
 
-  const copyLink = () => {
-    navigator.clipboard?.writeText(window.location.href.split("#")[0]).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1400);
-    });
+  // Share: native share sheet where available (phones), otherwise copy the link.
+  const share = async () => {
+    const url = window.location.href.split("#")[0];
+    if (navigator.share && window.matchMedia("(hover: none)").matches) {
+      try {
+        await navigator.share({ title: c.title, text: c.description || undefined, url });
+        return;
+      } catch {
+        /* cancelled: fall through to copy */
+      }
+    }
+    await navigator.clipboard?.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
   };
 
   return (
@@ -242,9 +251,9 @@ export function ConceptView({ id }: { id: string }) {
             <span>{reading} min read</span>
             <span>{c.sources.length} sources</span>
             <span className="doc-actions">
-              <button className="icon-btn sm" onClick={copyLink} title="Copy link">
-                <Link2 size={15} />
-                {copied ? "Copied" : ""}
+              <button className="icon-btn sm share-btn" onClick={share} title="Share or copy a link to this page">
+                {copied ? <Check size={15} /> : <Link2 size={15} />}
+                {copied ? "Link copied" : "Share"}
               </button>
               <a className="icon-btn sm" href={api.rawUrl(bundle, c.id)} target="_blank" rel="noreferrer" title="View raw markdown">
                 <FileCode2 size={15} />
