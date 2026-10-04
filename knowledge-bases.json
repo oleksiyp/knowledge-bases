@@ -28,5 +28,11 @@
     "path": "kb/langs-kb",
     "title": "Programming Languages & Runtimes",
     "description": "Language and runtime ideas from Oct 2018 to Oct 2026 (memory safety, types, concurrency, JITs and AOT, WebAssembly, tooling, AI), with what succeeded, what failed and why. Work in progress."
+  },
+  {
+    "name": "cloud-native-devops-kb",
+    "path": "kb/cloud-native-devops-kb",
+    "title": "Cloud Native & DevOps 2021–2026",
+    "description": "44 ideas across 12 areas: successes, failures and tradeoffs from October 2021 to October 2026, with an executive summary, production cases, research, system profiles and dated events."
   }
 ]

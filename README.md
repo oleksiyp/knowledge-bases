@@ -17,6 +17,7 @@ concept, folder or filtered view can be shared.
 | `horizon-ois-kb` | Horizon Europe: Open Internet Stack (Cluster 4) topics, projects, cascade funds, rules | [`kb/horizon-ois-kb`](kb/horizon-ois-kb) |
 | `langs-kb` | Programming Languages & Runtimes: ideas that succeeded and failed (Oct 2018 – Oct 2026) | [`kb/langs-kb`](kb/langs-kb) |
 | `db-ideas-kb` | Database Ideas 2018–2026: what won, what failed and why (incl. Kafka/streaming) | [`kb/db-ideas-kb`](kb/db-ideas-kb) |
+| `cloud-native-devops-kb` | Cloud Native & DevOps: successes, failures and executive summary (Oct 2021 – Oct 2026) | [`kb/cloud-native-devops-kb`](kb/cloud-native-devops-kb) |
 
 ### Adding a knowledge base
 

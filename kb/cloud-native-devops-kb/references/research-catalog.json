@@ -1,0 +1,702 @@
+{
+  "scope": {
+    "from": "2021-10-04",
+    "through": "2026-10-04"
+  },
+  "sources": {
+    "cncf25": {
+      "resource": "https://www.cncf.io/reports/the-cncf-annual-cloud-native-survey/",
+      "title": "CNCF Annual Cloud Native Survey 2025, published January 2026"
+    },
+    "tenancy": {
+      "resource": "https://kubernetes.io/docs/concepts/security/multi-tenancy/",
+      "title": "Kubernetes: multi-tenancy"
+    },
+    "karpenter": {
+      "resource": "https://aws.amazon.com/about-aws/whats-new/2024/08/karpenter-1-0/",
+      "title": "Karpenter 1.0 announcement, August 2024"
+    },
+    "disruption": {
+      "resource": "https://karpenter.sh/docs/concepts/disruption/",
+      "title": "Karpenter disruption controls"
+    },
+    "autopilot": {
+      "resource": "https://docs.cloud.google.com/kubernetes-engine/docs/concepts/autopilot-resource-requests",
+      "title": "GKE Autopilot resource requests"
+    },
+    "dra": {
+      "resource": "https://kubernetes.io/blog/2025/09/01/kubernetes-v1-34-dra-updates/",
+      "title": "Kubernetes 1.34: DRA updates"
+    },
+    "kueue": {
+      "resource": "https://kubernetes.io/blog/2022/10/04/introducing-kueue/",
+      "title": "Introducing Kueue, October 2022"
+    },
+    "resize": {
+      "resource": "https://kubernetes.io/blog/2025/12/19/kubernetes-v1-35-in-place-pod-resize-ga/",
+      "title": "In-place Pod resize graduates to GA"
+    },
+    "operator": {
+      "resource": "https://arxiv.org/abs/2507.03387",
+      "title": "Breaking the Bulkhead: operator cross-namespace vulnerabilities, 2025"
+    },
+    "argo": {
+      "resource": "https://www.cncf.io/announcements/2022/12/06/the-cloud-native-computing-foundation-announces-argo-has-graduated/",
+      "title": "Argo graduates, December 2022"
+    },
+    "flux": {
+      "resource": "https://fluxcd.io/blog/2022/11/flux-is-a-cncf-graduated-project/",
+      "title": "Flux graduates, November 2022"
+    },
+    "weave": {
+      "resource": "https://www.cncf.io/announcements/2024/03/19/cloud-native-computing-foundations-fluxcd-project-gains-new-corporate-support/",
+      "title": "Flux gains new corporate support after Weaveworks closure"
+    },
+    "dora24": {
+      "resource": "https://dora.dev/research/2024/dora-report/",
+      "title": "DORA 2024 research"
+    },
+    "dora25": {
+      "resource": "https://dora.dev/research/2025/dora-report/",
+      "title": "DORA 2025 research"
+    },
+    "metrics": {
+      "resource": "https://dora.dev/guides/dora-metrics/",
+      "title": "DORA software delivery performance metrics"
+    },
+    "platform": {
+      "resource": "https://dora.dev/capabilities/platform-engineering/",
+      "title": "DORA: platform engineering evidence"
+    },
+    "backstage": {
+      "resource": "https://backstage.io/docs/overview/technical-overview/",
+      "title": "Backstage technical overview"
+    },
+    "dynatrace": {
+      "resource": "https://backstage.io/blog/2024/09/24/dynatrace-adopter-spotlight/",
+      "title": "Dynatrace Backstage adopter account, September 2024"
+    },
+    "bsl": {
+      "resource": "https://www.hashicorp.com/ja/blog/hashicorp-adopts-business-source-license",
+      "title": "HashiCorp adopts Business Source License, August 2023"
+    },
+    "tofu": {
+      "resource": "https://opentofu.org/blog/opentofu-is-going-ga/",
+      "title": "OpenTofu reaches general availability, January 2024"
+    },
+    "cdktf": {
+      "resource": "https://github.com/hashicorp/terraform-cdk",
+      "title": "CDK for Terraform archival notice, December 2025"
+    },
+    "crossplane": {
+      "resource": "https://blog.crossplane.io/announcing-crossplane-2-0/amp/",
+      "title": "Crossplane 2.0 announcement, August 2025"
+    },
+    "composition": {
+      "resource": "https://docs.crossplane.io/latest/composition/compositions/",
+      "title": "Crossplane composition documentation"
+    },
+    "ambient": {
+      "resource": "https://istio.io/latest/blog/2024/ambient-reaches-ga/",
+      "title": "Istio ambient mode reaches GA, November 2024"
+    },
+    "cilium": {
+      "resource": "https://www.cncf.io/announcements/2023/10/11/cloud-native-computing-foundation-announces-cilium-graduation/",
+      "title": "Cilium graduation, October 2023"
+    },
+    "ingress": {
+      "resource": "https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/",
+      "title": "Ingress NGINX retirement announcement"
+    },
+    "ingress26": {
+      "resource": "https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/",
+      "title": "Kubernetes Steering Committee: ingress-nginx retirement"
+    },
+    "otel": {
+      "resource": "https://opentelemetry.io/blog/2026/otel-graduates/",
+      "title": "OpenTelemetry graduation, May 2026"
+    },
+    "prom": {
+      "resource": "https://prometheus.io/blog/2024/11/14/prometheus-3-0/",
+      "title": "Prometheus 3.0 release, November 2024"
+    },
+    "sampling": {
+      "resource": "https://opentelemetry.io/docs/concepts/sampling/",
+      "title": "OpenTelemetry sampling concepts"
+    },
+    "otelusers": {
+      "resource": "https://opentelemetry.io/blog/2023/end-user-discussions-03/",
+      "title": "OpenTelemetry end-user discussions, March 2023"
+    },
+    "atlassian": {
+      "resource": "https://www.atlassian.com/blog/how-we-build/post-incident-review-april-2022-outage",
+      "title": "Atlassian April 2022 outage post-incident review"
+    },
+    "atlassianfollow": {
+      "resource": "https://www.atlassian.com/blog/company-news/pir-update-november2022",
+      "title": "Atlassian remediation update, November 2022"
+    },
+    "kv": {
+      "resource": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/",
+      "title": "Cloudflare June 12, 2025 outage report"
+    },
+    "kvdesign": {
+      "resource": "https://blog.cloudflare.com/rearchitecting-workers-kv-for-redundancy/",
+      "title": "Cloudflare: rearchitecting Workers KV for redundancy"
+    },
+    "slo": {
+      "resource": "https://sre.google/workbook/alerting-on-slos/",
+      "title": "Google SRE Workbook: alerting on SLOs, background"
+    },
+    "slsa": {
+      "resource": "https://slsa.dev/blog/2023/04/slsa-v1-final",
+      "title": "SLSA 1.0, April 2023"
+    },
+    "sigstore": {
+      "resource": "https://blog.sigstore.dev/sigstore-ga-ddd6ba67894d/",
+      "title": "Sigstore general availability, October 2022"
+    },
+    "xz": {
+      "resource": "https://www.redhat.com/en/blog/urgent-security-alert-fedora-40-and-rawhide-users",
+      "title": "Red Hat XZ security alert, March 2024"
+    },
+    "actions": {
+      "resource": "https://github.com/advisories/ghsa-mrrh-fwg8-r2c3",
+      "title": "tj-actions/changed-files supply-chain compromise advisory"
+    },
+    "sbom": {
+      "resource": "https://www.cisa.gov/sites/default/files/2024-08/SECURING_THE_SOFTWARE_SUPPLY_CHAIN_RECOMMENDED_PRACTICES_FOR_SOFTWARE_BILL_OF_MATERIALS_CONSUMPTION-508.pdf",
+      "title": "CISA and partners: SBOM consumption guidance"
+    },
+    "vexstudy": {
+      "resource": "https://arxiv.org/abs/2503.14388",
+      "title": "Vexed by VEX tools: container scanner consistency study, 2025"
+    },
+    "finops25": {
+      "resource": "https://data.finops.org/2025-report/",
+      "title": "State of FinOps 2025"
+    },
+    "finops26": {
+      "resource": "https://data.finops.org/",
+      "title": "State of FinOps 2026"
+    },
+    "focus": {
+      "resource": "https://focus.finops.org/what-is-focus/",
+      "title": "FOCUS cost and usage specification"
+    },
+    "37": {
+      "resource": "https://world.hey.com/dhh/keeping-the-lights-on-while-leaving-the-cloud-be7c2d67",
+      "title": "37signals: operating during cloud exit, January 2024"
+    },
+    "kamal": {
+      "resource": "https://world.hey.com/dhh/our-switch-to-kamal-is-complete-8e0de22e",
+      "title": "37signals completes Kamal migration, March 2025"
+    },
+    "lambda": {
+      "resource": "https://aws.amazon.com/blogs/aws/aws-lambda-snapstart-for-python-and-net-functions-is-now-generally-available/",
+      "title": "Lambda SnapStart expands to Python and .NET, November 2024"
+    },
+    "run": {
+      "resource": "https://docs.cloud.google.com/run/docs/release-notes",
+      "title": "Cloud Run release notes"
+    },
+    "gpu": {
+      "resource": "https://docs.cloud.google.com/run/docs/configuring/services/gpu",
+      "title": "Cloud Run GPU configuration and constraints"
+    },
+    "temporal": {
+      "resource": "https://docs.temporal.io/workflow-execution",
+      "title": "Temporal workflow execution model"
+    },
+    "wasm": {
+      "resource": "https://www.akamai.com/newsroom/press-release/akamai-announces-acquisition-of-function-as-a-service-company-fermyon",
+      "title": "Akamai acquires Fermyon, December 2025"
+    },
+    "gitpod": {
+      "resource": "https://ona.com/stories/we-are-leaving-kubernetes",
+      "title": "Gitpod explains leaving Kubernetes, October 2024"
+    },
+    "ona": {
+      "resource": "https://ona.com/stories/gitpod-is-now-ona",
+      "title": "Gitpod becomes Ona, September 2025"
+    },
+    "classic": {
+      "resource": "https://ona.com/stories/gitpod-classic-payg-sunset",
+      "title": "Gitpod Classic pay-as-you-go sunset notice"
+    },
+    "codespaces": {
+      "resource": "https://github.blog/news-insights/product-news/whats-new-with-codespaces-from-github-universe-2022/",
+      "title": "Codespaces updates at GitHub Universe 2022"
+    },
+    "devcontainers": {
+      "resource": "https://containers.dev/",
+      "title": "Development Containers specification"
+    },
+    "bazel": {
+      "resource": "https://bazel.build/basics/hermeticity",
+      "title": "Bazel hermeticity documentation"
+    },
+    "cache": {
+      "resource": "https://bazel.build/remote/caching",
+      "title": "Bazel remote caching documentation"
+    },
+    "docker": {
+      "resource": "https://docs.docker.com/retired/",
+      "title": "Docker retired and deprecated products"
+    },
+    "metr25": {
+      "resource": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "title": "METR early-2025 randomized developer productivity study"
+    },
+    "metr26": {
+      "resource": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "title": "METR February 2026 update and measurement limitations"
+    },
+    "aiops": {
+      "resource": "https://www.microsoft.com/en-us/research/publication/aiopslab-a-holistic-framework-for-evaluating-ai-agents-for-enabling-autonomous-cloud/",
+      "title": "AIOpsLab: evaluating autonomous cloud agents, MLSys 2025"
+    },
+    "kubectlai": {
+      "resource": "https://github.com/GoogleCloudPlatform/kubectl-ai",
+      "title": "kubectl-ai repository and permission model"
+    },
+    "spiffe": {
+      "resource": "https://www.cncf.io/announcements/2022/09/20/spiffe-and-spire-projects-graduate-from-cloud-native-computing-foundation-incubator/",
+      "title": "SPIFFE and SPIRE graduate, September 2022"
+    },
+    "spire": {
+      "resource": "https://spiffe.io/docs/latest/spire-about/spire-concepts/",
+      "title": "SPIRE attestation and identity concepts"
+    },
+    "oidc": {
+      "resource": "https://docs.github.com/en/actions/concepts/security/openid-connect",
+      "title": "GitHub Actions OpenID Connect"
+    },
+    "falco": {
+      "resource": "https://www.cncf.io/announcements/2024/02/29/cloud-native-computing-foundation-announces-falco-graduation/",
+      "title": "Falco graduates, February 2024"
+    },
+    "admission": {
+      "resource": "https://kubernetes.io/blog/2024/04/24/validating-admission-policy-ga/",
+      "title": "ValidatingAdmissionPolicy reaches GA, April 2024"
+    },
+    "sci": {
+      "resource": "https://sci.greensoftware.foundation/",
+      "title": "Software Carbon Intensity specification 1.1"
+    },
+    "scitimeline": {
+      "resource": "https://greensoftware.foundation/standards/sci/",
+      "title": "SCI standard and milestones"
+    },
+    "arm": {
+      "resource": "https://aws.amazon.com/ec2/graviton/customers/",
+      "title": "AWS Graviton customer accounts"
+    },
+    "armtest": {
+      "resource": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/graviton-recommendations.html",
+      "title": "AWS Compute Optimizer: Graviton recommendations"
+    },
+    "rollouts": {
+      "resource": "https://argo-rollouts.readthedocs.io/en/stable/features/analysis/",
+      "title": "Argo Rollouts analysis and progressive delivery"
+    },
+    "dapr": {
+      "resource": "https://docs.dapr.io/getting-started/quickstarts/workflow-quickstart/",
+      "title": "Dapr workflow execution quickstart and state-store limits"
+    },
+    "aws21": {
+      "resource": "https://aws.amazon.com/message/12721/",
+      "title": "AWS December 7, 2021 US-EAST-1 event summary"
+    },
+    "log4j": {
+      "resource": "https://news.apache.org/foundation/entry/apache-log4j-cves",
+      "title": "Apache Log4j vulnerability response, December 2021"
+    },
+    "adobe": {
+      "resource": "https://architecture.cncf.io/architectures/adobe/",
+      "title": "Adobe Flex cell-based delivery architecture, October 2024"
+    },
+    "alibaba": {
+      "resource": "https://opentelemetry.io/blog/2025/otip-alibaba/",
+      "title": "Alibaba OpenTelemetry migration account, August 2025"
+    },
+    "otelstability": {
+      "resource": "https://opentelemetry.io/blog/2025/stability-proposal-announcement/",
+      "title": "OpenTelemetry stabilization proposal, November 2025"
+    },
+    "ingressarchive": {
+      "resource": "https://github.com/kubernetes/ingress-nginx",
+      "title": "Ingress NGINX repository archive"
+    },
+    "kubernetes136": {
+      "resource": "https://kubernetes.io/blog/2026/04/22/kubernetes-v1-36-release/",
+      "title": "Kubernetes 1.36 release"
+    },
+    "doraroi": {
+      "resource": "https://dora.dev/ai/roi/report/",
+      "title": "DORA AI ROI framework public description"
+    },
+    "michelin": {
+      "resource": "https://www.cncf.io/case-studies/michelin-2/",
+      "title": "Michelin Cilium consolidation account, July 14, 2026"
+    },
+    "spotifyroi": {
+      "resource": "https://backstage.spotify.com/discover/blog/how-spotify-measures-backstage-roi",
+      "title": "Spotify Backstage observational analysis, March 2023"
+    },
+    "discorddev": {
+      "resource": "https://discord.com/blog/how-discord-moved-engineering-to-cloud-development-environments",
+      "title": "Discord cloud development environment account, February 2024"
+    },
+    "osopulumi": {
+      "resource": "https://www.pulumi.com/blog/how-we-used-pulumi-to-safely-migrate-osos-global-infrastructure/",
+      "title": "Oso infrastructure migration account, May 2025"
+    },
+    "zalandoscale": {
+      "resource": "https://engineering.zalando.com/posts/2024/06/failing-to-auto-scale-elasticsearch-in-kubernetes.html",
+      "title": "Zalando Elasticsearch autoscaling failure account, June 2024"
+    },
+    "zalandoroute": {
+      "resource": "https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html",
+      "title": "Zalando client-side routing account, June 2026"
+    },
+    "opencostai": {
+      "resource": "https://www.cncf.io/blog/2026/08/05/opencost-1-121-0-first-of-a-kind-kubernetes-inference-cost-tracking/",
+      "title": "OpenCost inference allocation report, August 2026"
+    },
+    "azure-functions-incidents": {
+      "resource": "https://techcommunity.microsoft.com/blog/appsonazureblog/from-coding-agents-to-cloud-automation-ai-assisted-customer-related-incidents-in/4516112",
+      "title": "Azure Functions: incident assistance before unattended remediation"
+    },
+    "agent-network-redteam": {
+      "resource": "https://www.microsoft.com/en-us/research/blog/red-teaming-a-network-of-agents-understanding-what-breaks-when-ai-agents-interact-at-scale/",
+      "title": "Agent networks: failures that isolated evaluations miss"
+    },
+    "razorpay-kyverno": {
+      "resource": "https://www.cncf.io/case-studies/razorpay/",
+      "title": "Razorpay: policy enforcement at fleet scale"
+    },
+    "platform-maintenance": {
+      "resource": "https://www.cncf.io/blog/2026/01/21/platform-engineering-maintenance-pitfalls-and-smart-strategies-to-stay-ahead/",
+      "title": "Platform maintenance: upstream activity becomes integration work"
+    },
+    "kyverno": {
+      "resource": "https://www.cncf.io/projects/kyverno/",
+      "title": "CNCF Kyverno project record"
+    }
+  },
+  "ideas": [
+    {
+      "area": "orchestration",
+      "slug": "kubernetes-as-substrate",
+      "title": "Kubernetes as a shared substrate, not a universal application requirement",
+      "verdict": "winning",
+      "summary": "Kubernetes won a durable infrastructure role; application suitability still depends on isolation, scale and operational capacity."
+    },
+    {
+      "area": "orchestration",
+      "slug": "elasticity-with-budgets",
+      "title": "Elastic scheduling with explicit disruption and resource budgets",
+      "verdict": "winning",
+      "summary": "Autoscaling matured into useful capacity control, but cost optimization cannot ignore workload disruption."
+    },
+    {
+      "area": "orchestration",
+      "slug": "operators-and-tenancy",
+      "title": "Operators and virtual tenancy as platform software",
+      "verdict": "mixed",
+      "summary": "Controllers and virtual control planes improve reuse but create software and security responsibilities of their own."
+    },
+    {
+      "area": "delivery",
+      "slug": "gitops-reconciliation",
+      "title": "GitOps reconciliation and auditable desired state",
+      "verdict": "winning",
+      "summary": "GitOps succeeded as a repeatable reconciliation pattern; it did not settle every deployment or business-model problem."
+    },
+    {
+      "area": "delivery",
+      "slug": "progressive-release",
+      "title": "Progressive release requires trustworthy feedback",
+      "verdict": "mixed",
+      "summary": "Canaries and feature flags can limit exposure, but automation is only as reliable as its health signals and rollback boundaries."
+    },
+    {
+      "area": "delivery",
+      "slug": "pipeline-trust",
+      "title": "CI pipelines as production trust boundaries",
+      "verdict": "mixed",
+      "summary": "Centralized CI improved repeatability while concentrating credentials and third-party execution risk."
+    },
+    {
+      "area": "platform-engineering",
+      "slug": "platform-as-product",
+      "title": "Internal platforms as products with measurable users",
+      "verdict": "winning",
+      "summary": "Platform engineering works best as a service to developers with feedback, ownership and a narrow initial scope."
+    },
+    {
+      "area": "platform-engineering",
+      "slug": "portals-and-golden-paths",
+      "title": "Developer portals are interfaces, not the whole platform",
+      "verdict": "mixed",
+      "summary": "Catalogs and templates help discovery, but a portal cannot substitute for functioning delivery and ownership systems."
+    },
+    {
+      "area": "platform-engineering",
+      "slug": "measurement-without-gaming",
+      "title": "Delivery and developer-experience metrics without ranking theater",
+      "verdict": "mixed",
+      "summary": "Measurement is useful for local improvement and becomes misleading when activity is treated as individual value."
+    },
+    {
+      "area": "infrastructure-as-code",
+      "slug": "open-governance",
+      "title": "Infrastructure as code and the cost of governance changes",
+      "verdict": "winning",
+      "summary": "Declarative infrastructure remained durable, while licensing changes made governance and exit planning part of architecture."
+    },
+    {
+      "area": "infrastructure-as-code",
+      "slug": "general-purpose-iac",
+      "title": "General-purpose languages do not guarantee infrastructure product fit",
+      "verdict": "mixed",
+      "summary": "Language ergonomics are useful, but a programming-language wrapper alone does not establish a sustainable infrastructure tool."
+    },
+    {
+      "area": "infrastructure-as-code",
+      "slug": "control-plane-composition",
+      "title": "Composable control planes for internal APIs",
+      "verdict": "mixed",
+      "summary": "Crossplane-style composition can make infrastructure self-service, but the platform team still owns API design and lifecycle behavior."
+    },
+    {
+      "area": "networking",
+      "slug": "ebpf-networking",
+      "title": "eBPF as an infrastructure implementation technique",
+      "verdict": "winning",
+      "summary": "eBPF gained a durable role in networking and visibility, while operational responsibility moved into a different layer."
+    },
+    {
+      "area": "networking",
+      "slug": "mesh-simplification",
+      "title": "Service mesh simplification through ambient architecture",
+      "verdict": "mixed",
+      "summary": "Ambient mesh reduces per-workload proxy coupling but does not remove identity, policy and traffic-management complexity."
+    },
+    {
+      "area": "networking",
+      "slug": "gateway-lifecycle",
+      "title": "Gateway modernization and the failure of assumed maintenance",
+      "verdict": "mixed",
+      "summary": "Widely deployed infrastructure still needs funded maintainers, migration paths and explicit lifecycle ownership."
+    },
+    {
+      "area": "observability",
+      "slug": "open-instrumentation",
+      "title": "Open instrumentation and portable telemetry interfaces",
+      "verdict": "winning",
+      "summary": "OpenTelemetry became a durable instrumentation standard; backend and operational portability remain incomplete."
+    },
+    {
+      "area": "observability",
+      "slug": "telemetry-economics",
+      "title": "Telemetry budgets, cardinality and sampling",
+      "verdict": "mixed",
+      "summary": "Collecting everything is not a sustainable observability strategy; selective data needs explicit diagnostic tradeoffs."
+    },
+    {
+      "area": "observability",
+      "slug": "outcome-driven-signals",
+      "title": "Outcome-driven signals instead of dashboard accumulation",
+      "verdict": "mixed",
+      "summary": "Observability helps when it closes a diagnostic or response loop; more dashboards do not establish reliability."
+    },
+    {
+      "area": "reliability",
+      "slug": "recovery-is-a-product",
+      "title": "Recovery engineering beyond having backups",
+      "verdict": "winning",
+      "summary": "Recovery readiness means restoring the required scope within a useful time, not merely possessing backup data."
+    },
+    {
+      "area": "reliability",
+      "slug": "dependency-aware-resilience",
+      "title": "Resilience follows dependencies, not region labels",
+      "verdict": "mixed",
+      "summary": "Multiple regions or providers improve resilience only when the critical dependencies and recovery paths are genuinely independent."
+    },
+    {
+      "area": "reliability",
+      "slug": "slo-and-learning-loops",
+      "title": "SLOs, incident learning and bounded experiments",
+      "verdict": "winning",
+      "summary": "Reliability practices work when they change operational decisions and recovery behavior, rather than merely produce reports."
+    },
+    {
+      "area": "security",
+      "slug": "provenance-and-signing",
+      "title": "Artifact provenance and signing as verifiable evidence",
+      "verdict": "winning",
+      "summary": "Signing and build provenance matured into useful trust evidence, but neither proves that software is benign."
+    },
+    {
+      "area": "security",
+      "slug": "sbom-to-remediation",
+      "title": "SBOMs are inventory inputs, not a remediation outcome",
+      "verdict": "mixed",
+      "summary": "Software inventories help exposure analysis, but actionable security requires context, ownership and a reliable remediation loop."
+    },
+    {
+      "area": "security",
+      "slug": "defense-beyond-shift-left",
+      "title": "Defense beyond shift-left and dependency scanning",
+      "verdict": "mixed",
+      "summary": "Early checks are valuable, but build compromise and malicious maintenance require controls across the software lifecycle."
+    },
+    {
+      "area": "cloud-economics",
+      "slug": "finops-unit-economics",
+      "title": "FinOps and cost per useful outcome",
+      "verdict": "winning",
+      "summary": "Cloud cost management matured when engineering decisions were tied to useful output, ownership and financial accountability."
+    },
+    {
+      "area": "cloud-economics",
+      "slug": "selective-repatriation",
+      "title": "Selective cloud repatriation and simpler deployment",
+      "verdict": "niche",
+      "summary": "Repatriation can fit stable workloads and capable teams; a successful exit is not a general case against public cloud."
+    },
+    {
+      "area": "cloud-economics",
+      "slug": "portable-cost-data",
+      "title": "Portable cost data versus portable workloads",
+      "verdict": "winning",
+      "summary": "FOCUS improves the interface for cost analysis, while workload exit and multi-cloud operations remain separate engineering problems."
+    },
+    {
+      "area": "application-architecture",
+      "slug": "right-sized-services",
+      "title": "Right-sized services and modular simplicity",
+      "verdict": "mixed",
+      "summary": "Service decomposition is valuable when boundaries justify it; simpler deployment can win when coordination and operations dominate."
+    },
+    {
+      "area": "application-architecture",
+      "slug": "serverless-and-containers",
+      "title": "Serverless and managed containers as selective operating models",
+      "verdict": "winning",
+      "summary": "Managed execution expanded its workload range, while cold starts, limits and provider coupling remained design inputs."
+    },
+    {
+      "area": "developer-workflows",
+      "slug": "reproducible-builds",
+      "title": "Hermetic builds and shared caches",
+      "verdict": "winning",
+      "summary": "Reproducibility and reusable build work are durable engineering ideas, but their value depends on explicit inputs and trustworthy caches."
+    },
+    {
+      "area": "developer-workflows",
+      "slug": "dev-environments",
+      "title": "Development containers and remote environments",
+      "verdict": "mixed",
+      "summary": "Repeatable environments can reduce setup friction, while remote execution introduces cost, access and provider-lifecycle tradeoffs."
+    },
+    {
+      "area": "developer-workflows",
+      "slug": "workspace-product-reset",
+      "title": "Cloud workspace product resets and AI repositioning",
+      "verdict": "mixed",
+      "summary": "Cloud development infrastructure remained useful while particular deployment and product strategies were replaced."
+    },
+    {
+      "area": "ai-operations",
+      "slug": "copilots-with-measurement",
+      "title": "AI assistance with measured accepted outcomes",
+      "verdict": "mixed",
+      "summary": "AI assistance can change engineering work, but adoption and perceived speed are not sufficient productivity evidence."
+    },
+    {
+      "area": "ai-operations",
+      "slug": "bounded-incident-agents",
+      "title": "Incident agents with bounded authority and reproducible evaluations",
+      "verdict": "too-early",
+      "summary": "AI diagnosis is promising, but the reviewed evidence does not establish reliable unattended remediation across production environments."
+    },
+    {
+      "area": "ai-operations",
+      "slug": "inference-is-operations",
+      "title": "Inference operations are still capacity, reliability and cost engineering",
+      "verdict": "winning",
+      "summary": "AI serving creates new workload characteristics but still depends on explicit scheduling, service objectives and unit economics."
+    },
+    {
+      "area": "security",
+      "slug": "workload-identity",
+      "title": "Short-lived workload identity and CI federation",
+      "verdict": "winning",
+      "summary": "Workload identity reduces dependence on distributed long-lived credentials while making identity policy an essential operating service."
+    },
+    {
+      "area": "security",
+      "slug": "policy-and-runtime",
+      "title": "Admission policy and runtime detection as complementary controls",
+      "verdict": "winning",
+      "summary": "Policy enforcement and runtime detection matured, but effective response still requires maintained rules and operational ownership."
+    },
+    {
+      "area": "cloud-economics",
+      "slug": "hardware-and-interruption",
+      "title": "Hardware choice and interruption-aware capacity",
+      "verdict": "mixed",
+      "summary": "ARM and interruptible capacity are useful optimization options, but headline price-performance claims require workload-level validation."
+    },
+    {
+      "area": "cloud-economics",
+      "slug": "carbon-aware-operations",
+      "title": "Carbon-aware operations and honest measurement boundaries",
+      "verdict": "niche",
+      "summary": "Carbon-aware scheduling has a coherent measurement framework, but evidence of broad realized operational benefit remains limited here."
+    },
+    {
+      "area": "application-architecture",
+      "slug": "durable-workflows",
+      "title": "Durable execution for long-running coordination",
+      "verdict": "winning",
+      "summary": "Durable workflow engines provide a useful alternative to custom retry and orchestration code when their programming model fits."
+    },
+    {
+      "area": "application-architecture",
+      "slug": "wasm-execution",
+      "title": "WebAssembly as a specialized execution boundary",
+      "verdict": "niche",
+      "summary": "WebAssembly supports a credible specialized execution ecosystem, but the evidence here does not establish replacement of general container platforms."
+    },
+    {
+      "area": "orchestration",
+      "slug": "stateful-elasticity",
+      "title": "Stateful elasticity needs resumable application-aware control",
+      "verdict": "mixed",
+      "summary": "Stateful scaling is useful when data movement, placement and overlapping requests form a recoverable lifecycle."
+    },
+    {
+      "area": "infrastructure-as-code",
+      "slug": "migration-safe-refactoring",
+      "title": "Migration-safe infrastructure refactoring",
+      "verdict": "winning",
+      "summary": "Code reuse is most useful when resource identity and traffic movement remain explicit during a migration."
+    },
+    {
+      "area": "networking",
+      "slug": "locality-and-routing",
+      "title": "Locality-aware routing must account for cache and backend costs",
+      "verdict": "mixed",
+      "summary": "A local network hop can be cheaper while the full request becomes more expensive."
+    }
+  ],
+  "extension": {
+    "date": "2026-10-04",
+    "purpose": "Add incident-assistance, agent-network, policy-enforcement and platform-maintenance evidence; refine authority and outcome distinctions."
+  }
+}
