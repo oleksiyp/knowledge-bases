@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "The 2021 database funding boom and the 2023–2026 consolidation"
-description: "In 2020–2022 investors funded dozens of independent database companies at multi-billion valuations on the theory that each data model or workload could support a large standalone vendor. Verdict: failed for most of that cohort. By 2026 the money had concentrated in a few platforms (Databricks, ClickHouse, Supabase), while most 2021 unicorns were sold to PE, acquired cheaply or shut down."
+description: "In 2020–2022 investors funded dozens of independent database companies at multi-billion valuations on the theory that each data model or workload could support a large standalone vendor. Verdict: the broad expectation of independent public companies did not materialize uniformly. Capital concentrated in several platforms while selected vendors were acquired or shut down; this is not a measured failure rate for the full funding cohort."
 tags: [funding, venture-capital, valuations, consolidation, private-equity, startups]
 area: business-licensing
 verdict: failed
@@ -70,11 +70,11 @@ sources:
 
 # Summary
 
-**Verdict: failed (for the 2021 cohort).** In 2021 database companies raised record rounds: Databricks $1.6B at $38B, Cockroach Labs $160M and then $278M at $5B, Neo4j $325M at over $2B ("the largest investment in a private database company"), Yugabyte $188M at over $1.3B, ClickHouse Inc. $250M, Firebolt $127M, Redis Labs $110M at $2B.[^pavlo-2021][^neo4j-f][^redis-g][^crdb-f] The bet was that every niche (distributed SQL, graph, time series, document, real-time analytics) would produce its own standalone public company. That did not happen. By 2023 VCs "wrote fewer checks", and Pavlo predicted the over-funded vendors would face down rounds, private equity or "maintenance mode".[^pavlo-2023] Between 2024 and 2026 DataStax went to IBM, Couchbase and SingleStore to private equity, and Fauna shut down. In the same years capital concentrated in a handful of winners: Databricks ($190B), ClickHouse ($15B) and Supabase ($10.5B).[^cnbc-dbx-190][^bbg-clickhouse][^supabase-f]
+**Verdict: failed as a broad expectation of independent IPOs, with substantial exceptions.** In 2021 database companies raised record rounds: Databricks $1.6B at $38B, Cockroach Labs $160M and then $278M at $5B, Neo4j $325M at over $2B ("the largest investment in a private database company"), Yugabyte $188M at over $1.3B, ClickHouse Inc. $250M, Firebolt $127M, Redis Labs $110M at $2B.[^pavlo-2021][^neo4j-f][^redis-g][^crdb-f] The bet was that every niche (distributed SQL, graph, time series, document, real-time analytics) would produce its own standalone public company. That did not happen. By 2023 VCs "wrote fewer checks", and Pavlo predicted the over-funded vendors would face down rounds, private equity or "maintenance mode".[^pavlo-2023] Between 2024 and 2026 DataStax went to IBM, Couchbase and SingleStore to private equity, and Fauna shut down. In the same years capital concentrated in a handful of winners: Databricks ($190B), ClickHouse ($15B) and Supabase ($10.5B).[^cnbc-dbx-190][^bbg-clickhouse][^supabase-f]
 
 # The idea
 
-Cheap capital plus the cloud-database growth story implied a "database for every workload" world. Each new data model could become a MongoDB-sized company. Investors priced operational databases at 30–50x revenue on the assumption of IPOs within a few years.
+Cheap capital plus the cloud-database growth story implied a "database for every workload" world. Each new data model could become a MongoDB-sized company. Large funding rounds implied demanding growth expectations, but the cited examples do not establish one valuation multiple for the entire category.
 
 # Timeline 2018–2026
 
@@ -97,7 +97,7 @@ Cheap capital plus the cloud-database growth story implied a "database for every
 
 # What failed
 
-- **Category-sized companies.** Graph, time-series, distributed SQL and multi-model vendors each found real customers but rarely more than a few hundred million in revenue. None of the 2021 private unicorns in operational databases has gone public as of October 2026.
+- **Category-sized companies.** Graph, time-series, distributed SQL and multi-model vendors each found real customers but rarely more than a few hundred million in revenue. The selected examples show that a large private round does not itself establish a near-term IPO path.
 - **Valuation resets.** Couchbase sold for about $1.5B in 2025, roughly its 2021 IPO price.[^couchbase-close] DataStax, valued at $1.6B in 2022,[^datastax-2022] sold to IBM at an undisclosed price (reported around $3B; unconfirmed).
 - **Shutdowns of well-funded technology.** Fauna had raised from top investors and still concluded it was "not possible to raise the capital needed".[^fauna-reg] See the [graveyard](/ideas/business-licensing/database-company-graveyard.md).
 
@@ -106,12 +106,12 @@ Cheap capital plus the cloud-database growth story implied a "database for every
 1. **Postgres absorbed the niches.** Extensions (pgvector, TimescaleDB, PostGIS, Citus) and Postgres-compatible products took the "good enough" share of graph, time-series, vector and distributed workloads. Pavlo: "most of the database energy and activity is going into PostgreSQL companies".[^pavlo-2025]
 2. **Hyperscalers sell the default.** Aurora, DynamoDB, Cosmos DB and Spanner are bundled into cloud commitments. An independent vendor must be much better to win against a default that procurement has already approved.
 3. **Database sales cycles are long.** Migrating a system of record takes years, so revenue ramps more slowly than 2021 valuations assumed.
-4. **Rate increases in 2022 removed the multiple, and AI took the remaining capital.** After 2023, only companies with an AI story (vector, Postgres-for-agents, lakehouse) raised large rounds.
+4. **Rate increases in 2022 removed the multiple, and AI took the remaining capital.** AI-related positioning became prominent in several large rounds; the examples do not show that all other companies were excluded from funding.
 
 # Lessons
 
 - A new data model is a feature, not a company, unless it creates a new platform.
-- Over-capitalization narrows exits: a company valued at $5B cannot be sold for $500M without wiping out common stock, so it keeps operating until PE or a shutdown.
+- Over-capitalization narrows exits: a large gap between a prior valuation and an exit price can create difficult investor incentives; actual shareholder proceeds depend on financing terms.
 - Watch where capital concentrates in 2025–2026 (Postgres, lakehouse, agent backends) for the next consolidation wave.
 
 # Related

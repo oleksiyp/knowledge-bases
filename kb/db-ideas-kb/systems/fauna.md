@@ -9,7 +9,7 @@ first_release: 2017
 org: "Fauna Inc. (service shut down 2025)"
 license: "Apache-2.0 (core released Apr 2025)"
 outcome: dead
-ideas: [ideas/distributed-sql/deterministic-transactions, ideas/distributed-sql/jepsen-correctness-culture, ideas/edge-devx/edge-databases, ideas/business-licensing/database-graveyard]
+ideas: [ideas/distributed-sql/deterministic-transactions, ideas/distributed-sql/jepsen-correctness-culture, ideas/edge-devx/edge-databases, ideas/business-licensing/database-company-graveyard]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -70,7 +70,7 @@ Fauna was the only well-funded commercial implementation of Calvin-style determi
 
 # Related
 - [Deterministic transactions](/ideas/distributed-sql/deterministic-transactions.md), [Jepsen culture](/ideas/distributed-sql/jepsen-correctness-culture.md), [Spanner](/systems/spanner.md)
-- Events: [Fauna shuts down](/events/2025-03-fauna-shutdown.md)
+- Events: [Fauna shuts down](/events/2025-03-fauna-shuts-down.md)
 
 [^j-fauna]: Jepsen, March 2019.
 [^gw-27m]: GeekWire, 2020.

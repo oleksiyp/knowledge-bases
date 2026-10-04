@@ -11,7 +11,7 @@ origins: "MySQL's pluggable storage engines (InnoDB, MyRocks) showed the model. 
 key_systems: [systems/orioledb, systems/postgresql, systems/timescaledb, systems/citus, systems/supabase]
 related_ideas: [ideas/postgres-ecosystem/extensions-as-platform, ideas/cloud-architecture/disaggregated-storage-compute-oltp, ideas/postgres-ecosystem/analytics-inside-postgres]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: pg12
@@ -59,7 +59,7 @@ sources:
 - **TimescaleDB's Hypercore TAM** shipped, was deprecated in 2.21 and was removed in 2.22 (Sept 2025) because it "did not show the performance improvements expected"[^tsdb-hypercore-pr][^tsdb-222].
 - **OrioleDB**, the strongest candidate, was acquired by Supabase in April 2024[^oriole-joins]. It was still a public beta in Oct 2026, with up to 1.8x TPC-C-derived throughput claimed[^sb-select-2026].
 
-Only append-only columnar engines (Citus columnar, Hydra) survive in production, for read-mostly analytics[^thebuild-field-guide].
+Append-oriented columnar engines such as Citus columnar illustrate a narrower production use case, rather than proving that every alternative TAM failed[^thebuild-field-guide].
 
 # The idea
 Postgres's MVCC writes a new tuple version on every UPDATE and leaves dead tuples for VACUUM. That causes table and index bloat, write amplification, and transaction-ID wraparound risk. It is the most-cited operational weakness of Postgres. A table access method (TAM) lets an extension supply its own tuple storage while keeping the parser, planner, executor and protocol. Possible engines: undo-log MVCC with in-place updates (zheap, OrioleDB), index-organized tables, columnar storage for analytics, and engines designed for SSDs and many cores[^oriole-joins].
@@ -88,7 +88,7 @@ Postgres's MVCC writes a new tuple version on every UPDATE and leaves dead tuple
 # Why
 - **Everything in Postgres assumes the heap.** Indexes point at TIDs, and replication, logical decoding, VACUUM, HOT updates and many extensions depend on heap behavior. A new engine must be correct across all of it. That is far harder than MySQL's handler API, which was built for multiple engines from the start.
 - **Better places to put the effort.** Vendors got larger wins by replacing storage *below* the WAL (Aurora, Neon, AlloyDB, HorizonDB), which keeps heap semantics intact. See [Disaggregated storage/compute](/ideas/cloud-architecture/disaggregated-storage-compute-oltp.md). Analytics went to embedded engines (DuckDB) instead of columnar TAMs. See [Analytics inside Postgres](/ideas/postgres-ecosystem/analytics-inside-postgres.md).
-- **Core Postgres moves conservatively.** API changes need consensus over several release cycles. Startups cannot wait that long, so only a platform company like Supabase can afford to.
+- **Core Postgres moves conservatively.** API changes need consensus over several release cycles. Startups cannot wait that long, which makes patient funding valuable.
 
 # Lessons
 - A plug-in point added late to a mature engine tends to stay shallow. The rest of the system must be refactored before plug-ins are first-class.

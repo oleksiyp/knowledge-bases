@@ -54,11 +54,14 @@ sources:
     resource: https://www.kai-waehner.de/blog/2026/09/21/data-streaming-trends-q3-2026-what-changes-through-2027/
     title: "Kai Waehner: Data Streaming Trends Q3 2026"
     author: person:kai-waehner
+  - id: lite-current
+    resource: https://docs.cloud.google.com/pubsub/lite/docs
+    title: "Pub/Sub Lite current retirement notice (January 31, 2027)"
 ---
 
 # Summary
 
-**Verdict: won.** By 2026 "streaming" in most enterprises means "speaks Kafka." Microsoft added a Kafka endpoint to Event Hubs (GA Nov 2018)[^eh-ga]. Pulsar's company added Kafka-on-Pulsar in 2020[^kop] and in 2026 launched a native Kafka service[^sn-kafka]. Google launched Managed Service for Apache Kafka (GA Nov 2024)[^gmk-notes] and shut down its own Kafka-like Pub/Sub Lite[^psl-notes]. A wave of startups (Redpanda, WarpStream, AutoMQ, Bufstream) competed on engine, not API. Waehner's Q3 2026 summary: "The Kafka protocol won the interoperability layer"[^waehner-q3-2026]. The weakness is that "Kafka-compatible" has no conformance suite. Jepsen showed that Kafka's own transaction semantics are underspecified, and implementations differ at the edges[^jepsen-buf].
+**Verdict: won.** By 2026 "streaming" in most enterprises means "speaks Kafka." Microsoft added a Kafka endpoint to Event Hubs (GA Nov 2018)[^eh-ga]. Pulsar's company added Kafka-on-Pulsar in 2020[^kop] and in 2026 launched a native Kafka service[^sn-kafka]. Google launched Managed Service for Apache Kafka (GA Nov 2024)[^gmk-notes] and deprecated its Kafka-like Pub/Sub Lite; current documentation schedules retirement for January 31, 2027[^psl-notes][^lite-current]. A wave of startups (Redpanda, WarpStream, AutoMQ, Bufstream) competed on engine, not API. Waehner's Q3 2026 summary: "The Kafka protocol won the interoperability layer"[^waehner-q3-2026]. The weakness is that "Kafka-compatible" has no conformance suite. Jepsen showed that Kafka's own transaction semantics are underspecified, and implementations differ at the edges[^jepsen-buf].
 
 # The idea
 
@@ -81,7 +84,7 @@ Kafka's real moat was never the broker code. It was the clients in every languag
 # What succeeded
 
 - **Migration without code changes** made alternatives credible. Redpanda reached a reported $1B valuation selling a Kafka-API engine[^rp-seriesd]. WarpStream sold to Confluent within 14 months.
-- **Hyperscalers gave in.** Google built a managed Kafka next to Pub/Sub. Microsoft built the protocol into Event Hubs. AWS runs MSK. Proprietary log APIs such as Pub/Sub Lite were retired.
+- **Hyperscalers gave in.** Google built a managed Kafka next to Pub/Sub. Microsoft built the protocol into Event Hubs. AWS runs MSK. Google scheduled the retirement of Pub/Sub Lite, while ordinary Pub/Sub remains a migration destination[^lite-current].
 - **Engine innovation became possible** (thread-per-core C++, S3-native, lakehouse-native) without asking users to rewrite applications.
 
 # What failed
@@ -99,7 +102,7 @@ Ecosystem gravity: the client libraries, connectors and skills outweigh any engi
 
 - In infrastructure, the interface outlives the implementation. Compete on the engine, keep the API.
 - A de facto standard without a spec or conformance tests invites subtle incompatibilities. Jepsen-style testing becomes the conformance suite.
-- Even hyperscalers retire proprietary APIs when an open protocol has won (Pub/Sub Lite → Managed Kafka).
+- Hyperscalers may consolidate proprietary services; a migration option based on an open protocol does not prove every customer chose it.
 
 # Related
 

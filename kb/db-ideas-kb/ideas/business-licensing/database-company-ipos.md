@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Database company IPOs and their aftermath"
-description: "Elastic (2018), Snowflake (2020), Confluent and Couchbase (2021) and MariaDB (2022 SPAC) went public on the cloud-database growth story. Verdict: mixed. Snowflake, MongoDB and Elastic became durable public companies, but Couchbase and Confluent were taken out (PE and IBM) and MariaDB collapsed. No US database company has gone public since 2021."
+description: "Elastic (2018), Snowflake (2020), Confluent and Couchbase (2021) and MariaDB (2022 SPAC) went public on the cloud-database growth story. Verdict: mixed. Snowflake, MongoDB and Elastic became durable public companies, but Couchbase and Confluent were taken out (PE and IBM) and MariaDB collapsed. Several prominent private vendors remained private, while the listed cohort had sharply different outcomes."
 tags: [ipo, public-markets, snowflake, mongodb, confluent, couchbase, elastic, mariadb]
 area: business-licensing
 verdict: mixed
@@ -70,7 +70,7 @@ sources:
 
 # Summary
 
-**Verdict: mixed.** The cloud-database IPO wave produced one historic success and several disappointments. Snowflake's September 2020 listing raised $3.4B, the largest software IPO ever at the time, and closed its first day at about $254 a share (IPO price $120), valuing it above $60B.[^snow-ipo][^snow-geekwire] By FY2026 Snowflake had $4.47B in product revenue, growing 29%.[^snow-fy26] MongoDB and Elastic also became durable public companies. The 2021 class did worse. Couchbase IPO'd at $24 in July 2021[^base-ipo] and was sold to private equity at $24.50 in 2025.[^couchbase-close] Confluent IPO'd at $36 in June 2021[^cflt-ipo] and IBM bought it at $31 per share in 2025–26.[^ibm-confluent] MariaDB listed via SPAC in December 2022 at $10 and was bought by K1 at $0.55 in 2024.[^mariadb-tc] As of October 2026 no US database company has gone public since 2021, and Databricks (valued at $190B) has said 2026 is a "terrible" year to list.[^forge-dbx]
+**Verdict: mixed.** The cloud-database IPO wave produced one historic success and several disappointments. Snowflake's September 2020 listing raised $3.4B, the largest software IPO ever at the time, and closed its first day at about $254 a share (IPO price $120), valuing it above $60B.[^snow-ipo][^snow-geekwire] By FY2026 Snowflake had $4.47B in product revenue, growing 29%.[^snow-fy26] MongoDB and Elastic also became durable public companies. The 2021 class did worse. Couchbase IPO'd at $24 in July 2021[^base-ipo] and was sold to private equity at $24.50 in 2025.[^couchbase-close] Confluent IPO'd at $36 in June 2021[^cflt-ipo] and IBM bought it at $31 per share in 2025–26.[^ibm-confluent] MariaDB listed via SPAC in December 2022 at $10 and was bought by K1 at $0.55 in 2024.[^mariadb-tc] Databricks remained private; the cited IPO coverage reports that its CEO called 2026 a "terrible" year to list.[^forge-dbx]
 
 # The idea
 
@@ -102,25 +102,25 @@ A database is the stickiest software a company buys, so database vendors should 
 - **Couchbase** never grew fast enough. It was sold at roughly its IPO price after four years.[^couchbase-close]
 - **Confluent** sold to IBM below its $36 IPO price, though at a large premium to its depressed 2025 trading price.[^ibm-confluent]
 - **MariaDB** is the clearest failure: a SPAC listing at $10, about $0.35 per share before the K1 offer, and a $37M take-private.[^mariadb-tc]
-- **The pipeline stopped.** Late-stage private database companies (Databricks, ClickHouse, Supabase, Cockroach Labs) raised private rounds instead of listing.
+- **Private financing remained an alternative.** Several prominent vendors continued raising private capital; this selected case list is not an exhaustive census of database listings.
 
 # Why
 
 1. **Growth rate determined outcome.** Companies growing 25–30%+ with a strong managed service (Snowflake, MongoDB) were rewarded. Those growing 15–20% with self-managed revenue (Couchbase) became PE targets.
 2. **Timing.** The 2021 IPOs priced at peak multiples. When rates rose in 2022, software multiples compressed and never fully recovered for mid-size infrastructure.
-3. **SPACs selected weak companies.** MariaDB went public via SPAC because a traditional IPO was not available, and the market treated it accordingly.[^mariadb-tc]
-4. **Private capital became plentiful for winners.** Databricks raised billions privately at higher valuations than public markets would likely give, so it had no reason to list.
+3. **A SPAC did not ensure a durable listing.** MariaDB’s subsequent financial distress shows the limits of that route; the outcome alone does not establish whether a traditional IPO was available.[^mariadb-tc]
+4. **Private capital became plentiful for winners.** Large private rounds gave Databricks an alternative to listing; the valuation it would have received in a hypothetical IPO is not established here.
 
 # Lessons
 
 - Being a database company is not enough for public markets; growth and the share of consumption revenue are what get paid for.
-- Sub-scale public database companies (under ~$500M revenue, under ~20% growth) end up acquired.
+- Revenue scale and growth affect public-market expectations, but the selected acquisitions do not establish a universal revenue or growth threshold.
 - The next database IPO, if any, will likely be a broad platform (Databricks, ClickHouse), not a single-model database.
 
 # Related
 
 - [Managed service is the business](/ideas/business-licensing/managed-service-is-the-business.md) · [Funding boom and consolidation](/ideas/business-licensing/funding-boom-and-consolidation.md)
-- Events: [Elastic IPO](/events/2018-10-elastic-ipo.md), [Snowflake IPO](/events/2020-09-snowflake-ipo.md), [Confluent IPO](/events/2021-06-confluent-ipo.md), [Couchbase IPO](/events/2021-07-couchbase-ipo.md), [MariaDB taken private](/events/2024-09-mariadb-taken-private-by-k1.md), [Couchbase taken private](/events/2025-09-couchbase-taken-private.md), [IBM acquires Confluent](/events/2025-12-ibm-acquires-confluent.md)
+- Events: [Elastic IPO](/events/2018-10-elastic-ipo.md), [Snowflake IPO](/events/2020-09-snowflake-ipo.md), [Confluent IPO](/events/2021-06-confluent-ipo.md), [Couchbase IPO](/events/2021-07-couchbase-ipo.md), [MariaDB taken private](/events/2024-09-mariadb-taken-private-by-k1.md), [Couchbase taken private](/events/2025-09-couchbase-taken-private.md), [IBM acquires Confluent](/events/2025-12-ibm-to-acquire-confluent.md)
 
 [^elastic-ipo]: CNBC, 2018-10-05.
 [^snow-ipo]: CNN, 2020-09-16.

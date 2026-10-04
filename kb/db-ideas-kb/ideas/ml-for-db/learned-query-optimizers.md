@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Learned query optimizers and learned cardinality estimation"
-description: "Use deep learning or reinforcement learning to estimate cardinalities, cost plans or choose join orders. Replacing the optimizer outright failed. The surviving form is narrow: 'steering' a classical optimizer with hints learned from repeated workloads, plus execution feedback loops. Both run in production at Microsoft, Amazon and Meta."
+description: "Use deep learning or reinforcement learning to estimate cardinalities, cost plans or choose join orders. Broad adoption of end-to-end learned optimizer replacement is not established by the collected evidence. The surviving form is narrow: 'steering' a classical optimizer with hints learned from repeated workloads, plus execution feedback loops. Both run in production at Microsoft, Amazon and Meta."
 tags: [learned-systems, query-optimization, cardinality-estimation, reinforcement-learning]
 area: ml-for-db
 verdict: niche
@@ -14,6 +14,9 @@ status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
+  - id: loam-2026
+    resource: https://arxiv.org/abs/2602.07336
+    title: "Weng et al.: Learned Query Optimizer in Alibaba MaxCompute, 2026"
   - id: neo
     resource: https://www.vldb.org/pvldb/vol12/p1705-marcus.pdf
     title: "Marcus et al.: Neo: A Learned Query Optimizer (PVLDB 12(11), 2019)"
@@ -57,7 +60,7 @@ sources:
 
 # Summary
 
-**Verdict: niche.** From 2018 to 2022 this was the busiest corner of ML-for-databases. Neo (2019), Bao (SIGMOD 2021 best paper), Balsa (2022) and dozens of learned cardinality estimators showed large speedups on the Join Order Benchmark.[^neo][^bao][^balsa] None of them replaced the optimizer in a production DBMS. Two narrower, conservative forms did ship. The first is **steering**: keep the classical Cascades/System-R optimizer and learn which hints to give it for recurring queries. Microsoft's QO-Advisor is on by default for SCOPE.[^qo-advisor] The second is **feedback loops** that correct estimates from observed runtimes: SQL Server 2022 cardinality/DOP/memory-grant feedback and Meta's history-based optimizer for Presto.[^sqlserver-iqp][^presto-hbo] Learned models also predict query runtimes for scheduling in Amazon Redshift.[^stage] In 2026 the core optimizers of PostgreSQL, Oracle, SQL Server, Snowflake and DuckDB are still hand-built.[^tian-wild]
+**Verdict: niche.** From 2018 to 2022 this was the busiest corner of ML-for-databases. Neo (2019), Bao (SIGMOD 2021 best paper), Balsa (2022) and dozens of learned cardinality estimators showed large speedups on the Join Order Benchmark.[^neo][^bao][^balsa] The cited papers do not establish broad production replacement by those specific prototypes. Two narrower, conservative forms did ship. The first is **steering**: keep the classical Cascades/System-R optimizer and learn which hints to give it for recurring queries. Microsoft's QO-Advisor is on by default for SCOPE.[^qo-advisor] The second is **feedback loops** that correct estimates from observed runtimes: SQL Server 2022 cardinality/DOP/memory-grant feedback and Meta's history-based optimizer for Presto.[^sqlserver-iqp][^presto-hbo] Learned models also predict query runtimes for scheduling in Amazon Redshift.[^stage] In 2026 the core optimizers of PostgreSQL, Oracle, SQL Server, Snowflake and DuckDB are still hand-built.[^tian-wild]
 
 # The idea
 
@@ -75,17 +78,18 @@ Cardinality misestimates are the main cause of bad plans, and classical estimato
 | 2022 | SQL Server 2022 ships CE feedback, DOP feedback and percentile memory-grant feedback, all non-neural | + |
 | 2023 | Google's Kepler (parametric QO)[^kepler] and AutoSteer (Bao generalized to Presto, Spark, MySQL, DuckDB) | + |
 | 2024 | Redshift's Stage runtime predictor and Meta's Presto history-based optimizer published | + |
-| 2025–2026 | Interest moves to LLM-based query rewriting and hinting. Core optimizers remain classical | − |
+| 2026 | Alibaba LOAM reports evaluations on MaxCompute production workloads; this is workload evidence, not proof of deployment to every customer.[^loam-2026] | + |
 
 # What succeeded
 
 - **Steering beats replacing.** Bao's insight was to keep the existing optimizer and pick among a few hint sets (for example, disable nested-loop joins) per query, using Thompson sampling. This limited the downside and let it learn from few examples.[^bao] Microsoft took this further: QO-Advisor moves the learning into an offline pipeline, budgets the steering actions, validates them against regressions, and is enabled by default for production SCOPE workloads.[^steering][^qo-advisor] AutoSteer showed the approach generalizes across engines (up to 40% gains on PrestoDB).[^autosteer]
 - **Feedback from execution.** The most widely deployed "learning optimizer" features observe actual row counts, parallelism or memory use and adjust the next execution, then revert if things get worse. SQL Server 2022 does this through Query Store.[^sqlserver-iqp] Meta's Presto reuses statistics from previous runs of the same query shape.[^presto-hbo]
+- **Further industrial evaluation.** The 2026 LOAM paper reports up to 30% CPU savings on evaluated MaxCompute production workloads while emphasizing dynamic environments, missing statistics and workload selection.[^loam-2026] This is further evidence for bounded practical learning, not a universal replacement claim.
 - **Runtime prediction.** Redshift's Stage predictor combines a cache, a small local model and a global model. It improved average query latency by about 20% through better scheduling compared with the previous predictor.[^stage]
 
 # What failed
 
-- **End-to-end learned optimizers.** Neo and Balsa need hours of training per workload and a stream of executed queries. They also have unpredictable failure modes. No vendor shipped one.
+- **End-to-end learned optimizers.** Neo and Balsa need hours of training per workload and a stream of executed queries. They also have unpredictable failure modes. The collected sources do not establish broad deployment of those specific end-to-end prototypes; this is narrower than claiming no vendor has shipped any learned optimizer.
 - **Learned cardinality estimators as drop-in replacements.** Wang et al. found they were more accurate in static settings but expensive to train and infer, and fragile when data changes. Their errors were also not monotonic in ways an optimizer could reason about.[^ready-ce]
 - **Generality.** Most results were on JOB, TPC-H and Stack running on PostgreSQL, whose optimizer is comparatively easy to beat.
 
@@ -93,7 +97,7 @@ Cardinality misestimates are the main cause of bad plans, and classical estimato
 
 1. **Regressions cost more than speedups earn.** A DBA or cloud operator remembers the one query that went from 1 s to 10 minutes, not the average 20% gain. Every shipped system (QO-Advisor, SQL Server feedback, Azure automatic plan correction) is built around detecting and rolling back regressions. Research prototypes optimized the mean.
 2. **Repetition makes the cheap approach work.** In cloud warehouses most queries recur. That favours caching what worked last time (history-based optimization, hint memorization) over generalizing models.
-3. **Training data and drift.** Learned models need executed queries, and they go stale when data or schema change. A classical estimator never needs retraining.
+3. **Training data and drift.** Learned models need executed queries, and they go stale when data or schema change. A classical estimator avoids neural-model retraining, but still needs statistics maintenance as data changes.
 4. **Engineering integration.** An optimizer is entangled with the cost model, rewrite rules, statistics and plan cache. Steering works because it does not touch those internals, so it needs no change to the engine.
 5. **The people moved to industry.** Key authors moved into cloud vendors (Kraska to AWS in 2022). The ideas went into fleet-wide services there rather than open-source engines.
 
@@ -125,3 +129,5 @@ Cardinality misestimates are the main cause of bad plans, and classical estimato
 [^stage]: SIGMOD Companion 2024.
 [^tian-wild]: Tian, 2025/2026.
 [^bao-award]: Intel Labs blog.
+
+[^loam-2026]: [Weng et al.: Learned Query Optimizer in Alibaba MaxCompute, 2026](https://arxiv.org/abs/2602.07336).

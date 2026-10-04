@@ -9,7 +9,7 @@ hype_peak: 2022
 adoption_2026: niche
 origins: "Gartner coined HTAP in 2014; SAP HANA, MemSQL and Oracle Database In-Memory were early examples"
 key_systems: [systems/tidb, systems/singlestore, systems/snowflake, systems/alloydb, systems/databricks]
-related_ideas: [ideas/distributed-sql/newsql-distributed-sql, ideas/analytics-lakehouse/lakehouse, ideas/streaming-messaging/cdc-integration-backbone, ideas/analytics-lakehouse/real-time-olap]
+related_ideas: [ideas/distributed-sql/newsql-distributed-sql, ideas/analytics-lakehouse/lakehouse, ideas/streaming-messaging/cdc-as-integration-backbone, ideas/analytics-lakehouse/real-time-olap]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z

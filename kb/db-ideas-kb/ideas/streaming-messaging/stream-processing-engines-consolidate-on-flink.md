@@ -34,8 +34,8 @@ sources:
     title: "Redis to acquire Decodable (2025-09)"
     author: org:redis
   - id: ksql-status
-    resource: https://www.conduktor.io/kafka-streams/vs-ksqldb
-    title: "Conduktor: Kafka Streams vs ksqlDB (status of ksqlDB)"
+    resource: https://docs.confluent.io/platform/current/ksqldb/overview.html
+    title: "Confluent: ksqlDB support and recommendation for new workloads"
   - id: spark-rtm
     resource: https://www.databricks.com/blog/introducing-real-time-mode-apache-sparktm-structured-streaming
     title: "Databricks: Introducing Real-Time Mode in Apache Spark Structured Streaming (2025)"
@@ -51,7 +51,7 @@ sources:
 
 # Summary
 
-**Verdict: won.** Apache Flink became the standard engine for stateful stream processing. Confluent bought the Flink startup Immerok in January 2023 and made Flink SQL its strategic processing layer, which left its own ksqlDB behind[^immerok][^ksql-status]. AWS renamed Kinesis Data Analytics to Managed Service for Apache Flink. Alibaba, which bought Ververica in 2019, runs Flink at very large scale and led Flink 2.0 (March 24, 2025)[^flink-20]. Its headline feature, disaggregated state on object storage (ForSt), was published at VLDB 2025[^forst-vldb]. Rust/DataFusion challengers such as Arroyo were absorbed by platforms (Cloudflare, April 2025)[^arroyo-cf], and Flink-as-a-service startups were bought (Immerok → Confluent, Decodable → Redis)[^redis-decodable]. Flink stays hard to operate. That is why managed Flink is a business, and why simpler options (Kafka Streams, Spark Real-Time Mode, warehouses' incremental views) keep large shares of real workloads.
+**Verdict: won.** Apache Flink became the standard engine for stateful stream processing. Confluent bought the Flink startup Immerok in January 2023 and made Flink SQL its strategic processing layer, while retaining support for existing ksqlDB applications[^immerok][^ksql-status]. AWS renamed Kinesis Data Analytics to Managed Service for Apache Flink. Alibaba, which bought Ververica in 2019, runs Flink at very large scale and led Flink 2.0 (March 24, 2025)[^flink-20]. Its headline feature, disaggregated state on object storage (ForSt), was published at VLDB 2025[^forst-vldb]. Rust/DataFusion challengers such as Arroyo were absorbed by platforms (Cloudflare, April 2025)[^arroyo-cf], and Flink-as-a-service startups were bought (Immerok → Confluent, Decodable → Redis)[^redis-decodable]. Flink stays hard to operate. That is why managed Flink is a business, and why simpler options (Kafka Streams, Spark Real-Time Mode, warehouses' incremental views) keep large shares of real workloads.
 
 # The idea
 
@@ -78,7 +78,7 @@ One engine for event-time processing with watermarks, large keyed state, exactly
 # What failed
 
 - **Ease of use.** Flink is still known as hard to tune (checkpoints, backpressure, state size, upgrades with savepoints). Companies like Decodable and Immerok existed because of this, and they were acquired instead of growing into large independents[^redis-decodable].
-- **Challengers.** Arroyo (Rust, SQL-first) was technically strong but became an internal engine for Cloudflare Pipelines[^arroyo-cf]. ksqlDB stalled. Samza and Storm faded. Apache Beam's portability promise mostly reduced to Google Dataflow.
+- **Challengers.** Arroyo (Rust, SQL-first) was technically strong but became an internal engine for Cloudflare Pipelines[^arroyo-cf]. Flink became Confluent’s recommendation for new work, although existing ksqlDB applications remain supported[^ksql-status]. Samza and Storm faded. Apache Beam's portability promise mostly reduced to Google Dataflow.
 - **Standalone processing revenue.** Stream processing sells best when bundled with the log (Confluent) or the cloud (AWS, Alibaba), not on its own.
 
 # Why

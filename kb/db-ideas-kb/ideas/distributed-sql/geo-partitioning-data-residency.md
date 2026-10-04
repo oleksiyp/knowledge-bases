@@ -9,7 +9,7 @@ hype_peak: 2021
 adoption_2026: niche
 origins: "Spanner's placement policies (2012); CockroachDB geo-partitioning (2018, enterprise feature)"
 key_systems: [systems/cockroachdb, systems/spanner, systems/yugabytedb, systems/aurora-dsql, systems/fauna]
-related_ideas: [ideas/distributed-sql/newsql-distributed-sql, ideas/edge-devx/edge-databases, ideas/cloud-architecture/byoc]
+related_ideas: [ideas/distributed-sql/newsql-distributed-sql, ideas/edge-devx/edge-databases, ideas/cloud-architecture/byoc-deployment]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z

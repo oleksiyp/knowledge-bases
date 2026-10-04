@@ -9,7 +9,7 @@ signal: positive
 ideas: [ideas/vector-ai/vector-search-as-a-feature]
 systems: [systems/mongodb]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: mdb
@@ -26,6 +26,8 @@ sources:
 After a June 2023 preview, MongoDB declared Atlas Vector Search GA with dedicated Search Nodes so vector/search workloads scale separately from the operational cluster. Named customers included AT&T Cybersecurity and UKG.[^mdb]
 
 # Why it matters
+
+It let Atlas customers evaluate vector retrieval within their existing managed database environment.
 
 It is a clear example of bundling. Developers already storing JSON documents in Atlas got vectors next to their data with no new vendor. In 2025 MongoDB was reported among potential buyers of Pinecone, which shows the incumbents had become the specialists' exit market.[^calcalist]
 

@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Deterministic / Calvin-style transactions"
-description: "Order transactions up front through a replicated log, then execute them deterministically on every replica, with no two-phase commit. Verdict: failed commercially. Its only well-funded product, Fauna, shut down in May 2025. The research held up, but nobody turned it into a database developers wanted."
+description: "Order transactions up front through a replicated log, then execute them deterministically on every replica, with no two-phase commit. Verdict: failed commercially. Its prominent commercial example, Fauna, shut down in May 2025. That is evidence of Fauna's product failure, not a proof that deterministic transaction processing is commercially impossible."
 tags: [transactions, calvin, determinism, consensus, serializability, research-to-product]
 area: distributed-sql
 verdict: failed
@@ -57,7 +57,7 @@ sources:
 ---
 
 # Summary
-**Verdict: failed (as a product category); still respected as research.** Deterministic databases agree on a global order of transactions *before* executing them. Every replica then runs the same input in the same order and reaches the same state, with no two-phase commit and no aborts caused by replication. The research line was strong: Calvin (2012), a CACM overview in 2018[^abadi-cacm], SLOG for geo-replication (2019)[^slog], and Aria (2020)[^aria]. Fauna was the one commercial bet. It raised about $57M[^fauna-27m], passed a demanding Jepsen analysis after fixes[^jepsen-fauna], and shut down its service on 30 May 2025, saying it could not raise the capital to keep going[^fauna-future][^infoq-fauna]. No other mainstream system adopted the model. The failure was mostly about product (a proprietary query language, a GraphQL bet, serverless-only delivery), not about the protocol.
+**Verdict: failed for the Fauna-led commercial bet examined here; still influential as research.** Deterministic databases agree on a global order of transactions *before* executing them. Every replica then runs the same input in the same order and reaches the same state, with no two-phase commit and no aborts caused by replication. The research line was strong: Calvin (2012), a CACM overview in 2018[^abadi-cacm], SLOG for geo-replication (2019)[^slog], and Aria (2020)[^aria]. Fauna was the prominent commercial bet examined here. It raised about $57M[^fauna-27m], completed a demanding Jepsen analysis with documented fixes and remaining qualifications[^jepsen-fauna], and shut down its service on 30 May 2025, saying it could not raise the capital to keep going[^fauna-future][^infoq-fauna]. The collected evidence does not establish another mainstream Calvin-style replacement for general-purpose SQL databases. The failure was mostly about product (a proprietary query language, a GraphQL bet, serverless-only delivery), not about the protocol.
 
 # The idea
 In conventional distributed databases, each node executes transactions concurrently and the nodes then *agree* on outcomes using locks, 2PC and consensus per commit. Calvin reverses the order. A sequencing layer batches incoming transactions into a replicated log every few milliseconds, and schedulers acquire locks in log order. Because execution is deterministic, replicas never diverge and no commit protocol is needed. The costs are that transactions must be submitted whole ("one-shot", not interactive) and that their read/write sets must be known or discovered in advance[^abadi-cacm].
@@ -96,7 +96,7 @@ In conventional distributed databases, each node executes transactions concurren
 # Related
 - Systems: [Fauna](/systems/fauna.md), [Spanner](/systems/spanner.md)
 - Ideas: [NewSQL / distributed SQL](/ideas/distributed-sql/newsql-distributed-sql.md), [Jepsen culture](/ideas/distributed-sql/jepsen-correctness-culture.md)
-- Events: [Fauna shuts down](/events/2025-03-fauna-shutdown.md)
+- Events: [Fauna shuts down](/events/2025-03-fauna-shuts-down.md)
 
 [^abadi-cacm]: CACM 61(9), 2018.
 [^slog]: PVLDB 12(11), 2019.

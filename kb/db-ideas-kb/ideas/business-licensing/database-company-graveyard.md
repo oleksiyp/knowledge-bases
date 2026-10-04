@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "The database company graveyard, 2018–2026"
-description: "A sourced list of database companies and products that shut down, were absorbed and discontinued, or exited at a loss between 2018 and 2026, with the causes. Verdict on the underlying bet (that a new venture-funded database can become an independent company): failed more often than not. Common causes were the capital cost of running a global DBaaS, Postgres absorbing the niche, and acquirers wanting the team rather than the product."
+description: "A sourced list of database companies and products that shut down, were absorbed and discontinued, or exited at a loss between 2018 and 2026, with the causes. Verdict on the failed cases collected here: technical merit did not ensure a durable independent business. This selected list does not measure the overall startup failure rate. Common causes were the capital cost of running a global DBaaS, Postgres absorbing the niche, and acquirers wanting the team rather than the product."
 tags: [shutdowns, failures, startups, acquisitions, postmortem, graveyard]
 area: business-licensing
 verdict: failed
@@ -75,11 +75,11 @@ sources:
 
 # Summary
 
-**Verdict: failed (for most of the cohort).** Between 2018 and 2026 at least a dozen funded database companies or products were shut down, and many more were absorbed into a buyer that discontinued the product or sold at or below their earlier valuation. The pattern is clear. Running a new operational database as a global managed service needs more capital than most startups can raise after 2022 (Fauna). Niche data models lost to PostgreSQL extensions (PostgresML, Hydra, Tembo's hosted service). Buyers in the AI era wanted teams, not products (Rockset, bit.io, Gel, Kùzu). Companies that did survive often did so as private-equity holdings (MariaDB, Couchbase, SingleStore). The table below lists only cases with a public source; "shut down" means the service or company ended, not that the open-source code disappeared. The "main cause" column is this KB's assessment unless the cited source states the cause (Fauna, OtterTune, Rockset, bit.io do).
+**Verdict: failed for the shutdown cases collected here; acquisitions have mixed outcomes.** Between 2018 and 2026 at least a dozen funded database companies or products were shut down, and many more were absorbed into a buyer that discontinued the product or sold at or below their earlier valuation. The pattern is clear. Running a new operational database as a global managed service needs more capital than most startups can raise after 2022 (Fauna). Niche data models lost to PostgreSQL extensions (PostgresML, Hydra, Tembo's hosted service). Buyers in the AI era wanted teams, not products (Rockset, bit.io, Gel, Kùzu). Companies that did survive often did so as private-equity holdings (MariaDB, Couchbase, SingleStore). The table below lists only cases with a public source; "shut down" means the service or company ended, not that the open-source code disappeared. The "main cause" column is this KB's assessment unless the cited source states the cause (Fauna, OtterTune, Rockset, bit.io do).
 
 # The idea
 
-The bet under every entry is the same: a better database engine plus venture capital can become an independent, durable company. The graveyard records where that bet lost and why.
+The recurring bet is that a better engine and sufficient capital can sustain an independent database company. This deliberately selected collection records shutdowns, pivots, ownership changes and lost openness. Those are different outcomes; an acquisition alone is not proof of business failure.
 
 # The graveyard
 
@@ -106,7 +106,7 @@ The bet under every entry is the same: a better database engine plus venture cap
 | HeavyDB (HEAVY.AI, ex-OmniSci/MapD) | Acquired by Nvidia | 2025 | GPU database | GPU analytics did not become a standalone market | [^pavlo-2025] |
 | CockroachDB (as open source) | Source moved private | Sept 2026 | Company healthy; public repo frozen | Licensing ratchet; AI cited | [^crdb-private] |
 
-Note on scope: survivors acquired at a good price (Neon, Tabular, Crunchy Data, WarpStream, DuckLabs) are covered in [AI-era acquisitions](/ideas/business-licensing/database-acquisitions-as-ai-acquihires.md), not here.
+Note on scope: other acquired vendors and teams (Neon, Tabular, Crunchy Data, WarpStream, DuckLabs) are covered in [AI-era acquisitions](/ideas/business-licensing/database-acquisitions-as-ai-acquihires.md), not here.
 
 # Timeline 2018–2026
 
@@ -138,7 +138,7 @@ Note on scope: survivors acquired at a good price (Neon, Tabular, Crunchy Data, 
 
 - Before adopting a startup database, ask what happens to your data if the hosted service ends with 60 days' notice. Prefer engines with open-source self-hosting and standard interfaces.
 - A new query language raises the bar for survival; SQL compatibility has been a survival trait.
-- Private-equity ownership is not death, but it usually means maintenance-mode roadmaps and higher prices.
+- Private-equity ownership is not a shutdown. Evaluate actual roadmap, support and pricing changes rather than inferring them from ownership alone.
 
 # Related
 

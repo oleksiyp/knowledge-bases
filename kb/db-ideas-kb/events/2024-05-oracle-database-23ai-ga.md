@@ -9,7 +9,7 @@ signal: positive
 ideas: [ideas/vector-ai/vector-search-as-a-feature]
 systems: []
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: ga
@@ -26,11 +26,11 @@ sources:
 
 # What happened
 
-Oracle's long-term-support release, previously called 23c, shipped as **Oracle Database 23ai**. It includes a native `VECTOR` data type, vector indexes and SQL similarity search combined with relational, JSON, graph and spatial predicates, among 300+ new features.[^ga][^rename] In October 2025 Oracle went further and renamed the product **Oracle AI Database 26ai**. The release was delivered as a release update to 23ai with no upgrade, which shows the rename was branding.[^26ai]
+Oracle's long-term-support release, previously called 23c, shipped as **Oracle Database 23ai**. It includes a native `VECTOR` data type, vector indexes and SQL similarity search combined with relational, JSON, graph and spatial predicates, among 300+ new features.[^ga][^rename] In October 2025 Oracle went further and renamed the product **Oracle AI Database 26ai**. The release was delivered as a release update to 23ai without a separate database upgrade.[^26ai]
 
 # Why it matters
 
-When the most conservative enterprise database renames itself around AI, the feature is fully absorbed. Oracle was also reported as a potential Pinecone acquirer in 2025.
+The launch is concrete evidence that vector retrieval had entered mainstream relational products. Renaming the product around AI strengthens the marketing signal, but does not establish feature parity with every specialist or adoption by existing Oracle customers.
 
 # Related
 

@@ -4,7 +4,7 @@
 
 # Verdict: winning
 
-* [Deterministic simulation testing (DST)](deterministic-simulation-testing.md) - Run the whole distributed system (network, disks, clocks, scheduler) inside a single-threaded, seeded simulator so that rare failures can be found and replayed exactly. Verdict: winning. It moved from FoundationDB folklore to standard practice for new data infrastructure (TigerBeetle, WarpStream, Turso, Resonate, Aiven's diskless Kafka) and to a funded company (Antithesis, $105M Series A in 2025). It remains hard to retrofit onto existing code.
+* [Deterministic simulation testing (DST)](deterministic-simulation-testing.md) - Run the whole distributed system (network, disks, clocks, scheduler) inside a single-threaded, seeded simulator so that rare failures can be found and replayed exactly. Verdict: winning. It spread from FoundationDB into several new data infrastructure projects (TigerBeetle, WarpStream, Turso, Resonate, Aiven's diskless Kafka) and to a funded company (Antithesis, $105M Series A in 2025). It remains hard to retrofit onto existing code.
 * [Sharding middleware over stock MySQL/Postgres](sharding-middleware.md) - Keep the proven single-node engine and add a routing and resharding layer on top (Vitess, Citus, and the 2025–26 'Vitess for Postgres' race: Neki, Multigres, PgDog, Aurora Limitless). Verdict: winning. It runs the largest MySQL fleets and is now the main way Postgres scales out. It beat rewrite-the-engine distributed SQL on compatibility and on trust.
 
 # Verdict: mixed
@@ -15,7 +15,7 @@
 # Verdict: niche
 
 * [Multi-region and geo-partitioned databases for latency and data residency](geo-partitioning-data-residency.md) - One logical database spread across continents. Each row is pinned to a home region for low latency and legal residency, while transactions stay strongly consistent. Verdict: niche. The features shipped and work (CockroachDB REGIONAL BY ROW, Spanner geo-partitioning, Aurora DSQL multi-region), but most companies meet residency rules with separate per-region deployments and use multi-region mainly for disaster recovery.
-* [Specialized OLTP engines for financial ledgers (TigerBeetle)](specialized-oltp-ledgers.md) - A purpose-built database with exactly one data model (double-entry accounts and transfers), designed for extreme write contention, strict serializability and safety under storage faults. Verdict: niche but credible. TigerBeetle reached production in 2024, passed Jepsen in 2025 and launched a managed cloud in 2026. Adoption is still small, and general-purpose Postgres remains what most ledgers run on.
+* [Specialized OLTP engines for financial ledgers (TigerBeetle)](specialized-oltp-ledgers.md) - A purpose-built database with exactly one data model (double-entry accounts and transfers), designed for extreme write contention, strict serializability and safety under storage faults. Verdict: niche but credible. TigerBeetle reached production in 2024, underwent Jepsen analysis in 2025 and launched a managed cloud in 2026. Adoption is still small, and general-purpose Postgres remains what most ledgers run on.
 
 # Verdict: fading
 
@@ -23,4 +23,4 @@
 
 # Verdict: failed
 
-* [Deterministic / Calvin-style transactions](deterministic-transactions.md) - Order transactions up front through a replicated log, then execute them deterministically on every replica, with no two-phase commit. Verdict: failed commercially. Its only well-funded product, Fauna, shut down in May 2025. The research held up, but nobody turned it into a database developers wanted.
+* [Deterministic / Calvin-style transactions](deterministic-transactions.md) - Order transactions up front through a replicated log, then execute them deterministically on every replica, with no two-phase commit. Verdict: failed commercially. Its prominent commercial example, Fauna, shut down in May 2025. That is evidence of Fauna's product failure, not a proof that deterministic transaction processing is commercially impossible.

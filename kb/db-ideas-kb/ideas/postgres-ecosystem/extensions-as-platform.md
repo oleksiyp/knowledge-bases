@@ -11,7 +11,7 @@ origins: "Postgres extension hooks and CREATE EXTENSION (9.1, 2011). PostGIS (20
 key_systems: [systems/pgvector, systems/timescaledb, systems/citus, systems/paradedb, systems/pg-duckdb, systems/pgmq, systems/postgresql]
 related_ideas: [ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/analytics-inside-postgres, ideas/postgres-ecosystem/pluggable-storage-engines, ideas/business-licensing/source-available-licenses]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: anarchy
@@ -61,7 +61,7 @@ sources:
 ---
 
 # Summary
-**Verdict: won as a distribution channel, mixed as a business model.** From 2018 to 2026 the Postgres extension API became the cheapest way to ship a "new database". Vector search (pgvector), time series (TimescaleDB), sharding (Citus), BM25 search (ParadeDB `pg_search`), analytics (pg_duckdb, pg_mooncake, pg_lake) and queues (pgmq) all arrived as extensions. Hyperscalers adopted the popular ones within months: RDS shipped pgvector in May 2023[^rds-pgvector]. Pavlo calls Postgres's extension ecosystem "the most expansive and diverse" of any DBMS[^pavlo-2024]. The costs are real, though. A CMU/Crunchy study of 441 extensions found 16.8% incompatible with at least one other extension, which can cause crashes or wrong results[^anarchy]. The companies behind extensions mostly had to grow into full Postgres hosts (Timescale became Tiger Data), switch to restrictive licenses, or pivot away (Tembo).
+**Verdict: won as a distribution channel, mixed as a business model.** From 2018 to 2026 the Postgres extension API became the cheapest way to ship a "new database". Vector search (pgvector), time series (TimescaleDB), sharding (Citus), BM25 search (ParadeDB `pg_search`), analytics (pg_duckdb, pg_mooncake, pg_lake) and queues (pgmq) all arrived as extensions. Hyperscalers adopted the popular ones within months: RDS shipped pgvector in May 2023[^rds-pgvector]. Pavlo calls Postgres's extension ecosystem "the most expansive and diverse" of any DBMS[^pavlo-2024]. The costs are real, though. A study catalogued 441 extensions and dynamically tested 96; section 5.4 reports failures in 16.8% of tested extension pairs, including brittle tests as well as integration bugs[^anarchy]. The companies behind extensions mostly had to grow into full Postgres hosts (Timescale became Tiger Data), switch to restrictive licenses, or pivot away (Tembo).
 
 # The idea
 Extensions let a team add types, functions, index access methods, planner and executor hooks, background workers and even table storage, without forking the database. That gives three things:
@@ -81,7 +81,7 @@ The business theory was open core: give away the extension, sell hosting or ente
 | 2023 | Pavlo: Postgres-derived systems add vector search via pgvector within a year of ChatGPT[^pavlo-2023] | + |
 | 2024 | Timescale pgvectorscale claims 28x lower p95 latency than Pinecone (vendor benchmark)[^pgvectorscale] | + |
 | 2024 | Four separate DuckDB-in-Postgres extensions appear[^pavlo-2024] | + |
-| 2025 | VLDB paper: 16.8% of 441 Postgres extensions conflict with another[^anarchy] | − |
+| 2025 | VLDB paper: 441 extensions catalogued; 96 dynamically tested, with 16.8% of tested pairs failing[^anarchy] | − |
 | 2025 | ParadeDB archives pg_analytics (Mar)[^pg-analytics-archived] and raises a $12M Series A for search (July)[^paradedb-blog] | +/− |
 | 2025 | Tembo, an "extension-stack" Postgres host, shuts its managed service and pivots[^tembo-hn] | − |
 | 2025 | Timescale renames itself Tiger Data, a general Postgres platform[^tiger-rebrand]. pg_duckdb 1.0[^pg-duckdb-1] | +/− |
@@ -93,7 +93,7 @@ The business theory was open core: give away the extension, sell hosting or ente
 - **Search via extensions** gained traction: ParadeDB raised funding and shipped on PaaS marketplaces[^paradedb-blog].
 
 # What failed
-- **Composability.** Extensions share one address space and one set of hooks. Kim et al. found many copy core Postgres code, and 16.8% conflict with another extension[^anarchy]. Pavlo's summary on X: the Postgres ecosystem "is fraught w/ footguns"[^pavlo-x].
+- **Composability.** Extensions share one address space and one set of hooks. Kim et al. found many copy core Postgres code, and pairwise testing exposes conflicts as well as brittle test-output comparisons[^anarchy]. Pavlo's summary on X: the Postgres ecosystem "is fraught w/ footguns"[^pavlo-x].
 - **Cloud gatekeeping.** Managed services allow only extensions they have approved. Restrictive licenses (TSL, and AGPL for ParadeDB) keep the full product off RDS, Cloud SQL and Azure. The extension's reach is then limited by its vendor's own cloud.
 - **Extension-only businesses.** Tembo's bet on "Postgres with curated extension stacks" ended in May 2025[^tembo-hn]. Timescale broadened into a general Postgres host[^tiger-rebrand]. ParadeDB folded its analytics extension into its search extension[^pg-analytics-archived].
 - **Duplication.** Four DuckDB-in-Postgres projects in one year, plus vendor-specific vector extensions (pgvectorscale, pg_embedding and others), split effort.
@@ -101,7 +101,7 @@ The business theory was open core: give away the extension, sell hosting or ente
 # Why
 - **The API is powerful but low-level.** Hooks give access to the planner, executor and storage, so ambitious extensions effectively patch the server. That power is what makes conflicts and upgrade breakage common[^anarchy].
 - **Value goes to whoever operates the database.** If AWS can run your Apache-licensed extension, you capture little revenue. If AWS cannot, you lose distribution. Timescale's license history shows this squeeze[^ts-license-2020].
-- **Some extensions are features, not products.** Vector search took little engineering, so it became a commodity quickly, which helped users and hurt vendors[^pavlo-2023].
+- **Some extensions are features, not products.** An extension can reuse much of the host engine, lowering category-entry cost; production search quality and performance still require engineering[^pavlo-2023].
 
 # Lessons
 - An extension API is the cheapest way to enter a database market. It is also the cheapest way for incumbents to commoditize you.

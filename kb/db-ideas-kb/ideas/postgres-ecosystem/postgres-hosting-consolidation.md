@@ -9,7 +9,7 @@ hype_peak: 2025
 adoption_2026: mainstream
 origins: "Heroku Postgres (2007), Amazon RDS for PostgreSQL (2013), Microsoft's acquisition of Citus Data (2019)."
 key_systems: [systems/neon, systems/crunchy-data, systems/supabase, systems/edb, systems/timescaledb, systems/planetscale, systems/alloydb, systems/aurora]
-related_ideas: [ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/postgres-backend-as-a-service, ideas/business-licensing/acquisitions-as-ai-acquihires, ideas/cloud-architecture/serverless-databases]
+related_ideas: [ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/postgres-backend-as-a-service, ideas/business-licensing/database-acquisitions-as-ai-acquihires, ideas/cloud-architecture/serverless-databases]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -117,4 +117,4 @@ If AI agents and new apps all start on Postgres, the operational database become
 # Related
 - [Neon](/systems/neon.md), [Crunchy Data](/systems/crunchy-data.md), [Supabase](/systems/supabase.md), [EDB](/systems/edb.md), [PlanetScale](/systems/planetscale.md), [TimescaleDB](/systems/timescaledb.md)
 - [Databricks acquires Neon](/events/2025-05-databricks-acquires-neon.md), [Snowflake acquires Crunchy Data](/events/2025-06-snowflake-acquires-crunchy-data.md), [Supabase Series F](/events/2026-06-supabase-series-f.md)
-- [Acquisitions as AI acquihires](/ideas/business-licensing/acquisitions-as-ai-acquihires.md), [Serverless databases](/ideas/cloud-architecture/serverless-databases.md)
+- [Acquisitions as AI acquihires](/ideas/business-licensing/database-acquisitions-as-ai-acquihires.md), [Serverless databases](/ideas/cloud-architecture/serverless-databases.md)

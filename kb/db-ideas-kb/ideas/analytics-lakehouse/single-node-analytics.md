@@ -9,7 +9,7 @@ hype_peak: 2024
 adoption_2026: common
 origins: "MonetDB/X100 vectorized execution (CWI, 2000s); DuckDB started at CWI in 2018 (SIGMOD 2019 demo); 'Scalability! But at what COST?' (McSherry et al., HotOS 2015)"
 key_systems: [systems/duckdb, systems/motherduck, systems/polars, systems/ducklake, systems/clickhouse]
-related_ideas: [ideas/analytics-lakehouse/composable-data-systems, ideas/analytics-lakehouse/cloud-data-warehouses, ideas/postgres-ecosystem/postgres-extension-ecosystem, ideas/edge-devx/sqlite-in-production]
+related_ideas: [ideas/analytics-lakehouse/composable-data-systems, ideas/analytics-lakehouse/cloud-data-warehouses, ideas/postgres-ecosystem/extensions-as-platform, ideas/edge-devx/sqlite-in-production]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -108,6 +108,6 @@ A laptop or a single cloud VM in 2023 had dozens of cores, hundreds of GB of RAM
 
 # Related
 
-- [Composable data systems](/ideas/analytics-lakehouse/composable-data-systems.md) · [Cloud data warehouses](/ideas/analytics-lakehouse/cloud-data-warehouses.md) · [Postgres extension ecosystem](/ideas/postgres-ecosystem/postgres-extension-ecosystem.md) · [SQLite in production](/ideas/edge-devx/sqlite-in-production.md)
+- [Composable data systems](/ideas/analytics-lakehouse/composable-data-systems.md) · [Cloud data warehouses](/ideas/analytics-lakehouse/cloud-data-warehouses.md) · [Postgres extension ecosystem](/ideas/postgres-ecosystem/extensions-as-platform.md) · [SQLite in production](/ideas/edge-devx/sqlite-in-production.md)
 - [DuckDB](/systems/duckdb.md) · [MotherDuck](/systems/motherduck.md) · [Polars](/systems/polars.md) · [DuckLake](/systems/ducklake.md)
 - [DuckDB 1.0](/events/2024-06-duckdb-1-0.md) · [AWS acquires DuckLabs](/events/2026-08-aws-acquires-ducklabs.md) · [Big Data is Dead essay](/events/2023-02-big-data-is-dead-essay.md)

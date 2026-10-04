@@ -9,7 +9,7 @@ hype_peak: 2025
 adoption_2026: common
 origins: "Vitess built at YouTube from 2010; Citus (2011) as a Postgres extension"
 key_systems: [systems/vitess, systems/planetscale, systems/citus, systems/aurora, systems/supabase]
-related_ideas: [ideas/distributed-sql/newsql-distributed-sql, ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/extension-ecosystem, ideas/cloud-architecture/serverless-databases]
+related_ideas: [ideas/distributed-sql/newsql-distributed-sql, ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/extensions-as-platform, ideas/cloud-architecture/serverless-databases]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z

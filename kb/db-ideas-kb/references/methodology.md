@@ -53,7 +53,7 @@ Verdicts are the research agents' judgements based on the cited evidence. They a
 
 # Research process
 
-Eleven research agents worked in parallel, one per area:
+Eleven Claude research agents began the initial pass, one per area:
 - cloud architecture
 - distributed SQL
 - analytics and lakehouse
@@ -70,11 +70,18 @@ Each agent used web search and preferred primary sources: vendor announcements, 
 Jepsen reports, and Andy Pavlo's yearly reviews. Every non-obvious claim has a footnote that points
 to a source.
 
+Eight interrupted areas were subsequently completed by Codex agents. Each continuation read the
+corresponding Claude transcript and saved drafts before resuming. This recovered unpublished NoSQL
+drafts and completed missing systems, events and papers. The continuations also corrected factual
+errors and unsupported conclusions encountered during review; they did not independently recheck
+every claim in the initial pass.
+
 All concepts are agent-generated and unverified. A human reviewer should add `verified` after
 checking a concept.
 
 # Status
 
-This is an early publish: the research pass is still in progress. The synthesis pages (lessons,
-area reviews, year reviews and the executive summary) will follow. Links to concepts that are not
-yet written show up as broken links in the Health view.
+The area research pass is complete through the October 3, 2026 cutoff. The synthesis pages
+(lessons, area reviews, year reviews and the executive summary) remain to be written. Format,
+citation identifiers and internal links are checked separately from factual accuracy; passing
+those checks does not replace human review of the evidence or verdicts.

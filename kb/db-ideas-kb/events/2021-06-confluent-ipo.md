@@ -30,7 +30,7 @@ It was the peak of the 2021 data-infrastructure IPO window. Confluent's managed 
 
 # Related
 
-- [Database company IPOs](/ideas/business-licensing/database-company-ipos.md) · [IBM acquires Confluent](/events/2025-12-ibm-acquires-confluent.md) · [Confluent](/systems/confluent.md)
+- [Database company IPOs](/ideas/business-licensing/database-company-ipos.md) · [IBM acquires Confluent](/events/2025-12-ibm-to-acquire-confluent.md) · [Confluent](/systems/confluent.md)
 
 [^cnbc]: CNBC: Confluent climbs 25% in Nasdaq debut after raising $828M (2021-06-24).
 [^ibm]: IBM to acquire Confluent (2025-12-08).

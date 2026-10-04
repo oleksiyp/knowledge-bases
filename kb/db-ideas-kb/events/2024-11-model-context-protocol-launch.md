@@ -1,7 +1,7 @@
 ---
 type: Event
 title: "Anthropic launches the Model Context Protocol"
-description: "MCP, released on 2024-11-25 with a reference Postgres server, became the standard way for LLM agents to talk to databases. Within a year nearly every DBMS shipped an MCP server, ahead of any serious authorization model."
+description: "MCP, released on 2024-11-25 with a reference Postgres server, provided a common interface for LLM agents to access databases. Many database vendors adopted it, while vulnerabilities in reference servers exposed authorization and query-handling risks."
 date: 2024-11-25
 year: 2024
 kind: standard
@@ -9,7 +9,7 @@ signal: positive
 ideas: [ideas/vector-ai/ai-agents-as-database-users]
 systems: [systems/postgresql, systems/sqlite]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: mcp
@@ -31,7 +31,7 @@ Anthropic open-sourced MCP with "pre-built MCP servers for popular enterprise sy
 
 # Why it matters
 
-MCP made databases directly usable by agents, which drove agent-created databases at Neon and Supabase. It standardized access, not authorization. The reference Postgres server's read-only mode could be bypassed by SQL injection, and it was deprecated in July 2025.[^dd]
+MCP provided a common interface for database access by agents. Agent-created databases grew at Neon and Supabase during the same period, but their provisioning statistics do not isolate MCP as the cause. It standardized access, not authorization. The reference Postgres server's read-only mode could be bypassed by SQL injection, and it was deprecated in July 2025.[^dd]
 
 # Related
 

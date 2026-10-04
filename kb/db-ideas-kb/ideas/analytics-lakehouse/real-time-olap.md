@@ -9,7 +9,7 @@ hype_peak: 2022
 adoption_2026: common
 origins: "Druid (Metamarkets, 2011), Pinot (LinkedIn, 2014–2015), ClickHouse (Yandex, open-sourced 2016), Apache Doris/Palo (Baidu)"
 key_systems: [systems/clickhouse, systems/apache-druid, systems/apache-pinot, systems/starrocks, systems/rockset, systems/firebolt]
-related_ideas: [ideas/analytics-lakehouse/lakehouse, ideas/streaming-messaging/streaming-databases-ivm, ideas/analytics-lakehouse/single-node-analytics]
+related_ideas: [ideas/analytics-lakehouse/lakehouse, ideas/streaming-messaging/streaming-databases-and-ivm, ideas/analytics-lakehouse/single-node-analytics]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -104,6 +104,6 @@ Warehouses were built for analysts running queries that take seconds to minutes.
 
 # Related
 
-- [Lakehouse](/ideas/analytics-lakehouse/lakehouse.md) · [Single-node analytics](/ideas/analytics-lakehouse/single-node-analytics.md) · [Streaming databases](/ideas/streaming-messaging/streaming-databases-ivm.md)
+- [Lakehouse](/ideas/analytics-lakehouse/lakehouse.md) · [Single-node analytics](/ideas/analytics-lakehouse/single-node-analytics.md) · [Streaming databases](/ideas/streaming-messaging/streaming-databases-and-ivm.md)
 - [ClickHouse](/systems/clickhouse.md) · [Apache Druid](/systems/apache-druid.md) · [Apache Pinot](/systems/apache-pinot.md) · [StarRocks](/systems/starrocks.md) · [Rockset](/systems/rockset.md) · [Firebolt](/systems/firebolt.md)
 - [ClickHouse spins out of Yandex](/events/2021-09-clickhouse-spins-out-of-yandex.md) · [OpenAI acquires Rockset](/events/2024-06-openai-acquires-rockset.md)

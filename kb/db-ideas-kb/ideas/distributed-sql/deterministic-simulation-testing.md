@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Deterministic simulation testing (DST)"
-description: "Run the whole distributed system (network, disks, clocks, scheduler) inside a single-threaded, seeded simulator so that rare failures can be found and replayed exactly. Verdict: winning. It moved from FoundationDB folklore to standard practice for new data infrastructure (TigerBeetle, WarpStream, Turso, Resonate, Aiven's diskless Kafka) and to a funded company (Antithesis, $105M Series A in 2025). It remains hard to retrofit onto existing code."
+description: "Run the whole distributed system (network, disks, clocks, scheduler) inside a single-threaded, seeded simulator so that rare failures can be found and replayed exactly. Verdict: winning. It spread from FoundationDB into several new data infrastructure projects (TigerBeetle, WarpStream, Turso, Resonate, Aiven's diskless Kafka) and to a funded company (Antithesis, $105M Series A in 2025). It remains hard to retrofit onto existing code."
 tags: [testing, simulation, determinism, fault-injection, correctness, reliability]
 area: distributed-sql
 verdict: winning
@@ -9,7 +9,7 @@ hype_peak: 2025
 adoption_2026: common
 origins: "FoundationDB's simulator (built from ~2010; Will Wilson's 2014 Strange Loop talk)"
 key_systems: [systems/foundationdb, systems/tigerbeetle, systems/antithesis, systems/warpstream, systems/turso]
-related_ideas: [ideas/distributed-sql/jepsen-correctness-culture, ideas/distributed-sql/specialized-oltp-ledgers, ideas/distributed-sql/transactional-kv-core-and-layers, ideas/streaming-messaging/diskless-kafka]
+related_ideas: [ideas/distributed-sql/jepsen-correctness-culture, ideas/distributed-sql/specialized-oltp-ledgers, ideas/distributed-sql/transactional-kv-core-and-layers, ideas/streaming-messaging/diskless-kafka-on-object-storage]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -55,7 +55,7 @@ sources:
 ---
 
 # Summary
-**Verdict: winning.** DST is the main correctness idea to spread out of the distributed-database world between 2018 and 2026. FoundationDB used it from the start, and its 2021 paper says even production upgrades at Apple are rehearsed in simulation[^fdb-paper]. After 2020 it became the default for new data-infrastructure projects. TigerBeetle built its whole engineering culture around a simulator. WarpStream simulates its entire SaaS[^warpstream-dst]. Turso rebuilt SQLite with DST in mind[^turso-free], and Aiven tests its diskless Kafka this way[^aiven-dst]. Phil Eaton's 2024 explainer[^eaton-dst] and Will Wilson's 2025 podcast[^se-radio] reached a wide audience. Antithesis, founded by FoundationDB's creators, offers DST as a hypervisor-level service for unmodified software. It raised $47M in 2024[^antithesis-seed] and a $105M Series A led by Jane Street in Dec 2025[^antithesis-a]. The limits: DST must be designed in from day one or bought as a heavy platform, and Jepsen still finds bugs in DST-tested systems[^jepsen-tb].
+**Verdict: winning.** DST is the main correctness idea to spread out of the distributed-database world between 2018 and 2026. FoundationDB used it from the start, and its 2021 paper says even production upgrades at Apple are rehearsed in simulation[^fdb-paper]. After 2020, documented adoption spread across several new data-infrastructure projects; the cited examples do not establish a market-wide default. TigerBeetle built its whole engineering culture around a simulator. WarpStream simulates its entire SaaS[^warpstream-dst]. Turso rebuilt SQLite with DST in mind[^turso-free], and Aiven tests its diskless Kafka this way[^aiven-dst]. Phil Eaton's 2024 explainer[^eaton-dst] and Will Wilson's 2025 podcast[^se-radio] reached a wide audience. Antithesis, founded by FoundationDB's creators, offers DST as a hypervisor-level service for unmodified software. It raised $47M in 2024[^antithesis-seed] and a $105M Series A led by Jane Street in Dec 2025[^antithesis-a]. The limits: DST must be designed in from day one or bought as a heavy platform, and Jepsen still finds bugs in DST-tested systems[^jepsen-tb].
 
 # The idea
 Make all sources of nondeterminism (thread scheduling, network delivery, disk I/O, time, randomness) go through interfaces that a simulator controls from a single seed. Then run thousands of simulated clusters per hour, injecting partitions, crashes, torn writes and clock jumps far faster than real time. Any failure replays exactly from its seed. That turns once-a-year production heisenbugs into reproducible, debuggable test cases.
@@ -67,11 +67,11 @@ Make all sources of nondeterminism (thread scheduling, network delivery, disk I/
 | 2020 | TigerBeetle created (Jul). Its simulator (the "VOPR") later became central to how it is built and marketed | + |
 | 2021 | FoundationDB SIGMOD paper documents simulation-first engineering[^fdb-paper] | + |
 | 2024 | Antithesis exits stealth with $47M at a $215M valuation (Feb 13)[^antithesis-seed]. Polar Signals tries "mostly DST" in Go[^polar-dst]. Eaton explainer (Aug)[^eaton-dst]. Turso Limbo commits to DST (Dec)[^turso-free] | + (hype) |
-| 2025 | Jepsen tests TigerBeetle and finds only two minor safety issues[^jepsen-tb]. Aiven, WarpStream and Resonate publish DST programs[^aiven-dst][^warpstream-dst][^resonate-dst]. Antithesis raises $105M (Dec)[^antithesis-a] | + |
+| 2025 | Jepsen tests TigerBeetle and finds two safety issues[^jepsen-tb]. Aiven, WarpStream and Resonate publish DST programs[^aiven-dst][^warpstream-dst][^resonate-dst]. Antithesis raises $105M (Dec)[^antithesis-a] | + |
 
 # What succeeded
 - **Bug-finding power.** WarpStream reports simulating 280 logical hours in 6 wall-clock hours with Antithesis[^warpstream-dst]. Turso found that each new fault the simulator learned to inject exposed new bugs[^turso-free].
-- **Correctness as a selling point.** TigerBeetle markets its simulator directly. Its Jepsen report found seven crashes and liveness issues but only two minor safety bugs (missing results for multi-predicate queries, wrong timestamps in a debug API)[^jepsen-tb].
+- **Correctness as a selling point.** TigerBeetle markets its simulator directly. Its Jepsen report found seven crashes and liveness issues but two safety bugs (missing results for multi-predicate queries, wrong timestamps in a debug API)[^jepsen-tb].
 - **A funded tooling market.** Antithesis is used by about 40 companies, with Jane Street both lead investor and customer[^antithesis-a].
 
 # What failed

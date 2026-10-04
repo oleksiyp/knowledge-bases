@@ -9,7 +9,7 @@ signal: positive
 ideas: [ideas/vector-ai/vector-search-as-a-feature, ideas/vector-ai/ann-index-algorithms, ideas/postgres-ecosystem/extensions-as-platform]
 systems: [systems/pgvector, systems/postgresql]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: pg-news
@@ -26,7 +26,7 @@ sources:
 
 # What happened
 
-pgvector 0.5.0 added the `hnsw` index type, parallel builds for IVFFlat and faster distance functions.[^pg-news] Unlike IVFFlat, HNSW can be built on an empty table and maintained through ordinary INSERT/UPDATE/DELETE without losing recall.[^jkatz] AWS made it available on Aurora PostgreSQL and RDS in October 2023.[^aws]
+pgvector 0.5.0 added the `hnsw` index type, parallel builds for IVFFlat and faster distance functions.[^pg-news] Unlike IVFFlat, HNSW can be built on an empty table and maintained through ordinary INSERT/UPDATE/DELETE; approximate-search recall still depends on index and query settings.[^jkatz] AWS made it available on Aurora PostgreSQL and RDS in October 2023.[^aws]
 
 # Why it matters
 

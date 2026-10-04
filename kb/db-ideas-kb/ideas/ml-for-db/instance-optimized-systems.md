@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Instance-optimized databases (SageDB and the learned-systems agenda)"
-description: "Specialize every component of a database (indexes, layouts, scheduling, scaling) to one customer's data and workload using learned models. The 'whole learned DBMS' (SageDB) was never built. Its practical descendant, ML for fleet-wide scheduling, runtime prediction and scaling inside cloud warehouses, shipped in Amazon Redshift and became the default in 2026."
+description: "Specialize every component of a database (indexes, layouts, scheduling, scaling) to one customer's data and workload using learned models. SageDB produced an integrated research prototype, but broad production adoption of the whole-system vision is not established. Its practical descendant, ML for fleet-wide scheduling, runtime prediction and scaling inside cloud warehouses, shipped in Amazon Redshift and became the default in 2026."
 tags: [learned-systems, instance-optimization, redshift, cloud, workload-forecasting]
 area: ml-for-db
 verdict: mixed
@@ -14,6 +14,9 @@ status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
+  - id: sage-prototype
+    resource: https://www.vldb.org/pvldb/vol15/p4062-ding.pdf
+    title: "Ding et al.: SageDB prototype, PVLDB 15(13), 2022"
   - id: sagedb
     resource: https://research.google/pubs/pub47669/
     title: "Kraska et al.: SageDB: A Learned Database System (CIDR 2019)"
@@ -48,7 +51,7 @@ sources:
 
 # Summary
 
-**Verdict: mixed.** SageDB (CIDR 2019) proposed a database whose every component, from indexes and sorting to joins and the optimizer, is synthesized from learned models of the customer's data and workload.[^sagedb] No such system was ever released. Most of its pieces stayed papers (see [learned indexes](/ideas/ml-for-db/learned-indexes.md) and [learned optimizers](/ideas/ml-for-db/learned-query-optimizers.md)). The practical version of the idea moved into a cloud vendor. In 2022 AWS hired Tim Kraska and his group to form the Learned Systems Group and bring "instance optimization" to Redshift.[^amzn-lsg] The results shipped: learned runtime prediction for scheduling, ML-driven scaling for Redshift Serverless (GA October 2024), and from April 2026 that scaling is the default for new workgroups.[^stage][^rais-ga][^rais-default] The verdict: the whole-DBMS vision failed, while ML for **operational decisions** (when, where and how much compute) is working.
+**Verdict: mixed.** SageDB (CIDR 2019) proposed a database whose every component, from indexes and sorting to joins and the optimizer, is synthesized from learned models of the customer's data and workload.[^sagedb] A 2022 paper documents an integrated SageDB prototype combining optimized layouts and partial materialized views; it would be incorrect to call the project unbuilt.[^sage-prototype] Many other pieces remained research (see [learned indexes](/ideas/ml-for-db/learned-indexes.md) and [learned optimizers](/ideas/ml-for-db/learned-query-optimizers.md)). The practical version of the idea moved into a cloud vendor. In 2022 AWS hired Tim Kraska and his group to form the Learned Systems Group and bring "instance optimization" to Redshift.[^amzn-lsg] The results shipped: learned runtime prediction for scheduling, ML-driven scaling for Redshift Serverless (GA October 2024), and from April 2026 that scaling is the default for new workgroups.[^stage][^rais-ga][^rais-default] The verdict separates outcomes: an integrated prototype exists, while the stronger production evidence is for **operational decisions** such as compute allocation and scheduling.
 
 # The idea
 
@@ -61,6 +64,7 @@ General-purpose engines are tuned for no one in particular. If the system models
 | 2018 | QueryBot 5000 (CMU): forecast query arrival rates per query template[^qb5000] | + |
 | 2019 | SageDB vision paper (CIDR) | + |
 | 2019–2021 | MIT DSAIL papers on learned multi-dimensional indexes (Flood, Tsunami), Neo, Bao | + |
+| 2022 | SageDB integrated analytics prototype published, beyond the original vision paper.[^sage-prototype] |
 | Nov 2022 | Amazon announces Kraska's Learned Systems Group for Redshift | + |
 | Nov 2023 | Redshift Serverless "AI-driven scaling and optimizations" preview[^rais-preview] | + |
 | 2024 | Redshift publishes Stage predictor, Intelligent Scaling, and the Redset fleet analysis | + |
@@ -76,14 +80,14 @@ General-purpose engines are tuned for no one in particular. If the system models
 
 # What failed
 
-- **A learned DBMS from scratch.** SageDB was a vision paper. No open or commercial system built on it was ever released.
-- **Learned versions of core algorithms (indexes, sorting, joins, optimizers)** did not reach mainstream engines.
+- **Broad deployment of the whole-system vision.** SageDB progressed to an integrated prototype.[^sage-prototype] The collected evidence does not establish a broadly adopted standalone product.
+- **Universal component replacement.** The sources do not establish that learned versions of indexes, sorting, joins and planning displaced classical implementations across mainstream engines.
 - **Academic evaluation.** Kraska: instance optimization "is extremely hard to test in academia", because the value appears only with real, evolving workloads that academics don't have.[^amzn-lsg]
 
 # Why
 
 1. **Value is in operations, not algorithms.** Choosing how much compute to run and when is a forecasting problem with a clear cost signal and a safe fallback. Replacing a sort or an index changes correctness-critical code paths for small gains.
-2. **Fleet data is the moat.** A cloud vendor sees millions of queries across thousands of customers. That data is what makes global models and forecasting work, and only cloud vendors have it.
+2. **Fleet data is the moat.** A cloud vendor sees millions of queries across thousands of customers. That data is what makes global models and forecasting work, and access to such fleet data is a substantial advantage.
 3. **Repetition makes simple learning pay.** With 80% repeats in half the clusters, memoization and per-template models are enough.[^redset]
 4. **People followed the data.** The research leaders joined the vendor whose data they needed. The results are therefore proprietary features, not open-source components.
 
@@ -98,7 +102,7 @@ General-purpose engines are tuned for no one in particular. If the system models
 - [Learned indexes](/ideas/ml-for-db/learned-indexes.md), [Learned query optimizers](/ideas/ml-for-db/learned-query-optimizers.md), [Self-driving databases](/ideas/ml-for-db/self-driving-databases.md)
 - Systems: [SageDB](/systems/sagedb.md), [Redshift](/systems/redshift.md)
 - Event: [AWS forms Learned Systems Group](/events/2022-11-aws-learned-systems-group.md)
-- Paper: [SageDB](/papers/2019-sagedb.md)
+- Papers: [SageDB vision](/papers/2019-sagedb.md), [2022 prototype](/papers/2022-sagedb-instance-optimized-analytics.md)
 
 [^sagedb]: CIDR 2019.
 [^amzn-lsg]: Amazon Science, 2022-11-03.
@@ -110,3 +114,5 @@ General-purpose engines are tuned for no one in particular. If the system models
 [^rais-default]: AWS What's New, April 2026.
 [^qb5000]: SIGMOD 2018.
 [^brad]: VLDB 2024.
+
+[^sage-prototype]: [Ding et al.: SageDB prototype, PVLDB 15(13), 2022](https://www.vldb.org/pvldb/vol15/p4062-ding.pdf).

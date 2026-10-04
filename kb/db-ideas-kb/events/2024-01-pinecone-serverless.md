@@ -1,7 +1,7 @@
 ---
 type: Event
 title: "Pinecone rebuilds as serverless on object storage"
-description: "Pinecone announced a serverless architecture on 2024-01-16 (GA 2024-05-21) that separates reads, writes and storage and serves vectors from object storage, claiming up to 50x lower cost. The market leader conceded that RAM-priced vector databases were the wrong design."
+description: "Pinecone announced a serverless architecture on 2024-01-16 (GA 2024-05-21) that separates reads, writes and storage and serves vectors from object storage, claiming up to 50x lower cost. The launch made storage cost a central part of competition among vector services."
 date: 2024-01-16
 year: 2024
 kind: launch
@@ -9,7 +9,7 @@ signal: mixed
 ideas: [ideas/vector-ai/object-storage-vector-search, ideas/vector-ai/dedicated-vector-databases]
 systems: [systems/pinecone]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: tc
@@ -30,7 +30,7 @@ Pinecone introduced Pinecone Serverless in public preview in January 2024 and ma
 
 # Why it matters
 
-The category leader moved to the object-storage architecture that turbopuffer and LanceDB were also pursuing. The cost race had started. Five months after GA, Notion moved its workload to turbopuffer, reporting 80% savings.[^tp-notion] The redesign was necessary but did not restore pricing power.
+The category leader moved to the object-storage architecture that turbopuffer and LanceDB were also pursuing. The cost race had started. Five months after GA, Notion moved its workload to turbopuffer, reporting 80% savings.[^tp-notion] The customer move shows that a serverless redesign did not eliminate competition on price; it does not establish Pinecone's overall pricing power.
 
 # Related
 

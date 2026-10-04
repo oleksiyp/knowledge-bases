@@ -6,7 +6,7 @@ resource: https://www.automq.com
 tags: [kafka-compatible, diskless, s3, fork, open-source]
 kind: oss
 first_release: 2023
-org: "AutoMQ (founded by former Alibaba Cloud engineers)"
+org: "AutoMQ, Inc."
 license: Apache-2.0
 outcome: growing
 ideas: [ideas/streaming-messaging/diskless-kafka-on-object-storage, ideas/streaming-messaging/kafka-protocol-as-standard]

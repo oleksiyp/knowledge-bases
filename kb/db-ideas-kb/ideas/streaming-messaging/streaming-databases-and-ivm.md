@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Streaming databases and incremental view maintenance"
-description: "Define results as SQL views and let the engine keep them up to date incrementally as input streams change (Materialize, RisingWave, ksqlDB, Feldera, ReadySet). Mixed: the theory matured (DBSP won VLDB 2023 best paper) and incremental refresh became a standard warehouse feature, but standalone streaming databases stayed niche and ksqlDB was effectively abandoned in favour of Flink SQL."
+description: "Define results as SQL views and let the engine keep them up to date incrementally as input streams change (Materialize, RisingWave, ksqlDB, Feldera, ReadySet). Mixed: the theory matured (DBSP won VLDB 2023 best paper) and incremental refresh became a standard warehouse feature, but standalone streaming databases stayed niche and Confluent recommends Flink for new workloads while supporting existing ksqlDB applications."
 tags: [streaming-database, ivm, materialized-views, sql, differential-dataflow, dbsp]
 area: streaming-messaging
 verdict: mixed
@@ -44,8 +44,8 @@ sources:
     title: "Confluent announces intent to acquire Immerok (2023-01-06)"
     author: org:confluent
   - id: ksql-status
-    resource: https://www.conduktor.io/kafka-streams/vs-ksqldb
-    title: "Conduktor: Kafka Streams vs ksqlDB (status of ksqlDB)"
+    resource: https://docs.confluent.io/platform/current/ksqldb/overview.html
+    title: "Confluent: ksqlDB support and recommendation for new workloads"
   - id: sf-dt
     resource: https://docs.snowflake.com/en/release-notes/2024/other/2024-04-29-dynamic-tables
     title: "Snowflake: Dynamic Tables — General Availability (2024-04-29)"
@@ -57,7 +57,7 @@ sources:
 
 # Summary
 
-**Verdict: mixed.** The 2019–2022 wave of streaming databases promised that any SQL query could be a live, always-correct materialized view over Kafka or CDC streams, so ETL jobs and caches would go away. The theory got much better. Feldera's DBSP paper won VLDB 2023 Best Paper by giving a general algorithm that incrementalizes rich SQL, including recursion[^dbsp]. The mainstream form is the incremental-refresh features in warehouses, such as Snowflake Dynamic Tables (GA April 2024)[^sf-dt], and Flink SQL. Standalone streaming databases stayed small. Materialize raised $100M+ by 2021[^mz-c] and later repositioned as an "operational data warehouse"[^mz-odw]. RisingWave is solid open source with a modest footprint. Confluent's ksqlDB was effectively frozen after Confluent bought a Flink company in 2023[^immerok][^ksql-status].
+**Verdict: mixed.** The 2019–2022 wave of streaming databases promised that any SQL query could be a live, always-correct materialized view over Kafka or CDC streams, so ETL jobs and caches would go away. The theory got much better. Feldera's DBSP paper won VLDB 2023 Best Paper by giving a general algorithm that incrementalizes rich SQL, including recursion[^dbsp]. The mainstream form is the incremental-refresh features in warehouses, such as Snowflake Dynamic Tables (GA April 2024)[^sf-dt], and Flink SQL. Standalone streaming databases stayed small. Materialize raised $100M+ by 2021[^mz-c] and later repositioned as an "operational data warehouse"[^mz-odw]. RisingWave is solid open source with a modest footprint. Confluent acquired a Flink company in 2023 and now recommends Flink for new workloads, while explicitly supporting existing ksqlDB applications[^immerok][^ksql-status].
 
 # The idea
 
@@ -72,7 +72,7 @@ Instead of re-running queries, maintain their results. When an input row changes
 | 2020 | ReadySet founded to commercialize Noria | + |
 | 2021 | Materialize $60M Series C, $100M+ total (Sept)[^mz-c] | + |
 | 2022 | RisingWave open-sourced under Apache 2.0 (Apr); $36M Series A (Oct)[^rw-a]. ReadySet $29M total (Apr)[^rs-a] | + |
-| 2023 | Confluent buys Immerok (Flink) (Jan 6)[^immerok]; ksqlDB stops getting major investment[^ksql-status]. DBSP wins VLDB Best Paper (Aug)[^dbsp]. Materialize markets itself as an "operational data warehouse"[^mz-odw] | mixed |
+| 2023 | Confluent announces agreement to buy Immerok (Flink) on Jan 6[^immerok]. DBSP wins VLDB Best Paper (Aug)[^dbsp]. Materialize markets itself as an "operational data warehouse"[^mz-odw] | mixed |
 | 2024 | Snowflake Dynamic Tables GA with incremental refresh (Apr 29)[^sf-dt]. Materialize reorganizes, with layoffs reported (unconfirmed size) | mixed |
 | 2025 | Materialize launches self-managed Community and Enterprise editions[^mz-sm] | mixed |
 | 2026 | Feldera raises $21.5M Seed + Series A; cites Auth0 keeping "7B+ permission checks" fresh (Sept)[^feldera-a] | + |
@@ -86,7 +86,7 @@ Instead of re-running queries, maintain their results. When an input row changes
 # What failed
 
 - **"Replace your warehouse/ETL with a streaming DB."** Most buyers settled for minute-level freshness from warehouses, which was good enough and already paid for. The always-on, memory-hungry streaming DB was harder to justify.
-- **ksqlDB.** Confluent's 2017 bet on streaming SQL lost to Flink inside Confluent. After the Immerok deal, Flink SQL became the strategic engine and ksqlDB was left in effective maintenance mode[^ksql-status].
+- **ksqlDB.** Confluent recommends Flink for new stream-processing applications while retaining support for existing ksqlDB deployments. This is a change in preferred development direction, not evidence of universal end of life[^ksql-status].
 - **Funding-era scale.** Materialize raised over $100M in the 2021 bubble[^mz-c], kept a BSL licence[^mz-gh], and has repositioned more than once ("streaming database" → "operational data warehouse" → "live data layer for apps and AI agents").
 - **State cost.** Joins over unbounded streams need large state. Memory-resident designs were expensive, and the fix (state on object storage, as in RisingWave and Flink 2.0) only matured around 2024–25.
 
@@ -98,7 +98,7 @@ The technology worked, but the buyer's pain was usually smaller than the vendors
 
 - A strong theory (IVM) can win as a feature inside incumbents while startups selling it as a new category struggle.
 - "Real-time" demand is often overstated. Check whether the customer would pay for seconds over minutes.
-- Choose the processing engine with the largest community. Vendors consolidate on it (Flink), and alternatives inside the same vendor (ksqlDB) get dropped.
+- Distinguish a vendor’s recommendation for new applications from its support commitments for installed products.
 
 # Related
 

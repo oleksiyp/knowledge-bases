@@ -33,6 +33,9 @@ sources:
     resource: https://jepsen.io/analyses/bufstream-0.1.0
     title: "Jepsen: Bufstream 0.1.0 (Kafka transaction semantics issues)"
     author: person:kyle-kingsbury
+  - id: immerok-announcement
+    resource: https://www.confluent.io/blog/cloud-kafka-meets-cloud-flink-with-confluent-and-immerok/
+    title: "Confluent announces Immerok agreement (January 6, 2023)"
 ---
 
 # Summary
@@ -50,7 +53,7 @@ Store every state change as an immutable domain event ("OrderPlaced", "PaymentCa
 | 2018 | Practitioner postmortems on event-sourcing failures circulate[^cascade-2018] | − |
 | 2019 | Kleppmann: "Is Kafka a Database?" keynote[^kleppmann-2019]. ksqlDB launched as an "event streaming database" | + |
 | 2020–22 | Microservices + Kafka + event sourcing popular in conference talks; ksqlDB and Materialize offer SQL over event logs | + |
-| 2023 | Confluent shifts SQL investment to Flink; ksqlDB left in maintenance | − |
+| 2023 | Confluent announces its Immerok agreement to expand managed Flink[^immerok-announcement] | − |
 | 2024 | Jepsen documents underspecified Kafka transaction semantics, a weak base for "Kafka as database"[^jepsen-buf]. Event Store → Kurrent, $12M round (Dec)[^kurrent] | mixed |
 
 # What succeeded

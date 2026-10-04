@@ -15,7 +15,7 @@
 
 # Verdict: mixed
 
-* [Streaming databases and incremental view maintenance](streaming-databases-and-ivm.md) - Define results as SQL views and let the engine keep them up to date incrementally as input streams change (Materialize, RisingWave, ksqlDB, Feldera, ReadySet). Mixed: the theory matured (DBSP won VLDB 2023 best paper) and incremental refresh became a standard warehouse feature, but standalone streaming databases stayed niche and ksqlDB was effectively abandoned in favour of Flink SQL.
+* [Streaming databases and incremental view maintenance](streaming-databases-and-ivm.md) - Define results as SQL views and let the engine keep them up to date incrementally as input streams change (Materialize, RisingWave, ksqlDB, Feldera, ReadySet). Mixed: the theory matured (DBSP won VLDB 2023 best paper) and incremental refresh became a standard warehouse feature, but standalone streaming databases stayed niche and Confluent recommends Flink for new workloads while supporting existing ksqlDB applications.
 
 # Verdict: niche
 

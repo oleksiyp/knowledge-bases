@@ -9,7 +9,7 @@ signal: positive
 ideas: [ideas/vector-ai/llm-functions-in-sql, ideas/vector-ai/text-to-sql]
 systems: [systems/snowflake-cortex, systems/snowflake]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: launch
@@ -27,6 +27,8 @@ sources:
 Snowflake announced Cortex with serverless LLM functions (complete, summarize, extract answers, translate, sentiment) and ML functions callable from SQL, plus previews of Document AI, Snowflake Copilot (text-to-SQL) and Universal Search.[^launch]
 
 # Why it matters
+
+The launch connected model inference to an existing database access and billing surface.
 
 It established "LLMs as SQL functions" inside a governed warehouse. BigQuery and Databricks followed with their own AI functions. Snowflake extended it in June 2025 to semantic operators (Cortex AISQL).[^aisql] Contrast it with PostgresML's failed attempt to run models inside OLTP Postgres.
 

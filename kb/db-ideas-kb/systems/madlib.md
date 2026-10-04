@@ -39,7 +39,7 @@ sources:
 
 # Summary
 
-MADlib implemented regression, clustering, decision trees, graph algorithms, and later deep-learning orchestration as SQL-callable functions running in parallel inside PostgreSQL and Greenplum.[^madlib-vldb] It was the reference open-source example of "bring the computation to the data". Its contributors were mostly employees of Pivotal, later VMware. As that support faded, the project went quiet. The Apache board passed a resolution to terminate MADlib in October 2022, but tabled it, and a new PMC rebooted the project in March 2023.[^minutes] Activity did not recover. After missed reports and failed roll calls, the PMC voted in early September 2026 to move to the Attic.[^vote] The apache/attic tracking PR records "Termination decided during board meeting on 2026-09-16".[^attic-pr] A late-September 2026 thread proposes reviving it via Apache Cloudberry members.[^revive]
+MADlib implemented regression, clustering, decision trees, graph algorithms, and later deep-learning orchestration as SQL-callable functions running in parallel inside PostgreSQL and Greenplum.[^madlib-vldb] It was the reference open-source example of "bring the computation to the data". Its contributors were mostly employees of Pivotal, later VMware. As that support faded, the project went quiet. An October 2022 proposal to terminate MADlib was tabled, and a new PMC rebooted the project in March 2023.[^minutes] Activity did not recover. After missed reports and failed roll calls, the PMC voted in early September 2026 to move to the Attic.[^vote] The apache/attic tracking PR records "Termination decided during board meeting on 2026-09-16".[^attic-pr] A late-September 2026 thread proposes reviving it via Apache Cloudberry members.[^revive]
 
 # Timeline
 

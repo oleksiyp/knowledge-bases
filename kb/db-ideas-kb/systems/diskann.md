@@ -1,7 +1,7 @@
 ---
 type: System
 title: DiskANN
-description: "Microsoft Research's SSD-resident graph ANN index (Vamana graph, NeurIPS 2019), MIT-licensed. It became a production index in Azure Cosmos DB and SQL Server 2025 and inspired pgvectorscale. The most important research-to-product transfer in vector search this period."
+description: "Microsoft Research's SSD-resident graph ANN index (Vamana graph, NeurIPS 2019), MIT-licensed. It became a product feature in Azure Cosmos DB and a preview index in SQL Server 2025 and inspired pgvectorscale. A significant research-to-product transfer in vector search."
 resource: https://github.com/microsoft/DiskANN
 tags: [ann, vector-index, ssd, microsoft-research, algorithm]
 kind: research
@@ -11,7 +11,7 @@ license: MIT
 outcome: thriving
 ideas: [ideas/vector-ai/ann-index-algorithms, ideas/vector-ai/vector-search-as-a-feature, ideas/vector-ai/object-storage-vector-search]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: paper

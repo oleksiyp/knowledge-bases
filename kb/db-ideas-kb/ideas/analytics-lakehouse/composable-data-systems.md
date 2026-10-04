@@ -9,7 +9,7 @@ hype_peak: 2023
 adoption_2026: common
 origins: "Apache Arrow (2016, Wes McKinney and others); Apache Calcite (2014) as an earlier reusable optimizer"
 key_systems: [systems/apache-arrow, systems/datafusion, systems/velox, systems/voltron-data, systems/polars, systems/duckdb]
-related_ideas: [ideas/analytics-lakehouse/single-node-analytics, ideas/analytics-lakehouse/gpu-accelerated-analytics, ideas/hardware-engines/compiled-vs-vectorized-execution]
+related_ideas: [ideas/analytics-lakehouse/single-node-analytics, ideas/analytics-lakehouse/gpu-accelerated-analytics, ideas/hardware-engines/query-compilation-vs-vectorization]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -101,6 +101,6 @@ Every analytics engine reimplements the same parts: a columnar memory layout, ve
 
 # Related
 
-- [Single-node analytics](/ideas/analytics-lakehouse/single-node-analytics.md) · [GPU-accelerated analytics](/ideas/analytics-lakehouse/gpu-accelerated-analytics.md) · [Compiled vs vectorized execution](/ideas/hardware-engines/compiled-vs-vectorized-execution.md)
+- [Single-node analytics](/ideas/analytics-lakehouse/single-node-analytics.md) · [GPU-accelerated analytics](/ideas/analytics-lakehouse/gpu-accelerated-analytics.md) · [Compiled vs vectorized execution](/ideas/hardware-engines/query-compilation-vs-vectorization.md)
 - [Apache Arrow](/systems/apache-arrow.md) · [DataFusion](/systems/datafusion.md) · [Velox](/systems/velox.md) · [Voltron Data](/systems/voltron-data.md) · [Polars](/systems/polars.md)
 - [Composable manifesto paper](/papers/2023-composable-data-management-system-manifesto.md)

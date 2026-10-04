@@ -1,7 +1,7 @@
 ---
 type: Idea
 title: "Learned index structures"
-description: "Replace B-trees and hash tables with models that learn the key distribution (the CDF). A big research hit after 2018, with hundreds of follow-up papers, but almost no production adoption by 2026: the gains were mostly for read-only, in-memory, sorted data, and tuned classical structures closed most of the gap."
+description: "Replace B-trees and hash tables with models that learn the key distribution (the CDF). A big research hit after 2018, with substantial follow-up research, but limited public evidence of broad production adoption by 2026: the gains were mostly for read-only, in-memory, sorted data, and tuned classical structures closed most of the gap."
 tags: [learned-systems, indexing, machine-learning, research]
 area: ml-for-db
 verdict: niche
@@ -46,7 +46,7 @@ sources:
 
 # Summary
 
-**Verdict: niche.** Learned indexes were the most visible ML-for-databases idea of the period and changed the research agenda. They did not change production systems. By 2026 no major commercial or open-source DBMS ships a learned index as its default access method. The early claims held only in a narrow setting: read-only, in-memory, densely packed sorted keys.[^sosd] Once updates, concurrency, disk pages and changing data distributions came in, the advantage over well-engineered B-trees, radix structures and hash tables shrank or disappeared.[^wongkham] The idea survives as a design technique, "model the data distribution and exploit it", rather than as a component you install.
+**Verdict: niche.** Learned indexes were the most visible ML-for-databases idea of the period and changed the research agenda. Public evidence for widespread default deployment is limited. The Google Bigtable integration study below is a concrete counterexample to treating the idea as purely an isolated benchmark, although it does not establish a fleet-wide default.[^bigtable-li] The early claims held only in a narrow setting: read-only, in-memory, densely packed sorted keys.[^sosd] Once updates, concurrency, disk pages and changing data distributions came in, the advantage over well-engineered B-trees, radix structures and hash tables shrank or disappeared.[^wongkham] The idea survives as a design technique, "model the data distribution and exploit it", rather than as a component you install.
 
 # The idea
 
@@ -63,7 +63,7 @@ An index maps a key to a position. For a sorted array, that mapping is the cumul
 | 2021 | SOSD benchmark (PVLDB): learned indexes win on read-only in-memory sorted arrays | + / − |
 | 2021 | "Hist-Tree" (CIDR) shows a simple non-learned histogram tree matching learned indexes | − |
 | 2022 | "Are Updatable Learned Indexes Ready?" (PVLDB): robustness and concurrency problems under realistic workloads | − |
-| 2023–2026 | Research turns to on-disk, LSM and multi-dimensional variants; still no default-on production deployment | − |
+| 2023–2026 | Research explores on-disk and LSM variants; the collected evidence does not establish widespread default deployment.[^lsm-eval] | ± |
 
 # What succeeded
 
@@ -73,7 +73,7 @@ An index maps a key to a position. For a sorted array, that mapping is the cumul
 
 # What failed
 
-- **Replacing the B-tree.** No mainstream engine (PostgreSQL, MySQL/InnoDB, SQL Server, Oracle, RocksDB, DuckDB) adopted learned indexes as a standard index type.
+- **Replacing the B-tree.** The collected sources do not establish learned indexes as a standard replacement across mainstream relational engines.
 - **Updates and robustness.** Wongkham et al. ran updatable learned indexes on ten real datasets with concurrency and distribution shift and found their advantages were fragile. Performance and memory use varied widely, and tail behaviour was hard to predict.[^wongkham]
 - **Neural networks specifically.** Even the original authors' follow-ups moved to simple linear/spline models. "Deep learning replaces data structures" was not borne out.
 
@@ -81,7 +81,7 @@ An index maps a key to a position. For a sorted array, that mapping is the cumul
 
 1. **The baseline was stronger than claimed.** Within weeks, Neumann & Boncz showed that a well-tuned B-tree variant closed much of the gap.[^neumann-btree] The DAWN group showed that bucketized cuckoo hashing used 5–20x less space overhead than learned hash indexes and ran nearly 2x faster.[^dawn-cuckoo] Later, Hist-Tree matched learned indexes with no learning at all.[^hist-tree]
 2. **The index lookup is rarely the bottleneck.** In a disk- or network-bound OLTP system, the inner nodes of a B-tree are already cached. A faster in-memory search barely moves end-to-end latency. Bigtable gained mainly by shrinking index size, a storage-layout effect.[^bigtable-li]
-3. **Engineering cost and risk.** A B-tree has predictable worst cases, decades of concurrency-control and recovery work behind it, and integration with locking and WAL. A model-based index needs retraining when data drifts, and its worst case depends on the data. Engine maintainers would not swap a known structure for a probabilistic one to gain tens of percent on lookups.
+3. **Engineering cost and risk.** A B-tree has predictable worst cases, decades of concurrency-control and recovery work behind it, and integration with locking and WAL. A model-based index must maintain useful prediction bounds as data changes; the update and rebuild costs depend on the design.[^wongkham] Engine maintainers would not swap a known structure for a probabilistic one to gain tens of percent on lookups.
 4. **LSM and columnar engines already cover much of the space.** Sorted runs with fence pointers and Bloom filters, or zone maps in columnar stores, are cheap "models" already. Studies of learned indexes inside LSM trees found gains only in specific configurations.[^lsm-eval]
 
 # Lessons

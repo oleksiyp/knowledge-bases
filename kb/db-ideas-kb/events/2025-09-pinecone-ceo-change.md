@@ -1,7 +1,7 @@
 ---
 type: Event
-title: "Pinecone replaces founder-CEO after exploring a sale"
-description: "After reports in August 2025 that it was exploring a sale following the loss of Notion, Pinecone named Ash Ashutosh CEO on 2025-09-08, with founder Edo Liberty moving to Chief Scientist. It signaled the end of the standalone vector-database boom."
+title: "Pinecone replaces founder-CEO after reports of sale exploration"
+description: "After reports in August 2025 that it was exploring a sale following the loss of Notion, Pinecone named Ash Ashutosh CEO on 2025-09-08, with founder Edo Liberty moving to Chief Scientist. The change followed increased competition; its new CEO subsequently said a sale was not on the table."
 date: 2025-09-08
 year: 2025
 kind: pivot
@@ -9,7 +9,7 @@ signal: negative
 ideas: [ideas/vector-ai/dedicated-vector-databases]
 systems: [systems/pinecone]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: calcalist
@@ -34,7 +34,7 @@ At the end of August 2025, reports (via The Information) said Pinecone had engag
 
 # Why it matters
 
-Two and a half years after a $750M valuation, the category's flagship closed-source company was looking for an exit. Its reported suitors were the incumbents that had made vector search a feature.
+Two and a half years after a $750M valuation, the managed vector database company faced reports that it was considering an exit, which its new CEO disputed. Its reported suitors were the incumbents that had made vector search a feature.
 
 # Related
 

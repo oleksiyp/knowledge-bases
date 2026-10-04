@@ -9,7 +9,7 @@ hype_peak: 2026
 adoption_2026: common
 origins: "Firebase (2011, acquired by Google 2014), Parse (shut down 2017), PostgREST (2014), Hasura (2018)."
 key_systems: [systems/supabase, systems/hasura, systems/firebase, systems/neon, systems/postgresql]
-related_ideas: [ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/postgres-hosting-consolidation, ideas/edge-devx/reactive-backend-databases, ideas/vector-ai/agents-as-database-users]
+related_ideas: [ideas/postgres-ecosystem/just-use-postgres, ideas/postgres-ecosystem/postgres-hosting-consolidation, ideas/edge-devx/reactive-backend-databases, ideas/vector-ai/ai-agents-as-database-users]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z

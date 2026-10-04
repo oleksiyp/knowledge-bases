@@ -11,7 +11,7 @@ license: Apache-2.0
 outcome: thriving
 ideas: [ideas/postgres-ecosystem/postgres-backend-as-a-service, ideas/postgres-ecosystem/postgres-hosting-consolidation, ideas/postgres-ecosystem/pluggable-storage-engines, ideas/postgres-ecosystem/just-use-postgres]
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: tc-sb-a
@@ -67,9 +67,9 @@ Supabase is the breakout commercial Postgres company of the period. It went thro
 | 2026-10-02 | $150M more. Agrees to acquire Turso. OrioleDB public beta, Multigres private alpha[^tipranks-150][^sb-select-2026] |
 
 # What worked
-- Kept Postgres visible (SQL, RLS, extensions), so users never hit a wall that forced a migration.
+- Kept Postgres visible (SQL, RLS, extensions), reducing the need to migrate solely to gain direct database access.
 - Apache-2.0 and self-hostable, which built trust with developers burned by Firebase or Parse lock-in.
-- Became the default backend in AI coding tools. A distribution channel no competitor matched.
+- Gained distribution through AI coding tools; its announcement reports a majority of new databases launched by AI tools.[^sb-series-f]
 
 # What didn't
 - Its deep-tech bets are slow. OrioleDB is still a public beta 2.5 years after the acquisition, and Multigres is an invite-only alpha "not for production workloads"[^sb-select-2026].

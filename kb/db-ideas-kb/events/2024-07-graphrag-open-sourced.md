@@ -9,7 +9,7 @@ signal: mixed
 ideas: [ideas/vector-ai/rag-stack-consolidation-and-graphrag]
 systems: []
 status: stable
-generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
 sources:
   - id: blog
@@ -31,7 +31,7 @@ Microsoft Research published GraphRAG (MIT license). It reported ~70–80% win r
 
 # Why it matters
 
-GraphRAG became the most-starred RAG research artifact (about 36k stars).[^gh] It also showed the pattern behind many LLM-in-data ideas: LLM preprocessing over a whole corpus is expensive and is cut back fast. It gave graph databases a marketing boost, but GraphRAG itself stores its graph in files, not in a graph DBMS.
+GraphRAG attracted substantial developer attention (about 36k GitHub stars at the original research snapshot).[^gh] It also showed the pattern behind many LLM-in-data ideas: LLM preprocessing over a whole corpus is expensive and is cut back fast. It gave graph databases a marketing boost, but GraphRAG itself stores its graph in files, not in a graph DBMS.
 
 # Related
 

@@ -9,7 +9,7 @@ first_release: 2023
 org: "Created by Tembo; community-maintained"
 license: PostgreSQL
 outcome: stable
-ideas: [ideas/postgres-ecosystem/extensions-as-platform, ideas/postgres-ecosystem/just-use-postgres, ideas/streaming-messaging/postgres-as-queue]
+ideas: [ideas/postgres-ecosystem/extensions-as-platform, ideas/postgres-ecosystem/just-use-postgres, ideas/streaming-messaging/queues-and-logs-converge]
 status: stable
 generated: { by: claude-code/claude-opus-5-5, at: 2026-10-03T12:00:00Z }
 stale_after: 2027-04-03T00:00:00Z
@@ -53,5 +53,5 @@ pgmq packages the well-known "Postgres as a queue" pattern (`SELECT … FOR UPDA
 - Not a replacement for log-based streaming (replay, fan-out to many consumer groups, very high throughput). Kafka-class systems remain separate.
 
 # Related
-- [Extensions as platform](/ideas/postgres-ecosystem/extensions-as-platform.md), [Just use Postgres](/ideas/postgres-ecosystem/just-use-postgres.md), [Postgres as a queue](/ideas/streaming-messaging/postgres-as-queue.md)
+- [Extensions as platform](/ideas/postgres-ecosystem/extensions-as-platform.md), [Just use Postgres](/ideas/postgres-ecosystem/just-use-postgres.md), [Postgres as a queue](/ideas/streaming-messaging/queues-and-logs-converge.md)
 - [Supabase](/systems/supabase.md), [Apache Kafka](/systems/apache-kafka.md), [RabbitMQ](/systems/rabbitmq.md)

@@ -1,12 +1,12 @@
 ---
 type: System
 title: DuckDB
-description: "MIT-licensed in-process analytical database from CWI ('SQLite for analytics'), the defining success of single-node analytics. 1.0 in June 2024, embedded everywhere, with IP held by the DuckDB Foundation. AWS acquired its developer company DuckLabs in Aug 2026."
+description: "MIT-licensed in-process analytical database from CWI ('SQLite for analytics'), the defining success of single-node analytics. 1.0 in June 2024, embedded everywhere, with IP held by the DuckDB Foundation. DuckLabs announced it would join AWS in August 2026."
 resource: https://duckdb.org
 tags: [olap, embedded, single-node, vectorized, mit, foundation]
 kind: oss
 first_release: 2019
-org: "DuckDB Foundation (IP); DuckLabs (developers; acquired by AWS 2026)"
+org: "DuckDB Foundation (IP); DuckLabs (developers; AWS subsidiary arrangement announced 2026)"
 license: MIT
 outcome: thriving
 ideas: [ideas/analytics-lakehouse/single-node-analytics, ideas/analytics-lakehouse/composable-data-systems, ideas/analytics-lakehouse/catalog-wars]
@@ -47,12 +47,12 @@ DuckDB, created by Mark Raasveldt and Hannes Mühleisen at CWI Amsterdam, is a v
 | 2021 | DuckDB Labs and DuckDB Foundation founded |
 | 2024 | 1.0 (June)[^duckdb-1]; pg_duckdb and other Postgres integrations[^pavlo-2024] |
 | 2025 | Substrait moved out of core[^duckdb-substrait]; DuckLake launched |
-| 2026 | DuckLake 1.0[^ducklake-10]; AWS acquires DuckLabs[^duck-aws] |
+| 2026 | DuckLake 1.0[^ducklake-10]; DuckLabs announces it will join AWS[^duck-aws] |
 
 # What worked
 
 - Zero-dependency install, excellent SQL ergonomics and very fast single-node performance.
-- MIT licence plus foundation-held IP drove ubiquity and survived an acquisition.
+- MIT licensing and foundation stewardship were explicitly preserved in the announced AWS arrangement[^duck-aws].
 
 # What didn't
 
@@ -62,4 +62,4 @@ DuckDB, created by Mark Raasveldt and Hannes Mühleisen at CWI Amsterdam, is a v
 # Related
 
 - [Single-node analytics](/ideas/analytics-lakehouse/single-node-analytics.md) · [MotherDuck](/systems/motherduck.md) · [DuckLake](/systems/ducklake.md) · [pg_duckdb](/systems/pg-duckdb.md)
-- [DuckDB 1.0](/events/2024-06-duckdb-1-0.md) · [AWS acquires DuckLabs](/events/2026-08-aws-acquires-ducklabs.md)
+- [DuckDB 1.0](/events/2024-06-duckdb-1-0.md) · [DuckLabs announces AWS arrangement](/events/2026-08-aws-acquires-ducklabs.md)
