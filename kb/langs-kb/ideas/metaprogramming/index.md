@@ -1,5 +1,6 @@
 # Outcome: succeeded
 
+* [Multiple dispatch and composable numerical software](multiple-dispatch.md) - Julia demonstrated the value of dispatch over all argument types, with costs in method ambiguity, global extensions and compilation latency.
 * [Source generators and annotation processing](source-generators-and-annotation-processing.md) - Generate ordinary source code at compile time — instead of using runtime reflection or full macros — via plugins that inspect the program (Java annotation processors, C# Roslyn source generators, Kotlin KSP, Swift macros). In 2018–2026 the idea won in .NET, where it became the backbone of trimming and Native AOT, and steadily replaced kapt in Kotlin; Java's processors were tightened (off by default since JDK 23) and Lombok survives by hacking compiler internals; Dart abandoned its macro project in Jan 2025. Verdict: succeeded where the platform owner designed for it.
 
 # Outcome: succeeding

@@ -10,10 +10,14 @@ stale_after: 2027-04-03T00:00:00Z
 
 # Status
 
-This is an early draft. It is based on the first completed research slices: managed languages
-and VMs, JavaScript and WebAssembly, and functional and research languages. The other slices,
-plus area reviews, themes, era reviews, lessons and a verification pass, will replace it.
-Each linked concept cites its own sources.
+This synthesis remains an early draft. On 2026-10-03, research recovered from the stopped
+Claude session was continued: all 19 missing planned idea, language and runtime pages were
+completed, along with 41 missing event pages. The bundle now contains 314 concepts and
+passes structural and internal-link validation. Each new concept cites its evidence.
+
+Area reviews, themes, era reviews, lessons, a final synthesis and a comprehensive
+independent fact-check of the inherited pages remain pending. Structural validation is
+not a substitute for that audit.
 
 # Early findings
 

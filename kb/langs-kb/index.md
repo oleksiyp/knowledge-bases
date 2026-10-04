@@ -9,8 +9,8 @@ okf_version: "0.2"
 
 # Browse
 
-* [Ideas](ideas/) - 66 language and runtime ideas with outcomes, by area.
-* [Languages](languages/) - 64 languages, grouped by trajectory.
-* [Runtimes](runtimes/) - 28 VMs, JS/Wasm runtimes and compiler backends, grouped by trajectory.
-* [Events](events/) - 94 dated releases, proposal decisions, shutdowns and policy moves, by era.
+* [Ideas](ideas/) - 75 language and runtime ideas with outcomes, by area.
+* [Languages](languages/) - 68 languages, grouped by trajectory.
+* [Runtimes](runtimes/) - 34 VMs, JS/Wasm runtimes and compiler backends, grouped by trajectory.
+* [Events](events/) - 135 dated releases, proposal decisions, shutdowns and policy moves, by era.
 * [References](references/) - Methodology and tooling.

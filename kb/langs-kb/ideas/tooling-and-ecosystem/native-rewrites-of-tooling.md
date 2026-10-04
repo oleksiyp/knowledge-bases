@@ -57,7 +57,7 @@ sources:
 **Succeeded, decisively.** Between 2020 and 2026 the tools that JavaScript and Python
 developers run hundreds of times a day were rewritten in Rust, Go or Zig. The rewrites that kept
 the old interface won quickly: esbuild, swc, Ruff, uv, Rolldown, Oxc, Biome and TypeScript 7's
-Go compiler. By 2026 the leading teams had been bought by AI companies. OpenAI agreed to buy
+Go compiler. By 2026 leading tooling teams had attracted AI-company acquisitions and acquisition agreements. OpenAI agreed to buy
 Astral (uv/Ruff/ty) in March 2026,[^openai-astral] and Anthropic bought Bun in December 2025.[^bun-anthropic]
 The failures came from business models and scope, not technology. Rome raised venture money to
 build "one tool for everything", laid off its staff, and survived only as the community fork Biome.[^rome-fall][^biome-announce]
@@ -111,7 +111,7 @@ code, parallelism and few passes over the AST.[^esbuild-faq]
   TypeScript had to wait for 7.1's stable API.
 - **Contributor pool.** A Python tool written in Rust is harder for Python users to patch. The
   maintainer pool narrows to a VC-funded core team, which became a governance concern once
-  Astral and Bun were bought by AI labs.[^jb-astral]
+  Bun was acquired by an AI lab, and OpenAI announced an agreement to acquire Astral.[^jb-astral]
 - **AI-generated rewrites.** Bun's Rust port was produced by AI agents in days. Reports note about
   13,000 `unsafe` blocks, which moves the cost onto review and trust.[^bun-rust]
 
@@ -145,7 +145,7 @@ code, parallelism and few passes over the AST.[^esbuild-faq]
 - [Python packaging revolution](/ideas/tooling-and-ecosystem/packaging-revolution-python.md)
 - [AI-assisted code migration](/ideas/ai-and-languages/ai-assisted-code-migration.md)
 - [JS runtime competition](/ideas/platforms-and-portability/js-runtime-competition.md)
-- [OpenAI acquires Astral](/events/2026-03-openai-acquires-astral.md)
+- [OpenAI announces an agreement to acquire Astral](/events/2026-03-openai-acquires-astral.md)
 - [Rust](/languages/rust.md), [Go](/languages/go.md), [Zig](/languages/zig.md)
 
 [^esbuild-faq]: esbuild FAQ — https://esbuild.github.io/faq/

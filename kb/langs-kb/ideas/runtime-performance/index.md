@@ -5,12 +5,15 @@
 
 # Outcome: succeeding
 
+* [Copy-and-patch JIT compilation](copy-and-patch-jit.md) - Precompiled machine-code templates made a small portable JIT backend feasible in CPython; whole-program speedups still depended on the surrounding optimizer.
 * [ML compilers and MLIR (compiling tensor programs for many accelerators)](ml-compilers-and-mlir.md) - Compile machine-learning programs (graphs, then traced Python, then tile-level kernels) to many accelerators through reusable IR infrastructure: XLA, TVM, MLIR, Triton, torch.compile, Mojo, CUDA Tile. 2018–2026 verdict: succeeding but consolidating. MLIR became the shared substrate and Triton plus torch.compile won the PyTorch world, while the 'one portable compiler for all hardware' startups (TVM/OctoAI) and language bets (Swift for TensorFlow) failed or were absorbed.
 * [Startup snapshotting and training-run caches](startup-snapshotting.md) - Make a slow-starting runtime fast by saving pre-initialised state — class metadata, heap objects, profiles, or a whole warmed-up process — and reloading it at launch. Between 2018 and 2026 this quietly beat full AOT as the mainstream answer to cold starts: AWS Lambda SnapStart (2022/2024), Node.js user-land V8 snapshots (2022) and OpenJDK Project Leyden's AOT cache (JDK 24–26) all shipped, while CRaC stayed outside mainline OpenJDK. Verdict: succeeding.
+* [Time to first plot and Julia compilation latency](time-to-first-plot.md) - Julia 1.9 native-code caches and 1.10 loading improvements substantially reduced first-use latency; precompilation, cache coverage and startup remain separate costs.
 
 # Outcome: mixed
 
 * [AOT native images for managed languages](aot-native-images.md) - Compile a JIT-oriented managed language (Java, C#, Kotlin) ahead of time into a self-contained native executable under a closed-world assumption. GraalVM Native Image and .NET Native AOT both shipped production-grade versions in 2022–2023, but adoption stayed niche (about 2% of Quarkus builds in 2026) and Oracle stopped supporting Native Image for Java SE customers in 2025 in favour of Project Leyden's JIT-friendly caching. Verdict: mixed — it works, and it pushed whole ecosystems toward reflection-free code, but it did not become the default.
+* [JIT compilation for dynamic languages](jit-for-dynamic-languages.md) - JIT outcomes were workload-dependent: established Ruby optimization work, limited typical-web gains in PHP 8, and experimental CPython gains with continuing maintenance costs.
 * [Value types and flat memory layout in managed languages](value-types.md) - User-defined types without object identity that the runtime can store flat (inline in arrays and fields) instead of behind pointers: Java's Project Valhalla, C# structs/Span/ref structs, Swift structs and InlineArray, Kotlin value classes. Verdict: mixed. It succeeded in .NET and Swift, which designed for it early. On the JVM it is the decade's most famous stall: Valhalla began in 2014 and only reached a first preview (JEP 401, JDK 28) in 2026.
 
 # Outcome: failed
