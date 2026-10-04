@@ -1,4 +1,6 @@
-// Typed client for the okf-viewer API with a small in-memory cache keyed by bundle version.
+import { sitePath } from "./paths";
+
+// Typed client for the knowledge-bases API with a small in-memory cache keyed by bundle version.
 export type TrustTier = "unverified" | "machine-confirmed" | "human-reviewed";
 
 export interface LightConcept {
@@ -143,7 +145,7 @@ export const STATIC = import.meta.env.VITE_OKF_STATIC === "1";
 export const LIVE = !STATIC;
 
 async function get<T>(url: string, signal?: AbortSignal): Promise<T> {
-  const res = await fetch(url, { signal, credentials: "same-origin" });
+  const res = await fetch(sitePath(url), { signal, credentials: "same-origin" });
   const isJson = (res.headers.get("content-type") ?? "").includes("json");
   if (!res.ok || !isJson) throw Object.assign(new Error(`${res.status} ${res.statusText}`), { status: res.ok ? 404 : res.status });
   return res.json() as Promise<T>;
@@ -218,5 +220,5 @@ export const api = {
   warmSearch: (b: string) => {
     if (STATIC) staticIndex(b).catch(() => {});
   },
-  rawUrl: (b: string, id: string) => url.raw(b, id),
+  rawUrl: (b: string, id: string) => sitePath(url.raw(b, id)),
 };

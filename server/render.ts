@@ -3,6 +3,7 @@
 import path from "node:path";
 import MarkdownIt from "markdown-it";
 import footnote from "markdown-it-footnote";
+import { withBasePath } from "../shared/paths.ts";
 
 
 export interface LinkRef {
@@ -46,8 +47,9 @@ export function slugify(s: string): string {
 }
 
 const enc = (p: string) => p.split("/").map(encodeURIComponent).join("/");
-export const conceptHref = (bundle: string, id: string) => `/b/${encodeURIComponent(bundle)}/c/${enc(id)}`;
-export const dirHref = (bundle: string, dir: string) => (dir ? `/b/${encodeURIComponent(bundle)}/d/${enc(dir)}` : `/b/${encodeURIComponent(bundle)}`);
+const publicPath = (route: string) => withBasePath(process.env.BASE_PATH ?? "/", route);
+export const conceptHref = (bundle: string, id: string) => publicPath(`/b/${encodeURIComponent(bundle)}/c/${enc(id)}`);
+export const dirHref = (bundle: string, dir: string) => publicPath(dir ? `/b/${encodeURIComponent(bundle)}/d/${enc(dir)}` : `/b/${encodeURIComponent(bundle)}`);
 
 function resolveHref(href: string, ctx: Ctx): { kind: LinkRef["kind"]; target: string; exists: boolean; anchor: string } {
   if (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith("//")) return { kind: "external", target: href, exists: true, anchor: "" };

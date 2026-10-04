@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams, Link, NavLink } from "react-router-dom";
 import { Menu, Search, Sun, Moon, Monitor, PanelRight, Compass, CalendarRange, Share2, BookOpen, Radio, X } from "lucide-react";
 import { api, LIVE, type BundleInfo } from "./api";
+import { basePath, routerPath } from "./paths";
 import { KbSwitcher } from "./components/KbSwitcher";
 import { BundleProvider, UiProvider, useBundle, useUi } from "./store";
 import { modKey, routes } from "./util";
@@ -17,7 +18,7 @@ import { Health } from "./views/Health";
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basePath}>
       <UiProvider>
         <Routes>
           <Route path="/" element={<BundlePicker />} />
@@ -87,9 +88,10 @@ function Shell() {
       const a = (e.target as HTMLElement).closest?.("a") as HTMLAnchorElement | null;
       if (!a || a.target || !a.getAttribute("href")) return;
       const href = a.getAttribute("href")!;
-      if (href.startsWith("/b/")) {
+      const route = routerPath(href);
+      if (route?.startsWith("/b/")) {
         e.preventDefault();
-        navigate(href);
+        navigate(route);
       } else if (href.startsWith("#") && href.length > 1) {
         const el = document.getElementById(decodeURIComponent(href.slice(1)));
         if (el) {

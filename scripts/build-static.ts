@@ -37,14 +37,14 @@ function page(route: string, title: string, description: string) {
     `<meta property="og:type" content="article" />`,
     `<meta property="og:title" content="${esc(title)}" />`,
     `<meta property="og:description" content="${esc(desc)}" />`,
-    `<meta property="og:site_name" content="OKF Viewer" />`,
+    `<meta property="og:site_name" content="Knowledge Bases" />`,
     url && `<meta property="og:url" content="${esc(url)}" />`,
     url && `<link rel="canonical" href="${esc(url)}" />`,
     `<meta name="twitter:card" content="summary" />`,
   ].filter(Boolean).join("\n    ");
   const html = shell.replace(/<title>[\s\S]*?<\/title>/, meta);
-  // "<route>.html" is served by Pages at the clean URL "<route>" (no trailing-slash redirect).
-  write(`${decodeURIComponent(route.replace(/^\//, ""))}.html`, html);
+  // Directory indexes support direct links on both GitHub and Cloudflare Pages.
+  write(`${decodeURIComponent(route.replace(/^\//, ""))}/index.html`, html);
 }
 
 const kbs = readKbConfig(path.join(repoRoot, "knowledge-bases.json"));
@@ -86,6 +86,7 @@ for (const kb of kbs) {
 write("data/bundles.json", bundlesPayload(bundles));
 // Unknown URLs get the app shell (with a 404 status), which renders its own not-found state.
 write("404.html", shell);
+write(".nojekyll", "");
 write("_headers", [
   "/assets/*",
   "  Cache-Control: public, max-age=31536000, immutable",

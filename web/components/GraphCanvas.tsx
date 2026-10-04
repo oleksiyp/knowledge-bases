@@ -1,3 +1,4 @@
+import { sitePath } from "../paths";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ForceGraph from "force-graph";
@@ -152,7 +153,7 @@ export function GraphCanvas({ nodes, links, focus, highlight, height, showLabels
       })
       .onNodeClick((n, e) => {
         if (onSelect && !compact) onSelect(n.id);
-        else if (e.metaKey || e.ctrlKey) window.open(routes.concept(bundle, n.id), "_blank");
+        else if (e.metaKey || e.ctrlKey) window.open(sitePath(routes.concept(bundle, n.id)), "_blank");
         else navigate(routes.concept(bundle, n.id));
       })
       .onBackgroundClick(() => onSelect?.(null));

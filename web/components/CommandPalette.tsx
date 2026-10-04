@@ -1,3 +1,4 @@
+import { sitePath } from "../paths";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, CornerDownLeft, Clock, Compass, CalendarRange, Share2, HeartPulse, Home, SunMoon, PanelRight, Keyboard, FileText } from "lucide-react";
@@ -84,7 +85,7 @@ export function CommandPalette() {
 
   const close = () => ui.setPaletteOpen(false);
   const open = (path: string, newTab: boolean) => {
-    if (newTab) window.open(path, "_blank");
+    if (newTab) window.open(sitePath(path), "_blank");
     else navigate(path);
     close();
   };

@@ -1,3 +1,4 @@
+import { sitePath } from "../paths";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { LayoutGrid, Table2, X, Search, Columns3, ChevronDown, ArrowDownUp, SlidersHorizontal } from "lucide-react";
@@ -206,7 +207,7 @@ export function Explore() {
               </thead>
               <tbody>
                 {results.slice(0, 1000).map((c) => (
-                  <tr key={c.id} onClick={(e) => (e.metaKey || e.ctrlKey ? window.open(routes.concept(bundle, c.id), "_blank") : navigate(routes.concept(bundle, c.id)))}>
+                  <tr key={c.id} onClick={(e) => (e.metaKey || e.ctrlKey ? window.open(sitePath(routes.concept(bundle, c.id)), "_blank") : navigate(routes.concept(bundle, c.id)))}>
                     <td className="t-title">
                       <Link to={routes.concept(bundle, c.id)} data-cid={c.id} onClick={(e) => e.stopPropagation()}>{c.title}</Link>
                       <div className="t-path">{c.dir}</div>

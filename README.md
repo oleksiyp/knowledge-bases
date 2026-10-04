@@ -1,9 +1,11 @@
-# OKF Viewer
+# Knowledge Bases
 
 A fast, readable viewer for [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 knowledge bundles, together with the knowledge bases it publishes.
 
-**Live: https://okf.zengarden.space**
+**Live: https://oleksiyp.github.io/knowledge-bases/**
+
+Also published at https://okf.zengarden.space.
 
 Every page has its own URL, with link previews for Slack, Telegram, X and other apps, so any
 concept, folder or filtered view can be shared.
@@ -17,14 +19,13 @@ concept, folder or filtered view can be shared.
 | `horizon-ois-kb` | Horizon Europe: Open Internet Stack (Cluster 4) topics, projects, cascade funds, rules | [`kb/horizon-ois-kb`](kb/horizon-ois-kb) |
 | `langs-kb` | Programming Languages & Runtimes: ideas that succeeded and failed (Oct 2018 – Oct 2026) | [`kb/langs-kb`](kb/langs-kb) |
 | `db-ideas-kb` | Database Ideas 2018–2026: what won, what failed and why (incl. Kafka/streaming) | [`kb/db-ideas-kb`](kb/db-ideas-kb) |
-| `octopus-organization-kb` | Octopus Organization: frameworks, principles, and practice | [`kb/octopus-organization-kb`](kb/octopus-organization-kb) |
 
 ### Adding a knowledge base
 
 1. Put the bundle (a directory of OKF markdown files) under `kb/<name>/`.
 2. Register it in [`knowledge-bases.json`](knowledge-bases.json) with a short `title`, which the
    top-bar dropdown shows, and a one-sentence `description`.
-3. Push to `main`. GitHub Actions builds the static site and deploys it to Cloudflare Pages.
+3. Push to `main`. GitHub Actions builds and deploys the static site to GitHub Pages and Cloudflare Pages.
 
 ```json
 { "name": "my-kb", "path": "kb/my-kb", "title": "Short title", "description": "One sentence." }
@@ -38,7 +39,7 @@ concept, folder or filtered view can be shared.
   - A serialized search index; search runs entirely in the browser.
   - The raw markdown files.
   - One HTML entry per page, with `<title>` and Open Graph tags.
-- **Hosting.** Cloudflare Pages serves the result. There is no server, nothing to keep running,
+- **Hosting.** GitHub Pages and Cloudflare Pages serve the result. There is no server, nothing to keep running,
   and the site is public.
 - **Local editing.** `npm run dev` runs a small API server with live reload: edit markdown and
   open pages refresh in place.
@@ -105,6 +106,28 @@ Requires Node ≥ 22.18. The server and build scripts run TypeScript directly wi
 stripping. To view ad-hoc bundles locally: `node server/index.ts --bundle name=/path/to/bundle`.
 
 ## Deployment
+
+The repository is [oleksiyp/knowledge-bases](https://github.com/oleksiyp/knowledge-bases).
+
+### GitHub Pages
+
+[`.github/workflows/github-pages.yml`](.github/workflows/github-pages.yml) deploys every push
+to `main` to **https://oleksiyp.github.io/knowledge-bases/**. It uses GitHub Actions as the
+Pages publishing source and the built-in `GITHUB_TOKEN`; no deployment secret is required.
+The workflow reads the base path and public URL from GitHub Pages configuration.
+
+To build and check this project-path layout locally:
+
+```bash
+BASE_PATH=/knowledge-bases/ SITE_URL=https://oleksiyp.github.io/knowledge-bases npm run build:static
+BASE_PATH=/knowledge-bases/ SITE_URL=https://oleksiyp.github.io/knowledge-bases node scripts/check-static.ts
+BASE_PATH=/knowledge-bases/ npm run preview:static
+# Open http://127.0.0.1:4848/knowledge-bases/
+```
+
+Without `BASE_PATH`, builds use `/`, as required by the Cloudflare custom domain.
+
+### Cloudflare Pages
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push to `main`. It
 typechecks, builds the static site, validates the knowledge bases against OKF v0.2, and runs

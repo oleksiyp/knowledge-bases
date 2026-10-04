@@ -5,9 +5,16 @@ import fs from "node:fs";
 import path from "node:path";
 const root = path.resolve("dist/web");
 const port = Number(process.argv[2] ?? 4848);
+const base = "/" + (process.env.BASE_PATH ?? "").split("/").filter(Boolean).join("/");
 const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".md": "text/markdown; charset=utf-8", ".svg": "image/svg+xml" };
 http.createServer((req, res) => {
-  const p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  const pathname = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  if (base !== "/" && pathname !== base && !pathname.startsWith(base + "/")) {
+    res.writeHead(404);
+    res.end("Not found");
+    return;
+  }
+  const p = base === "/" ? pathname : pathname.slice(base.length) || "/";
   const cands = [path.join(root, p), path.join(root, p + ".html"), path.join(root, p, "index.html")];
   const file = cands.find((f) => f.startsWith(root) && fs.existsSync(f) && fs.statSync(f).isFile());
   const target = file ?? path.join(root, "404.html");
