@@ -1,4 +1,4 @@
-// Serves dist/web the way Cloudflare Pages does: exact file, then <path>.html, then <path>/index.html,
+// Serves dist/web locally: exact file, then <path>.html, then <path>/index.html,
 // then 404.html with status 404. Usage: node scripts/preview-static.mjs [port]
 import http from "node:http";
 import fs from "node:fs";

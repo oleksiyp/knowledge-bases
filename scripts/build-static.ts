@@ -43,7 +43,7 @@ function page(route: string, title: string, description: string) {
     `<meta name="twitter:card" content="summary" />`,
   ].filter(Boolean).join("\n    ");
   const html = shell.replace(/<title>[\s\S]*?<\/title>/, meta);
-  // Directory indexes support direct links on both GitHub and Cloudflare Pages.
+  // Directory indexes support direct links on GitHub Pages.
   write(`${decodeURIComponent(route.replace(/^\//, ""))}/index.html`, html);
 }
 
@@ -87,16 +87,4 @@ write("data/bundles.json", bundlesPayload(bundles));
 // Unknown URLs get the app shell (with a 404 status), which renders its own not-found state.
 write("404.html", shell);
 write(".nojekyll", "");
-write("_headers", [
-  "/assets/*",
-  "  Cache-Control: public, max-age=31536000, immutable",
-  "/data/*",
-  "  Cache-Control: public, max-age=60, must-revalidate",
-  "/raw/*",
-  "  Content-Type: text/markdown; charset=utf-8",
-  "/*",
-  "  X-Content-Type-Options: nosniff",
-  "  Referrer-Policy: strict-origin-when-cross-origin",
-  "",
-].join("\n"));
 console.log(`[static] wrote ${files} files to ${path.relative(repoRoot, out)}`);

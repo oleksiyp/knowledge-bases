@@ -5,8 +5,6 @@ knowledge bundles, together with the knowledge bases it publishes.
 
 **Live: https://oleksiyp.github.io/knowledge-bases/**
 
-Also published at https://okf.zengarden.space.
-
 Every page has its own URL, with link previews for Slack, Telegram, X and other apps, so any
 concept, folder or filtered view can be shared.
 
@@ -25,7 +23,7 @@ concept, folder or filtered view can be shared.
 1. Put the bundle (a directory of OKF markdown files) under `kb/<name>/`.
 2. Register it in [`knowledge-bases.json`](knowledge-bases.json) with a short `title`, which the
    top-bar dropdown shows, and a one-sentence `description`.
-3. Push to `main`. GitHub Actions builds and deploys the static site to GitHub Pages and Cloudflare Pages.
+3. Push to `main`. GitHub Actions builds and deploys the static site to GitHub Pages.
 
 ```json
 { "name": "my-kb", "path": "kb/my-kb", "title": "Short title", "description": "One sentence." }
@@ -39,7 +37,7 @@ concept, folder or filtered view can be shared.
   - A serialized search index; search runs entirely in the browser.
   - The raw markdown files.
   - One HTML entry per page, with `<title>` and Open Graph tags.
-- **Hosting.** GitHub Pages and Cloudflare Pages serve the result. There is no server, nothing to keep running,
+- **Hosting.** GitHub Pages serves the result. There is no server, nothing to keep running,
   and the site is public.
 - **Local editing.** `npm run dev` runs a small API server with live reload: edit markdown and
   open pages refresh in place.
@@ -98,7 +96,7 @@ and search goes full-screen.
 npm install
 npm run dev                         # API + live reload on :4747, Vite HMR on :5173
 npm run build:static                # static site into dist/web
-npm run preview:static              # serve dist/web the way Cloudflare Pages does, on :4848
+npm run preview:static              # serve the static output locally on :4848
 npm run typecheck
 ```
 
@@ -125,28 +123,7 @@ BASE_PATH=/knowledge-bases/ npm run preview:static
 # Open http://127.0.0.1:4848/knowledge-bases/
 ```
 
-Without `BASE_PATH`, builds use `/`, as required by the Cloudflare custom domain.
-
-### Cloudflare Pages
-
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push to `main`. It
-typechecks, builds the static site, validates the knowledge bases against OKF v0.2, and runs
-`wrangler pages deploy`.
-
-Repository secrets:
-
-| Secret | Value |
-|---|---|
-| `CLOUDFLARE_API_TOKEN` | API token with **Account → Cloudflare Pages → Edit** |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account ID |
-
-Optional repository variables:
-- `SITE_URL`, default `https://okf.zengarden.space`.
-- `PAGES_PROJECT`, default `okf-viewer`.
-- `CUSTOM_DOMAIN`, default `okf.zengarden.space`.
-
-The first run creates the Pages project and attaches the custom domain. In the zone, point
-the domain at the project with a CNAME to `<project>.pages.dev`.
+Without `BASE_PATH`, local builds use `/`.
 
 ## License
 
