@@ -30,6 +30,12 @@
     "description": "Language and runtime ideas from Oct 2018 to Oct 2026 (memory safety, types, concurrency, JITs and AOT, WebAssembly, tooling, AI), with what succeeded, what failed and why. Work in progress."
   },
   {
+    "name": "ai-micro-saas-kb",
+    "path": "kb/ai-micro-saas-kb",
+    "title": "AI Micro-SaaS & Distribution",
+    "description": "13 case studies and 11 distribution channels: what people build with AI, how they attract customers, what the evidence supports, and practical experiments. Research snapshot: October 2026."
+  },
+  {
     "name": "cloud-native-devops-kb",
     "path": "kb/cloud-native-devops-kb",
     "title": "Cloud Native & DevOps 2021–2026",
